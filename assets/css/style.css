@@ -350,7 +350,7 @@ img { max-width: 100%; display: block; }
     align-items: center;
     justify-content: center;
     width: 100%;
-    gap: 32px;
+    gap: 14px;
     position: relative;
 }
 
@@ -1536,13 +1536,7 @@ img { max-width: 100%; display: block; }
         font-size: 1.4rem;
     }
     .header__bottom-row {
-        gap: 4px;
-    }
-    #langSwitcher {
-        padding-left: 8px;
-    }
-    #langSwitcher::before {
-        display: none;
+        gap: 6px;
     }
 
     .hero__title {
@@ -1566,21 +1560,6 @@ img { max-width: 100%; display: block; }
 #langSwitcher {
     flex-shrink: 0;
     z-index: 1001;
-    margin-left: auto;
-    padding-left: 24px;
-    position: relative;
-}
-
-#langSwitcher::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 1px;
-    height: 30px;
-    background: linear-gradient(180deg, transparent, var(--color-gold-dark), transparent);
-    opacity: 0.4;
 }
 
 .lang-btn {
@@ -1672,10 +1651,6 @@ html[dir="rtl"] .nav__dropdown-toggle i {
 
 /* Mobile lang switcher */
 @media (max-width: 768px) {
-    #langSwitcher {
-        margin-left: auto;
-        margin-right: 0;
-    }
     .header__top {
         padding: 10px 4px;
     }
@@ -1684,12 +1659,6 @@ html[dir="rtl"] .nav__dropdown-toggle i {
     }
     .header__bottom-row {
         gap: 8px;
-    }
-    #langSwitcher {
-        padding-left: 12px;
-    }
-    #langSwitcher::before {
-        height: 20px;
     }
 
     .lang-btn {
