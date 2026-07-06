@@ -154,6 +154,22 @@
       ar: 'اقرأ الدليل الكامل <i class="fas fa-arrow-right"></i>',
       it: 'Leggi la guida completa <i class="fas fa-arrow-right"></i>'
     },
+    intro_text2: {
+      en: 'We recommend you choose a casino from the list below. All our recommended casinos are <strong>licensed, safe, offer lucrative bonuses, and guarantee all payouts</strong> in over 4 currencies. Apply long-term strategies to improve your earnings.',
+      fr: 'Nous vous recommandons de choisir un casino dans la liste ci-dessous. Tous nos casinos recommandés sont <strong>agréés, sûrs, offrent des bonus lucratifs et garantissent tous les paiements</strong> dans plus de 4 devises. Appliquez des stratégies à long terme pour améliorer vos gains.',
+      es: 'Te recomendamos elegir un casino de la lista a continuación. Todos nuestros casinos recomendados son <strong>licenciados, seguros, ofrecen bonos lucrativos y garantizan todos los pagos</strong> en más de 4 monedas. Aplica estrategias a largo plazo para mejorar tus ganancias.',
+      de: 'Wir empfehlen Ihnen, ein Casino aus der Liste unten auszuwählen. Alle unsere empfohlenen Casinos sind <strong>lizenziert, sicher, bieten lukrative Boni und garantieren alle Auszahlungen</strong> in über 4 Währungen. Wenden Sie langfristige Strategien an, um Ihre Gewinne zu verbessern.',
+      ar: 'نوصيك باختيار كازينو من القائمة أدناه. جميع الكازينوهات التي نوصي بها <strong>مرخصة وآمنة وتقدم مكافآت مربحة وتضمن جميع المدفوعات</strong> بأكثر من 4 عملات. طبق استراتيجيات طويلة الأجل لتحسين أرباحك.',
+      it: 'Ti consigliamo di scegliere un casinò dalla lista qui sotto. Tutti i nostri casinò consigliati sono <strong>autorizzati, sicuri, offrono bonus vantaggiosi e garantiscono tutti i pagamenti</strong> in oltre 4 valute. Applica strategie a lungo termine per migliorare i tuoi guadagni.'
+    },
+    intro_text3: {
+      en: 'While blackjack uses luck, <strong>skill matters more</strong>. To increase your chances of winning we recommend you play perfect strategy, count cards, and learn the steps for improving your stiff and pat hands. Always play at licensed casinos — they guarantee all payouts and offer around-the-clock customer support, along with online security.',
+      fr: 'Bien que le blackjack fasse appel à la chance, <strong>la compétence compte plus</strong>. Pour augmenter vos chances de gagner, nous vous recommandons de jouer avec une stratégie parfaite, de compter les cartes et d\'apprendre les étapes pour améliorer vos mains. Jouez toujours dans des casinos agréés — ils garantissent tous les paiements et offrent un support client 24h/24, ainsi qu\'une sécurité en ligne.',
+      es: 'Aunque el blackjack usa la suerte, <strong>la habilidad importa más</strong>. Para aumentar tus posibilidades de ganar, te recomendamos jugar con estrategia perfecta, contar cartas y aprender los pasos para mejorar tus manos. Juega siempre en casinos con licencia — garantizan todos los pagos y ofrecen atención al cliente las 24 horas, junto con seguridad en línea.',
+      de: 'Obwohl Blackjack Glück beinhaltet, <strong>zählt Können mehr</strong>. Um Ihre Gewinnchancen zu erhöhen, empfehlen wir Ihnen, mit perfekter Strategie zu spielen, Karten zu zählen und die Schritte zur Verbesserung Ihrer Hände zu lernen. Spielen Sie immer in lizenzierten Casinos — sie garantieren alle Auszahlungen und bieten rund um die Uhr Kundensupport sowie Online-Sicherheit.',
+      ar: 'على الرغم من أن البلاك جاك يعتمد على الحظ، <strong>إلا أن المهارة更重要</strong>. لزيادة فرصك في الفوز، نوصيك باللعب باستراتيجية مثالية، وعد البطاقات، وتعلم خطوات تحسين أوراقك. العب دائمًا في الكازينوهات المرخصة — فهي تضمن جميع المدفوعات وتقدم دعم العملاء على مدار الساعة، بالإضافة إلى الأمان عبر الإنترنت.',
+      it: 'Anche se il blackjack usa la fortuna, <strong>l\'abilità conta di più</strong>. Per aumentare le tue possibilità di vincita, ti consigliamo di giocare con una strategia perfetta, contare le carte e imparare i passaggi per migliorare le tue mani. Gioca sempre in casinò autorizzati — garantiscono tutti i pagamenti e offrono assistenza clienti 24 ore su 24, insieme alla sicurezza online.'
+    },
     stat_perfect_hand: {
       en: 'The Perfect Hand', fr: 'La main parfaite', es: 'La mano perfecta', de: 'Die perfekte Hand', ar: 'اليد المثالية', it: 'La mano perfetta'
     },
@@ -285,6 +301,14 @@
       ar: 'نوصي فقط بألعاب من أكثر مقدمي الخدمات الموثوقين والمرخصين في الصناعة.',
       it: 'Raccomandiamo solo giochi dei fornitori più affidabili e autorizzati del settore.'
     },
+    provider_desc_live: {
+      en: 'Live Dealer Blackjack Online Casinos',
+      fr: 'Blackjack en direct dans les casinos en ligne',
+      es: 'Blackjack en vivo en casinos online',
+      de: 'Live-Dealer-Blackjack in Online-Casinos',
+      ar: 'بلاك جاك مباشر في الكازينوهات عبر الإنترنت',
+      it: 'Blackjack dal vivo nei casinò online'
+    },
     why_title: {
       en: 'Why Play at Licensed Casinos?', fr: 'Pourquoi jouer dans des casinos agréés ?', es: '¿Por qué jugar en casinos con licencia?', de: 'Warum in lizenzierten Casinos spielen?', ar: 'لماذا تلعب في الكازينوهات المرخصة؟', it: 'Perché giocare nei casinò autorizzati?'
     },
@@ -350,6 +374,46 @@
       de: 'Echtes Feedback aus unserer Community von Blackjack-Spielern.',
       ar: 'تعليقات حقيقية من مجتمعنا من لاعبي البلاك جاك.',
       it: 'Feedback reali dalla nostra comunità di giocatori di blackjack.'
+    },
+    testimonial_1: {
+      en: '"This site helped me go from a total beginner to winning consistently. The basic strategy charts are gold!"<br><span class="ticker-author">— Alex K., London</span>',
+      fr: '"Ce site m\'a aidé à passer de débutant total à gagnant régulier. Les tableaux de stratégie de base sont en or!"<br><span class="ticker-author">— Alex K., Londres</span>',
+      es: '"Este sitio me ayudó a pasar de principiante total a ganar consistentemente. ¡Los cuadros de estrategia básica son oro!"<br><span class="ticker-author">— Alex K., Londres</span>',
+      de: '"Diese Seite hat mir geholfen, vom totalen Anfänger zum konsequenten Gewinner zu werden. Die Grundstrategietabellen sind Gold wert!"<br><span class="ticker-author">— Alex K., London</span>',
+      ar: '"ساعدني هذا الموقع في الانتقال من مبتدئ تمامًا إلى ربح مستمر. جداول الاستراتيجية الأساسية من ذهب!"<br><span class="ticker-author">— أليكس ك.، لندن</span>',
+      it: '"Questo sito mi ha aiutato a passare da principiante assoluto a vincitore costante. I grafici della strategia di base sono d\'oro!"<br><span class="ticker-author">— Alex K., Londra</span>'
+    },
+    testimonial_2: {
+      en: '"Best blackjack resource I\'ve found online. The casino reviews saved me from signing up at some shady places."<br><span class="ticker-author">— Marcus J., Sydney</span>',
+      fr: '"La meilleure ressource de blackjack que j\'ai trouvée en ligne. Les avis sur les casinos m\'ont évité de m\'inscrire dans des endroits douteux."<br><span class="ticker-author">— Marcus J., Sydney</span>',
+      es: '"El mejor recurso de blackjack que he encontrado en línea. Las reseñas de casinos me salvaron de registrarme en lugares sospechosos."<br><span class="ticker-author">— Marcus J., Sídney</span>',
+      de: '"Die beste Blackjack-Ressource, die ich online gefunden habe. Die Casino-Bewertungen haben mich davor bewahrt, mich bei zwielichtigen Orten anzumelden."<br><span class="ticker-author">— Marcus J., Sydney</span>',
+      ar: '"أفضل مصدر للبلاك جاك وجدته على الإنترنت. أنقذتني مراجعات الكازينو من التسجيل في بعض الأماكن المشبوهة."<br><span class="ticker-author">— ماركوس ج.، سيدني</span>',
+      it: '"La migliore risorsa sul blackjack che abbia trovato online. Le recensioni dei casinò mi hanno salvato dall\'iscrivermi in posti loschi."<br><span class="ticker-author">— Marcus J., Sydney</span>'
+    },
+    testimonial_3: {
+      en: '"Card counting guide finally made it click for me. Been practicing every day. Great stuff!"<br><span class="ticker-author">— Dmitry S., Toronto</span>',
+      fr: '"Le guide de comptage de cartes m\'a enfin fait comprendre. Je m\'entraîne tous les jours. Super contenu!"<br><span class="ticker-author">— Dmitry S., Toronto</span>',
+      es: '"La guía de conteo de cartas finalmente me hizo entender. He estado practicando todos los días. ¡Grandioso!"<br><span class="ticker-author">— Dmitry S., Toronto</span>',
+      de: '"Der Leitfaden zum Kartenzählen hat es mir endlich klar gemacht. Ich übe jeden Tag. Tolles Zeug!"<br><span class="ticker-author">— Dmitry S., Toronto</span>',
+      ar: '"دليل عد البطاقات جعلني أخيرًا أفهم. أتدرب كل يوم. محتوى رائع!"<br><span class="ticker-author">— دميتري س.، تورونتو</span>',
+      it: '"La guida al conteggio delle carte mi ha finalmente fatto capire. Mi sono allenato ogni giorno. Roba fantastica!"<br><span class="ticker-author">— Dmitry S., Toronto</span>'
+    },
+    testimonial_4: {
+      en: '"I\'ve been playing blackjack for 10 years and still learned new things from the strategy section. Highly recommend."<br><span class="ticker-author">— Carlos M., Barcelona</span>',
+      fr: '"Je joue au blackjack depuis 10 ans et j\'ai encore appris de nouvelles choses dans la section stratégie. Je recommande vivement."<br><span class="ticker-author">— Carlos M., Barcelone</span>',
+      es: '"He estado jugando blackjack durante 10 años y todavía aprendí cosas nuevas de la sección de estrategia. Muy recomendado."<br><span class="ticker-author">— Carlos M., Barcelona</span>',
+      de: '"Ich spiele seit 10 Jahren Blackjack und habe im Strategiebereich noch Neues gelernt. Sehr empfehlenswert."<br><span class="ticker-author">— Carlos M., Barcelona</span>',
+      ar: '"ألعب البلاك جاك منذ 10 سنوات وما زلت أتعلم أشياء جديدة من قسم الاستراتيجية. أوصي بشدة."<br><span class="ticker-author">— كارلوس م.، برشلونة</span>',
+      it: '"Gioco a blackjack da 10 anni e ho ancora imparato cose nuove dalla sezione strategia. Altamente raccomandato."<br><span class="ticker-author">— Carlos M., Barcellona</span>'
+    },
+    testimonial_5: {
+      en: '"Live dealer section is spot on. Found my new favourite casino through the reviews. Thanks team!"<br><span class="ticker-author">— Emma W., Dublin</span>',
+      fr: '"La section croupier en direct est parfaite. J\'ai trouvé mon nouveau casino préféré grâce aux avis. Merci l\'équipe!"<br><span class="ticker-author">— Emma W., Dublin</span>',
+      es: '"La sección de crupier en vivo es perfecta. Encontré mi nuevo casino favorito a través de las reseñas. ¡Gracias equipo!"<br><span class="ticker-author">— Emma W., Dublín</span>',
+      de: '"Der Live-Dealer-Bereich ist perfekt. Habe mein neues Lieblingscasino durch die Bewertungen gefunden. Danke Team!"<br><span class="ticker-author">— Emma W., Dublin</span>',
+      ar: '"قسم الموزع المباشر ممتاز. وجدت كازينو المفضل الجديد من خلال المراجعات. شكرًا للفريق!"<br><span class="ticker-author">— إيما و.، دبلن</span>',
+      it: '"La sezione del croupier dal vivo è perfetta. Ho trovato il mio nuovo casinò preferito grazie alle recensioni. Grazie squadra!"<br><span class="ticker-author">— Emma W., Dublino</span>'
     },
     review_title: {
       en: 'Leave Your Review', fr: 'Laissez votre avis', es: 'Deja tu reseña', de: 'Hinterlassen Sie Ihre Bewertung', ar: 'اترك مراجعتك', it: 'Lascia la tua recensione'
