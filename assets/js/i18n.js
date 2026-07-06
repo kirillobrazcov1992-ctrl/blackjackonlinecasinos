@@ -95,6 +95,14 @@
     nav_contact: {
       en: 'Contact', fr: 'Contact', es: 'Contacto', de: 'Kontakt', ar: 'اتصل بنا', it: 'Contatto'
     },
+    header_tagline: {
+      en: 'Your Ultimate Guide to Blackjack',
+      fr: 'Votre guide ultime du Blackjack',
+      es: 'Tu guía definitiva del Blackjack',
+      de: 'Dein ultimativer Blackjack-Guide',
+      ar: 'دليلك الشامل للبلاك جاك',
+      it: 'La tua guida definitiva al Blackjack'
+    },
     hero_badge: {
       en: '#1 Blackjack Resource Online', fr: '#1 Ressource Blackjack en ligne', es: '#1 Recurso de Blackjack Online', de: '#1 Blackjack-Ressource online', ar: '#1 مصدر البلاك جاك أونلاين', it: '#1 Risorsa Blackjack Online'
     },
