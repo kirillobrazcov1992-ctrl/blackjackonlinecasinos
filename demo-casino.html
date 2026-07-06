@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Casino — Play Free Slots, Blackjack & Poker | BlackjackOnlineCasinos.com</title>
+    <meta name="description" content="Play free casino games online — slots, blackjack, and video poker. No deposit, no registration, just fun.">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Demo Casino — Free Slots, Blackjack & Poker">
+    <meta property="og:description" content="Play free casino game demos. No deposit needed.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://blackjackonlinecasinos.com/demo-casino.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        /* ===== Demo Tabs ===== */
+        .demo-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+        .demo-tab {
+            padding: 10px 28px;
+            border-radius: 50px;
+            border: 1px solid var(--color-border);
+            background: transparent;
+            color: var(--color-text-muted);
+            font-family: var(--font-primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+        .demo-tab:hover {
+            border-color: var(--color-gold-dark);
+            color: var(--color-gold);
+        }
+        .demo-tab.active {
+            background: linear-gradient(135deg, var(--color-gold), #c8952a);
+            color: #0c0f14;
+            border-color: var(--color-gold);
+        }
+        .demo-category {
+            display: none;
+        }
+        .demo-category.active {
+            display: block;
+        }
+
+        /* ===== Demo Grid ===== */
+        .demo-grid {
+            display: grid;
+            gap: 16px;
+        }
+
+        /* ===== Demo Card ===== */
+        .demo-card {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            transition: all var(--transition);
+        }
+        .demo-card:hover {
+            border-color: rgba(212,168,67,0.25);
+        }
+        .demo-card--active {
+            border-color: var(--color-gold-dark);
+        }
+
+        .demo-card__header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            cursor: pointer;
+        }
+        .demo-card__thumb {
+            flex-shrink: 0;
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            color: #fff;
+        }
+        .demo-card__info {
+            flex: 1;
+            min-width: 0;
+        }
+        .demo-card__title {
+            font-family: var(--font-primary);
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .demo-card__provider {
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            margin-top: 2px;
+        }
+        .demo-card__play {
+            flex-shrink: 0;
+            padding: 8px 22px;
+            border-radius: 50px;
+            border: none;
+            background: linear-gradient(135deg, var(--color-gold), #c8952a);
+            color: #0c0f14;
+            font-family: var(--font-primary);
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+        .demo-card__play:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(212,168,67,0.3);
+        }
+        .demo-card__play--active {
+            background: var(--color-bg-hover);
+            color: var(--color-gold);
+            border: 1px solid var(--color-gold-dark);
+        }
+
+        /* ===== Slide-down frame ===== */
+        .demo-card__body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.45s ease;
+        }
+        .demo-card__body-inner {
+            border-top: 1px solid var(--color-border);
+            padding: 12px;
+            background: #000;
+        }
+        .demo-card__body-inner iframe {
+            display: block;
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 6px;
+        }
+        .demo-card.active .demo-card__body {
+            max-height: 560px;
+        }
+
+        /* ===== Coming soon badge ===== */
+        .demo-card__soon {
+            flex-shrink: 0;
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 5px 12px;
+            border-radius: 50px;
+            background: rgba(212,168,67,0.1);
+            color: var(--color-gold);
+            border: 1px solid rgba(212,168,67,0.2);
+        }
+
+        /* ===== Demo info box ===== */
+        .demo-info {
+            margin-top: 40px;
+            padding: 24px;
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            line-height: 1.7;
+        }
+        .demo-info i {
+            color: var(--color-gold);
+            margin-right: 6px;
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            .demo-card__header {
+                flex-wrap: wrap;
+                padding: 12px 14px;
+            }
+            .demo-card__thumb {
+                width: 48px;
+                height: 48px;
+                font-size: 1.2rem;
+            }
+            .demo-card__title {
+                font-size: 0.85rem;
+                white-space: normal;
+            }
+            .demo-card__play {
+                padding: 6px 16px;
+                font-size: 0.72rem;
+            }
+            .demo-card__body-inner iframe {
+                height: 360px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="container header__inner">
+            <a href="/" class="logo"><span class="logo__icon">&#9824;</span><span class="logo__text">Blackjack<span class="logo__accent">Online</span>Casinos</span></a>
+            <nav class="nav" id="nav">
+                                <ul class="nav__list">
+                    <li><a href="/" class="nav__link">Home</a></li>
+                    <li class="nav__dropdown">
+                        <a href="#" class="nav__link nav__dropdown-toggle">Learn the Game <i class="fas fa-chevron-down"></i></a>
+                        <ul class="nav__submenu">
+                            <li><a href="rules.html" class="nav__link">Rules</a></li>
+                            <li><a href="basic-strategy.html" class="nav__link">Basic Strategy</a></li>
+                            <li><a href="blackjack-odds.html" class="nav__link">Odds & Probability</a></li>
+                            <li><a href="variations.html" class="nav__link">Variations</a></li>
+                            <li><a href="history.html" class="nav__link">History</a></li>
+                            <li><a href="glossary.html" class="nav__link">Glossary</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav__dropdown">
+                        <a href="#" class="nav__link nav__dropdown-toggle">Advanced Play <i class="fas fa-chevron-down"></i></a>
+                        <ul class="nav__submenu">
+                            <li><a href="advanced-strategy.html" class="nav__link">Advanced Strategy</a></li>
+                            <li><a href="card-counting.html" class="nav__link">Card Counting</a></li>
+                            <li><a href="shuffle-tracking.html" class="nav__link">Shuffle Tracking</a></li>
+                            <li><a href="side-bets.html" class="nav__link">Side Bets</a></li>
+                            <li><a href="tournament-blackjack.html" class="nav__link">Tournaments</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav__dropdown">
+                        <a href="#" class="nav__link nav__dropdown-toggle">Resources <i class="fas fa-chevron-down"></i></a>
+                        <ul class="nav__submenu">
+                            <li><a href="online-blackjack.html" class="nav__link">Online Blackjack</a></li>
+                            <li><a href="bankroll-management.html" class="nav__link">Bankroll Management</a></li>
+                            <li><a href="blackjack-myths.html" class="nav__link">Myths & Misconceptions</a></li>
+                            <li><a href="blackjack-etiquette.html" class="nav__link">Etiquette</a></li>
+                            <li><a href="blackjack-faq.html" class="nav__link">FAQ</a></li>
+                            <li><a href="books.html" class="nav__link">Best Blackjack Books</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="reviews.html" class="nav__link">Reviews</a></li>
+                    <li><a href="demo-casino.html" class="nav__link nav__link--active">Demo</a></li>
+                    <li><a href="contact.html" class="nav__link">Contact</a></li>
+                </ul>            </nav>
+            <button class="burger" id="burger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1 class="page-hero__title">Demo Casino — Play for Free</h1>
+                <p class="page-hero__subtitle">Try slots, blackjack, and poker games for free. Click any game to launch the demo.</p>
+            </div>
+        </section>
+
+        <section class="section content-page">
+            <div class="container">
+                <div class="content-page__main content-page__main--full">
+
+                    <!-- ===== TABS ===== -->
+                    <div class="demo-tabs">
+                        <button class="demo-tab active" data-cat="slots"><i class="fas fa-dice"></i> Slots</button>
+                        <button class="demo-tab" data-cat="blackjack"><i class="fas fa-crown"></i> Blackjack</button>
+                        <button class="demo-tab" data-cat="poker"><i class="fas fa-spade"></i> Poker</button>
+                    </div>
+
+                    <!-- ===== SLOTS ===== -->
+                    <div class="demo-category active" id="cat-slots">
+                        <div class="demo-grid">
+                        <div class="demo-card" data-src="https://demogamesfree.pragmaticplay.net/hub-demo/openGame.do?lang=en&amp;cur=USD&amp;websiteUrl=https%3A%2F%2Fclienthub.pragmaticplay.com%2F&amp;gcpif=2831&amp;gameSymbol=vs20olympgold&amp;jurisdiction=99&amp;lobbyUrl=https://clienthub.pragmaticplay.com/slots/game-library/">
+                            <div class="demo-card__header" data-play>
+                                <div class="demo-card__thumb" style="background:linear-gradient(135deg,#2c1654,#8a2387);"><i class="fas fa-dragon"></i></div>
+                                <div class="demo-card__info">
+                                    <div class="demo-card__title">Gates of Olympus Super Scatter</div>
+                                    <div class="demo-card__provider">Pragmatic Play</div>
+                                </div>
+                                <button class="demo-card__play">Play</button>
+                            </div>
+                    <div class="demo-card__body">
+                        <div class="demo-card__body-inner">
+                            <iframe loading="lazy" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                        </div>
+                        <div class="demo-card" data-src="https://demogamesfree.pragmaticplay.net/hub-demo/openGame.do?lang=en&amp;cur=USD&amp;websiteUrl=https%3A%2F%2Fclienthub.pragmaticplay.com%2F&amp;gcpif=2831&amp;gameSymbol=vs20swetbonanza&amp;jurisdiction=99&amp;lobbyUrl=https://clienthub.pragmaticplay.com/slots/game-library/">
+                            <div class="demo-card__header" data-play>
+                                <div class="demo-card__thumb" style="background:linear-gradient(135deg,#f093fb,#f5576c);"><i class="fas fa-candy-cane"></i></div>
+                                <div class="demo-card__info">
+                                    <div class="demo-card__title">Sweet Bonanza</div>
+                                    <div class="demo-card__provider">Pragmatic Play</div>
+                                </div>
+                                <button class="demo-card__play">Play</button>
+                            </div>
+                    <div class="demo-card__body">
+                        <div class="demo-card__body-inner">
+                            <iframe loading="lazy" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                        </div>
+                        <div class="demo-card" data-src="https://demogamesfree.pragmaticplay.net/hub-demo/openGame.do?lang=en&amp;cur=USD&amp;websiteUrl=https%3A%2F%2Fclienthub.pragmaticplay.com%2F&amp;gcpif=2831&amp;gameSymbol=vs20starlight&amp;jurisdiction=99&amp;lobbyUrl=https://clienthub.pragmaticplay.com/slots/game-library/">
+                            <div class="demo-card__header" data-play>
+                                <div class="demo-card__thumb" style="background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);"><i class="fas fa-moon"></i></div>
+                                <div class="demo-card__info">
+                                    <div class="demo-card__title">Starlight Princess</div>
+                                    <div class="demo-card__provider">Pragmatic Play</div>
+                                </div>
+                                <button class="demo-card__play">Play</button>
+                            </div>
+                    <div class="demo-card__body">
+                        <div class="demo-card__body-inner">
+                            <iframe loading="lazy" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                        </div>
+                        <div class="demo-card" data-src="https://demogamesfree.pragmaticplay.net/hub-demo/openGame.do?lang=en&amp;cur=USD&amp;websiteUrl=https%3A%2F%2Fclienthub.pragmaticplay.com%2F&amp;gcpif=2831&amp;gameSymbol=vs20doghouse&amp;jurisdiction=99&amp;lobbyUrl=https://clienthub.pragmaticplay.com/slots/game-library/">
+                            <div class="demo-card__header" data-play>
+                                <div class="demo-card__thumb" style="background:linear-gradient(135deg,#667db6,#0082c8);"><i class="fas fa-dog"></i></div>
+                                <div class="demo-card__info">
+                                    <div class="demo-card__title">The Dog House</div>
+                                    <div class="demo-card__provider">Pragmatic Play</div>
+                                </div>
+                                <button class="demo-card__play">Play</button>
+                            </div>
+                    <div class="demo-card__body">
+                        <div class="demo-card__body-inner">
+                            <iframe loading="lazy" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                        </div>
+                        <div class="demo-card" data-src="https://demogamesfree.pragmaticplay.net/hub-demo/openGame.do?lang=en&amp;cur=USD&amp;websiteUrl=https%3A%2F%2Fclienthub.pragmaticplay.com%2F&amp;gcpif=2831&amp;gameSymbol=vs20sugarrush&amp;jurisdiction=99&amp;lobbyUrl=https://clienthub.pragmaticplay.com/slots/game-library/">
+                            <div class="demo-card__header" data-play>
+                                <div class="demo-card__thumb" style="background:linear-gradient(135deg,#f12711,#f5af19);"><i class="fas fa-candy"></i></div>
+                                <div class="demo-card__info">
+                                    <div class="demo-card__title">Sugar Rush</div>
+                                    <div class="demo-card__provider">Pragmatic Play</div>
+                                </div>
+                                <button class="demo-card__play">Play</button>
+                            </div>
+                    <div class="demo-card__body">
+                        <div class="demo-card__body-inner">
+                            <iframe loading="lazy" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                        </div>
+                        <div class="demo-card" data-src="https://demogamesfree.pragmaticplay.net/hub-demo/openGame.do?lang=en&amp;cur=USD&amp;websiteUrl=https%3A%2F%2Fclienthub.pragmaticplay.com%2F&amp;gcpif=2831&amp;gameSymbol=vs10bbbonanza&amp;jurisdiction=99&amp;lobbyUrl=https://clienthub.pragmaticplay.com/slots/game-library/">
+                            <div class="demo-card__header" data-play>
+                                <div class="demo-card__thumb" style="background:linear-gradient(135deg,#0c3483,#a2b6df);"><i class="fas fa-fish"></i></div>
+                                <div class="demo-card__info">
+                                    <div class="demo-card__title">Big Bass Bonanza</div>
+                                    <div class="demo-card__provider">Pragmatic Play</div>
+                                </div>
+                                <button class="demo-card__play">Play</button>
+                            </div>
+                    <div class="demo-card__body">
+                        <div class="demo-card__body-inner">
+                            <iframe loading="lazy" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                        </div>
+                        <div class="demo-card" data-src="https://demogamesfree.pragmaticplay.net/hub-demo/openGame.do?lang=en&amp;cur=USD&amp;websiteUrl=https%3A%2F%2Fclienthub.pragmaticplay.com%2F&amp;gcpif=2831&amp;gameSymbol=vs25wolfgold&amp;jurisdiction=99&amp;lobbyUrl=https://clienthub.pragmaticplay.com/slots/game-library/">
+                            <div class="demo-card__header" data-play>
+                                <div class="demo-card__thumb" style="background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);"><i class="fas fa-wolf-pack"></i></div>
+                                <div class="demo-card__info">
+                                    <div class="demo-card__title">Wolf Gold</div>
+                                    <div class="demo-card__provider">Pragmatic Play</div>
+                                </div>
+                                <button class="demo-card__play">Play</button>
+                            </div>
+                    <div class="demo-card__body">
+                        <div class="demo-card__body-inner">
+                            <iframe loading="lazy" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                        </div>
+                        <div class="demo-card" data-src="https://demogamesfree.pragmaticplay.net/hub-demo/openGame.do?lang=en&amp;cur=USD&amp;websiteUrl=https%3A%2F%2Fclienthub.pragmaticplay.com%2F&amp;gcpif=2831&amp;gameSymbol=vs20olympgate&amp;jurisdiction=99&amp;lobbyUrl=https://clienthub.pragmaticplay.com/slots/game-library/">
+                            <div class="demo-card__header" data-play>
+                                <div class="demo-card__thumb" style="background:linear-gradient(135deg,#4a00e0,#8e2de2);"><i class="fas fa-cloud"></i></div>
+                                <div class="demo-card__info">
+                                    <div class="demo-card__title">Gates of Olympus</div>
+                                    <div class="demo-card__provider">Pragmatic Play</div>
+                                </div>
+                                <button class="demo-card__play">Play</button>
+                            </div>
+                    <div class="demo-card__body">
+                        <div class="demo-card__body-inner">
+                            <iframe loading="lazy" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                        </div>
+                        <div class="demo-card" data-src="https://demogamesfree.pragmaticplay.net/hub-demo/openGame.do?lang=en&amp;cur=USD&amp;websiteUrl=https%3A%2F%2Fclienthub.pragmaticplay.com%2F&amp;gcpif=2831&amp;gameSymbol=vs5aztecgems&amp;jurisdiction=99&amp;lobbyUrl=https://clienthub.pragmaticplay.com/slots/game-library/">
+                            <div class="demo-card__header" data-play>
+                                <div class="demo-card__thumb" style="background:linear-gradient(135deg,#8e2de2,#b06ab3);"><i class="fas fa-gem"></i></div>
+                                <div class="demo-card__info">
+                                    <div class="demo-card__title">Aztec Gems</div>
+                                    <div class="demo-card__provider">Pragmatic Play</div>
+                                </div>
+                                <button class="demo-card__play">Play</button>
+                            </div>
+                    <div class="demo-card__body">
+                        <div class="demo-card__body-inner">
+                            <iframe loading="lazy" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                        </div>
+                        <div class="demo-card" data-src="https://demogamesfree.pragmaticplay.net/hub-demo/openGame.do?lang=en&amp;cur=USD&amp;websiteUrl=https%3A%2F%2Fclienthub.pragmaticplay.com%2F&amp;gcpif=2831&amp;gameSymbol=vswaysbbb&amp;jurisdiction=99&amp;lobbyUrl=https://clienthub.pragmaticplay.com/slots/game-library/">
+                            <div class="demo-card__header" data-play>
+                                <div class="demo-card__thumb" style="background:linear-gradient(135deg,#0052d4,#4364f7,#6fb1fc);"><i class="fas fa-water"></i></div>
+                                <div class="demo-card__info">
+                                    <div class="demo-card__title">Big Bass Bonanza Megaways</div>
+                                    <div class="demo-card__provider">Pragmatic Play</div>
+                                </div>
+                                <button class="demo-card__play">Play</button>
+                            </div>
+                    <div class="demo-card__body">
+                        <div class="demo-card__body-inner">
+                            <iframe loading="lazy" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                        </div>
+                        <div class="demo-card" data-src="https://demogamesfree.pragmaticplay.net/hub-demo/openGame.do?lang=en&amp;cur=USD&amp;websiteUrl=https%3A%2F%2Fclienthub.pragmaticplay.com%2F&amp;gcpif=2831&amp;gameSymbol=vswaysmonkey&amp;jurisdiction=99&amp;lobbyUrl=https://clienthub.pragmaticplay.com/slots/game-library/">
+                            <div class="demo-card__header" data-play>
+                                <div class="demo-card__thumb" style="background:linear-gradient(135deg,#e44d26,#f16529);"><i class="fas fa-monkey"></i></div>
+                                <div class="demo-card__info">
+                                    <div class="demo-card__title">3 Dancing Monkeys</div>
+                                    <div class="demo-card__provider">Pragmatic Play</div>
+                                </div>
+                                <button class="demo-card__play">Play</button>
+                            </div>
+                    <div class="demo-card__body">
+                        <div class="demo-card__body-inner">
+                            <iframe loading="lazy" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                        </div>
+                        <div class="demo-card" data-src="https://demogamesfree.pragmaticplay.net/hub-demo/openGame.do?lang=en&amp;cur=USD&amp;websiteUrl=https%3A%2F%2Fclienthub.pragmaticplay.com%2F&amp;gcpif=2831&amp;gameSymbol=vs243lions&amp;jurisdiction=99&amp;lobbyUrl=https://clienthub.pragmaticplay.com/slots/game-library/">
+                            <div class="demo-card__header" data-play>
+                                <div class="demo-card__thumb" style="background:linear-gradient(135deg,#d4145a,#fbb03b);"><i class="fas fa-lion"></i></div>
+                                <div class="demo-card__info">
+                                    <div class="demo-card__title">5 Lions</div>
+                                    <div class="demo-card__provider">Pragmatic Play</div>
+                                </div>
+                                <button class="demo-card__play">Play</button>
+                            </div>
+                    <div class="demo-card__body">
+                        <div class="demo-card__body-inner">
+                            <iframe loading="lazy" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+
+                    <!-- ===== BLACKJACK ===== -->
+                    <div class="demo-category" id="cat-blackjack">
+                        <div class="demo-grid">
+                            <div class="demo-card" data-src="https://cdn.htmlgames.com/CasinoBlackjack/">
+                                <div class="demo-card__header" data-play>
+                                    <div class="demo-card__thumb" style="background:linear-gradient(135deg,#0c0f14,#d4a843);"><i class="fas fa-spade"></i></div>
+                                    <div class="demo-card__info">
+                                        <div class="demo-card__title">Casino Blackjack</div>
+                                        <div class="demo-card__provider">HTMLGames</div>
+                                    </div>
+                                    <button class="demo-card__play">Play</button>
+                                </div>
+                                <div class="demo-card__body">
+                                    <div class="demo-card__body-inner">
+                                        <iframe loading="lazy" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="demo-card" data-src="https://idev.games/embed/black-jack-blitz">
+                                <div class="demo-card__header" data-play>
+                                    <div class="demo-card__thumb" style="background:linear-gradient(135deg,#0c0f14,#2ecc71);"><i class="fas fa-bolt"></i></div>
+                                    <div class="demo-card__info">
+                                        <div class="demo-card__title">Black Jack Blitz</div>
+                                        <div class="demo-card__provider">iDev Games</div>
+                                    </div>
+                                    <button class="demo-card__play">Play</button>
+                                </div>
+                                <div class="demo-card__body">
+                                    <div class="demo-card__body-inner">
+                                        <iframe loading="lazy" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="demo-card">
+                                <div class="demo-card__header">
+                                    <div class="demo-card__thumb" style="background:linear-gradient(135deg,#0c0f14,#1e7e34);"><i class="fas fa-crown"></i></div>
+                                    <div class="demo-card__info">
+                                        <div class="demo-card__title">Classic Blackjack</div>
+                                        <div class="demo-card__provider">Coming soon</div>
+                                    </div>
+                                    <span class="demo-card__soon">Soon</span>
+                                </div>
+                            </div>
+                            <div class="demo-card">
+                                <div class="demo-card__header">
+                                    <div class="demo-card__thumb" style="background:linear-gradient(135deg,#0c0f14,#e74c3c);"><i class="fas fa-random"></i></div>
+                                    <div class="demo-card__info">
+                                        <div class="demo-card__title">Blackjack Switch</div>
+                                        <div class="demo-card__provider">Coming soon</div>
+                                    </div>
+                                    <span class="demo-card__soon">Soon</span>
+                                </div>
+                            </div>
+                            <div class="demo-card">
+                                <div class="demo-card__header">
+                                    <div class="demo-card__thumb" style="background:linear-gradient(135deg,#0c0f14,#3498db);"><i class="fas fa-calculator"></i></div>
+                                    <div class="demo-card__info">
+                                        <div class="demo-card__title">Card Counting Trainer</div>
+                                        <div class="demo-card__provider">Coming soon</div>
+                                    </div>
+                                    <span class="demo-card__soon">Soon</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== POKER ===== -->
+                    <div class="demo-category" id="cat-poker">
+                        <div class="demo-grid">
+                            <div class="demo-card" data-src="https://aaronrs2002.github.io/texas-holdem/">
+                                <div class="demo-card__header" data-play>
+                                    <div class="demo-card__thumb" style="background:linear-gradient(135deg,#0c0f14,#e74c3c);"><i class="fas fa-heart"></i></div>
+                                    <div class="demo-card__info">
+                                        <div class="demo-card__title">Texas Hold'em</div>
+                                        <div class="demo-card__provider">GitHub Pages</div>
+                                    </div>
+                                    <button class="demo-card__play">Play</button>
+                                </div>
+                                <div class="demo-card__body">
+                                    <div class="demo-card__body-inner">
+                                        <iframe loading="lazy" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="demo-card" data-src="https://aaronrs2002.github.io/poker/">
+                                <div class="demo-card__header" data-play>
+                                    <div class="demo-card__thumb" style="background:linear-gradient(135deg,#0c0f14,#8e44ad);"><i class="fas fa-spade"></i></div>
+                                    <div class="demo-card__info">
+                                        <div class="demo-card__title">Five Card Draw</div>
+                                        <div class="demo-card__provider">GitHub Pages</div>
+                                    </div>
+                                    <button class="demo-card__play">Play</button>
+                                </div>
+                                <div class="demo-card__body">
+                                    <div class="demo-card__body-inner">
+                                        <iframe loading="lazy" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="demo-info">
+                        <i class="fas fa-info-circle"></i> All games are free to play with virtual chips. No registration, no deposit required. Games are embedded from third-party providers and may include ads.
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer"><div class="container"><div class="footer__grid"><div class="footer__col"><a href="/" class="logo logo--footer"><span class="logo__icon">&#9824;</span><span class="logo__text">Blackjack<span class="logo__accent">Online</span>Casinos</span></a><p class="footer__desc">Your trusted source for all blackjack information.</p><div class="footer__rg-logos"><a href="https://safergamblinguk.org" target="_blank" rel="nofollow noopener"><i class="fas fa-shield-halved"></i> Safer Gambling</a><a href="https://begambleaware.org" target="_blank" rel="nofollow noopener"><i class="fas fa-heart"></i> BeGambleAware</a></div></div><div class="footer__col"><h4 class="footer__heading">Quick Links</h4><ul class="footer__links"><li><a href="rules.html">Rules</a></li><li><a href="basic-strategy.html">Basic Strategy</a></li><li><a href="reviews.html">Casino Reviews</a></li><li><a href="demo-casino.html">Demo Casino</a></li></ul></div><div class="footer__col"><h4 class="footer__heading">Resources</h4><ul class="footer__links"><li><a href="contact.html">Contact Us</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Use</a></li><li><a href="responsible-gaming.html">Responsible Gaming</a></li></ul></div></div><div class="footer__disclaimer-box"><p><strong>Disclaimer and Terms:</strong> This website is for informational purposes only.</p><p><strong>Cookie Policy:</strong> We use cookies to analyze website traffic and optimize your experience.</p></div><div class="footer__bottom"><p>&copy; 2026 BlackjackOnlineCasinos.com — All Rights Reserved.</p><p class="footer__disclaimer">18+ Only. Please gamble responsibly.</p></div></div></footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            /* ----- Tabs ----- */
+            const tabs = document.querySelectorAll('.demo-tab');
+            const cats = {
+                slots: document.getElementById('cat-slots'),
+                blackjack: document.getElementById('cat-blackjack'),
+                poker: document.getElementById('cat-poker'),
+            };
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    Object.values(cats).forEach(c => c.classList.remove('active'));
+                    const cat = cats[tab.dataset.cat];
+                    if (cat) cat.classList.add('active');
+                    // Close any open card when switching tabs
+                    document.querySelectorAll('.demo-card.active').forEach(c => {
+                        c.classList.remove('active');
+                        const btn = c.querySelector('.demo-card__play');
+                        if (btn) {
+                            btn.textContent = 'Play';
+                            btn.classList.remove('demo-card__play--active');
+                        }
+                    });
+                });
+            });
+
+            /* ----- Accordion: click on card header toggles frame ----- */
+            const cards = document.querySelectorAll('.demo-card[data-src]');
+
+            cards.forEach(card => {
+                const header = card.querySelector('[data-play]');
+                const btn = card.querySelector('.demo-card__play');
+                const iframe = card.querySelector('.demo-card__body iframe');
+
+                const open = () => {
+                    // Close any other open card
+                    document.querySelectorAll('.demo-card.active').forEach(c => {
+                        if (c !== card) {
+                            c.classList.remove('active');
+                            const b = c.querySelector('.demo-card__play');
+                            if (b) {
+                                b.textContent = 'Play';
+                                b.classList.remove('demo-card__play--active');
+                            }
+                        }
+                    });
+                    // Toggle this card
+                    const isOpen = card.classList.contains('active');
+                    card.classList.toggle('active');
+                    if (btn) {
+                        btn.textContent = isOpen ? 'Play' : 'Close';
+                        btn.classList.toggle('demo-card__play--active', !isOpen);
+                    }
+                    card.classList.toggle('demo-card--active', !isOpen);
+                    // Lazy-load iframe on first open
+                    if (!isOpen && iframe && !iframe.src) {
+                        iframe.src = card.dataset.src;
+                    }
+                };
+
+                if (header) {
+                    header.addEventListener('click', (e) => {
+                        // Don't toggle if clicking the button directly (handled below)
+                        if (e.target.closest('.demo-card__play, .demo-card__soon')) return;
+                        open();
+                    });
+                }
+                if (btn) {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        open();
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

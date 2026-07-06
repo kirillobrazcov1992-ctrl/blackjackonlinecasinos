@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Counting in Blackjack — Complete Hi-Lo Guide | BlackjackOnlineCasinos.com</title>
+    <meta name="description" content="Learn how to count cards in blackjack with the Hi-Lo system. Complete guide to running count, true count, betting strategy, and staying undetected.">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Card Counting in Blackjack — Complete Hi-Lo Guide">
+    <meta property="og:description" content="Master the Hi-Lo card counting system. Step-by-step guide to tracking cards and beating the dealer.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://blackjackonlinecasinos.com/card-counting.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .count-table { width: 100%; border-collapse: collapse; margin: 24px 0; border: 1px solid var(--color-border); border-radius: var(--radius-sm); overflow: hidden; }
+        .count-table th { background: var(--color-bg-card); color: var(--color-gold); font-family: var(--font-primary); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; padding: 12px 16px; border: 1px solid var(--color-border); }
+        .count-table td { padding: 10px 16px; border: 1px solid var(--color-border); color: var(--color-text-muted); text-align: center; }
+        .count-table td:first-child { text-align: left; color: #fff; font-weight: 600; }
+        .plus { color: #22c55e; font-weight: 800; font-size: 1.1rem; }
+        .minus { color: #ef4444; font-weight: 800; font-size: 1.1rem; }
+        .neutral { color: #9ca3af; font-weight: 600; }
+        .step-card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 24px; margin-bottom: 20px; border-left: 3px solid var(--color-gold); }
+        .step-card h3 { font-family: var(--font-primary); color: var(--color-gold); margin-bottom: 8px; }
+        .step-card p { color: var(--color-text-muted); line-height: 1.7; margin: 0; }
+        .step-number { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: var(--color-gold); color: #111; border-radius: 50%; font-weight: 800; font-size: 0.9rem; margin-right: 10px; }
+    </style>
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="container header__inner">
+            <a href="/" class="logo"><span class="logo__icon">&#9824;</span><span class="logo__text">Blackjack<span class="logo__accent">Online</span>Casinos</span></a>
+            <nav class="nav" id="nav">
+                                <ul class="nav__list">
+                    <li><a href="/" class="nav__link">Home</a></li>
+                    <li class="nav__dropdown">
+                        <a href="#" class="nav__link nav__dropdown-toggle">Learn the Game <i class="fas fa-chevron-down"></i></a>
+                        <ul class="nav__submenu">
+                            <li><a href="rules.html" class="nav__link">Rules</a></li>
+                            <li><a href="basic-strategy.html" class="nav__link">Basic Strategy</a></li>
+                            <li><a href="blackjack-odds.html" class="nav__link">Odds & Probability</a></li>
+                            <li><a href="variations.html" class="nav__link">Variations</a></li>
+                            <li><a href="history.html" class="nav__link">History</a></li>
+                            <li><a href="glossary.html" class="nav__link">Glossary</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav__dropdown nav__dropdown--active">
+                        <a href="#" class="nav__link nav__dropdown-toggle">Advanced Play <i class="fas fa-chevron-down"></i></a>
+                        <ul class="nav__submenu">
+                            <li><a href="advanced-strategy.html" class="nav__link">Advanced Strategy</a></li>
+                            <li><a href="card-counting.html" class="nav__link nav__link--active">Card Counting</a></li>
+                            <li><a href="shuffle-tracking.html" class="nav__link">Shuffle Tracking</a></li>
+                            <li><a href="side-bets.html" class="nav__link">Side Bets</a></li>
+                            <li><a href="tournament-blackjack.html" class="nav__link">Tournaments</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav__dropdown">
+                        <a href="#" class="nav__link nav__dropdown-toggle">Resources <i class="fas fa-chevron-down"></i></a>
+                        <ul class="nav__submenu">
+                            <li><a href="online-blackjack.html" class="nav__link">Online Blackjack</a></li>
+                            <li><a href="bankroll-management.html" class="nav__link">Bankroll Management</a></li>
+                            <li><a href="blackjack-myths.html" class="nav__link">Myths & Misconceptions</a></li>
+                            <li><a href="blackjack-etiquette.html" class="nav__link">Etiquette</a></li>
+                            <li><a href="blackjack-faq.html" class="nav__link">FAQ</a></li>
+                            <li><a href="books.html" class="nav__link">Best Blackjack Books</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="reviews.html" class="nav__link">Reviews</a></li>
+                    <li><a href="demo-casino.html" class="nav__link">Demo</a></li>
+                    <li><a href="contact.html" class="nav__link">Contact</a></li>
+                </ul>            </nav>
+            <button class="burger" id="burger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1 class="page-hero__title">Card Counting — The Hi-Lo System</h1>
+                <p class="page-hero__subtitle">Card counting is legal, mathematical, and powerful. Master the Hi-Lo system and turn the odds in your favor — no photographic memory required.</p>
+            </div>
+        </section>
+
+        <section class="section content-page">
+            <div class="container">
+                <div class="content-page__grid">
+                    <div class="content-page__main">
+                        <h2>What Is Card Counting?</h2>
+                        <p>Card counting is a mathematical strategy used in blackjack to track the ratio of high cards to low cards remaining in the deck. When the remaining deck is rich in high cards (10s, face cards, and Aces), the player has a statistical advantage because they're more likely to draw a blackjack or have the dealer bust. When the deck is rich in low cards, the dealer has the advantage.</p>
+                        <p>Contrary to popular belief, card counting is <strong>not illegal</strong> — it's a mental skill, not a cheating device. However, casinos reserve the right to refuse service to known card counters, so discretion is a necessary part of the art.</p>
+
+                        <div class="alert alert--info">
+                            <i class="fas fa-gavel"></i>
+                            <p><strong>Is Card Counting Legal?</strong> Yes. Card counting is 100% legal in all U.S. jurisdictions (except where local laws explicitly prohibit it). You're simply using your brain to process publicly available information. However, casinos are private establishments and can ban card counters at their discretion. The key is to <strong>be discreet and avoid detection</strong>.</p>
+                        </div>
+
+                        <h2>The Hi-Lo System — Step by Step</h2>
+                        <p>The Hi-Lo system is the most widely used card counting method, popularized by Stanford Wong's "Professional Blackjack." It's simple enough to learn in an hour yet powerful enough to give players a real edge.</p>
+
+                        <h3>The Card Values</h3>
+                        <table class="count-table">
+                            <thead>
+                                <tr><th>Card Value</th><th>Count</th><th>Category</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>2, 3, 4, 5, 6</td><td><span class="plus">+1</span></td><td>Low cards — more of these help the dealer</td></tr>
+                                <tr><td>7, 8, 9</td><td><span class="neutral">0</span></td><td>Neutral — ignore these</td></tr>
+                                <tr><td>10, J, Q, K, Ace</td><td><span class="minus">−1</span></td><td>High cards — more of these help the player</td></tr>
+                            </tbody>
+                        </table>
+
+                        <p>That's it. Six card values are +1, five are -1, and three are 0. Hi-Lo is famously simple because it doesn't need to be complex to be effective.</p>
+
+                        <h3>How It Works</h3>
+
+                        <div class="step-card">
+                            <h3><span class="step-number">1</span> Start at Zero</h3>
+                            <p>At the beginning of a fresh shoe (deck), your running count starts at <strong>0</strong>. As each card is dealt and revealed, you add or subtract from the running count according to the Hi-Lo values above.</p>
+                        </div>
+
+                        <div class="step-card">
+                            <h3><span class="step-number">2</span> Maintain the Running Count</h3>
+                            <p>As the dealer reveals cards, you mentally track the count. For example: if the first round shows 3, K, 7, A, 8, 5 — your count goes: <strong>+1 (3), 0 (K), 0 (7), -1 (A), 0 (8), +1 (5) = running count of +1</strong>. You do this continuously for every card you see.</p>
+                        </div>
+
+                        <div class="step-card">
+                            <h3><span class="step-number">3</span> Convert to True Count</h3>
+                            <p>The running count alone isn't enough — you need to account for how many decks remain. In a 6-deck shoe, a running count of +6 means very different things at the start (where it's diluted across 6 decks) versus near the end (where it's concentrated).</p>
+                            <p><strong>True Count = Running Count ÷ Number of Remaining Decks</strong></p>
+                            <p>Example: Running count of +6 with 3 decks remaining → True Count of <strong>+2</strong>. Running count of +6 with 1 deck remaining → True Count of <strong>+6</strong> (much stronger signal).</p>
+                        </div>
+
+                        <div class="step-card">
+                            <h3><span class="step-number">4</span> Adjust Your Bets</h3>
+                            <p>The true count tells you when to bet more. When the true count is <strong>0 or negative</strong> — bet the minimum (the house has the edge). When the true count is <strong>positive</strong> — the player has the edge. Increase your bets proportionally: at true count +2, bet 2× your minimum; at +4, bet 4×; and so on.</p>
+                        </div>
+
+                        <div class="step-card">
+                            <h3><span class="step-number">5</span> Deviate from Basic Strategy</h3>
+                            <p>At high true counts, the mathematically optimal play changes. Known as "index plays" or "strategy deviations," these are small adjustments that squeeze out extra value. For example, at a true count of +3 or higher, you should take insurance — it becomes a winning bet. At +4, stand on 16 against a dealer 10 instead of hitting.</p>
+                        </div>
+
+                        <h2>Betting Strategy</h2>
+                        <p>Your betting spread is the most important factor in card counting profitability. The idea is simple: bet small when the count is neutral or negative, bet big when the count is positive. A typical spread might look like:</p>
+                        <ul>
+                            <li><strong>True Count ≤ 0:</strong> 1 unit (minimum bet)</li>
+                            <li><strong>True Count +1:</strong> 1–2 units</li>
+                            <li><strong>True Count +2:</strong> 3–4 units</li>
+                            <li><strong>True Count +3:</strong> 6–8 units</li>
+                            <li><strong>True Count +4+:</strong> 10–12 units</li>
+                        </ul>
+                        <p>A 1-to-12 spread is considered aggressive but is necessary for profitability in 6-deck games. In single-deck games, a 1-to-4 spread is sufficient.</p>
+
+                        <h2>Staying Undetected</h2>
+                        <p>Casinos train their staff to spot card counters. Here's what they look for, and how to avoid it:</p>
+                        <ul>
+                            <li><strong>Don't be obvious:</strong> Vary your bet sizes gradually. Don't jump from 1 unit to 12 units the moment the count turns positive.</li>
+                            <li><strong>Camouflage plays:</strong> Occasionally deviate from perfect play on small hands to look like a regular player.</li>
+                            <li><strong>Table hopping:</strong> Move between tables to avoid prolonged scrutiny from pit bosses.</li>
+                            <li><strong>Team play:</strong> The famous MIT Blackjack Team used a "Big Player" system — one person counts at a table, signals a teammate when the count is hot, and the teammate bets big.</li>
+                            <li><strong>Act natural:</strong> Chat with dealers, tip occasionally, pretend to be a tourist. The less you look like a "grinder," the less attention you'll attract.</li>
+                        </ul>
+
+                        <div class="alert alert--warn">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <p><strong>Important:</strong> Card counting in online blackjack is generally not effective due to continuous shuffling machines (CSMs) that reshuffle after every hand. However, live dealer blackjack with manual shuffles can sometimes be counted, depending on shuffle frequency.</p>
+                        </div>
+
+                        <h2>Recommended Reading</h2>
+                        <p>To dive deeper into card counting, these books are essential:</p>
+                        <ul>
+                            <li><strong>"Professional Blackjack"</strong> by Stanford Wong — The definitive guide to the Hi-Lo system.</li>
+                            <li><strong>"Beat the Dealer"</strong> by Edward O. Thorp — The original card counting classic.</li>
+                            <li><strong>"Blackjack Bluebook"</strong> by Fred Renzey — Accessible for beginners.</li>
+                            <li><strong>"The Big Book of Blackjack"</strong> by Arnold Snyder — Covers history, strategy, and advanced techniques.</li>
+                        </ul>
+
+                        <div class="alert alert--warn" style="margin-top: 40px;">
+                            <i class="fas fa-shield-halved"></i>
+                            <p><strong>Play Responsibly:</strong> Card counting requires practice, discipline, and bankroll management. Never gamble with money you can't afford to lose. <a href="responsible-gaming.html">Learn about responsible gaming.</a></p>
+                        </div>
+                    </div>
+
+                    <aside class="content-page__sidebar">
+                        <div class="sidebar-card">
+                            <h4>Hi-Lo Quick Reference</h4>
+                            <ul class="sidebar-list">
+                                <li><i class="fas fa-plus-circle" style="color:#22c55e"></i> <strong>+1:</strong> 2, 3, 4, 5, 6</li>
+                                <li><i class="fas fa-circle" style="color:#9ca3af"></i> <strong>0:</strong> 7, 8, 9</li>
+                                <li><i class="fas fa-minus-circle" style="color:#ef4444"></i> <strong>−1:</strong> 10, J, Q, K, A</li>
+                            </ul>
+                        </div>
+                        <div class="sidebar-card">
+                            <h4>Related Pages</h4>
+                            <ul class="sidebar-list">
+                                <li><i class="fas fa-chess-knight"></i> <a href="basic-strategy.html">Basic Strategy</a></li>
+                                <li><i class="fas fa-scroll"></i> <a href="rules.html">Blackjack Rules</a></li>
+                                <li><i class="fas fa-star"></i> <a href="reviews.html">Best Online Casinos</a></li>
+                            </ul>
+                        </div>
+                        <div class="sidebar-card">
+                            <h4>Did You Know?</h4>
+                            <p>The MIT Blackjack Team, featured in the book "Bringing Down the House" and the film "21," used the Hi-Lo system to win millions from Las Vegas casinos in the 1990s.</p>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__col">
+                    <a href="/" class="logo logo--footer"><span class="logo__icon">&#9824;</span><span class="logo__text">Blackjack<span class="logo__accent">Online</span>Casinos</span></a>
+                    <p class="footer__desc">Your trusted source for all blackjack information — from rules to detailed strategies and the best tips for playing online.</p>
+                    <div class="footer__rg-logos">
+                        <a href="https://safergamblinguk.org" target="_blank" rel="nofollow noopener"><i class="fas fa-shield-halved"></i> Safer Gambling</a>
+                        <a href="https://begambleaware.org" target="_blank" rel="nofollow noopener"><i class="fas fa-heart"></i> BeGambleAware</a>
+                    </div>
+                </div>
+                <div class="footer__col">
+                    <h4 class="footer__heading">Quick Links</h4>
+                    <ul class="footer__links">
+                        <li><a href="rules.html">Rules</a></li>
+                        <li><a href="basic-strategy.html">Basic Strategy</a></li>
+                        <li><a href="card-counting.html">Card Counting</a></li>
+                        <li><a href="reviews.html">Casino Reviews</a></li>
+                    </ul>
+                </div>
+                <div class="footer__col">
+                    <h4 class="footer__heading">Resources</h4>
+                    <ul class="footer__links">
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Use</a></li>
+                        <li><a href="responsible-gaming.html">Responsible Gaming</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__disclaimer-box">
+                <p><strong>Disclaimer and Terms:</strong> This website is for informational purposes only. No guarantees of accuracy, completeness, or reliability of content are made. Use of this site is at your own risk. BlackjackOnlineCasinos.com may receive compensation for third party content and outgoing affiliate links posted on this website.</p>
+                <p><strong>Cookie Policy:</strong> We use cookies to analyze website traffic and optimize your website experience. By using this site, you consent to our use of cookies.</p>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2026 BlackjackOnlineCasinos.com — All Rights Reserved.</p>
+                <p class="footer__disclaimer">18+ Only. Please gamble responsibly.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

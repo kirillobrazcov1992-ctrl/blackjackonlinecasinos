@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack Basic Strategy — Complete Guide with Charts | BlackjackOnlineCasinos.com</title>
+    <meta name="description" content="Master blackjack basic strategy with our complete guide and printable strategy charts. Reduce the house edge to under 0.5% with mathematically optimal play.">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Blackjack Basic Strategy — Complete Guide with Charts">
+    <meta property="og:description" content="Complete basic strategy guide with printable charts. Learn when to hit, stand, double down, and split.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://blackjackonlinecasinos.com/basic-strategy.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .strategy-intro { max-width: 800px; margin: 0 auto 40px; text-align: center; color: var(--color-text-muted); font-size: 1.05rem; line-height: 1.8; }
+        .chart-section { margin-bottom: 48px; }
+        .chart-section h2 { font-family: var(--font-primary); font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
+        .chart-section .chart-desc { color: var(--color-text-muted); margin-bottom: 20px; }
+        .strat-chart { width: 100%; border-collapse: collapse; font-size: 0.82rem; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--color-border); margin-bottom: 24px; }
+        .strat-chart th { background: var(--color-bg-card); color: var(--color-gold); font-family: var(--font-primary); font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; padding: 10px 8px; border: 1px solid var(--color-border); text-align: center; }
+        .strat-chart td { padding: 8px 6px; border: 1px solid var(--color-border); text-align: center; color: var(--color-text-muted); font-size: 0.78rem; }
+        .strat-chart td:first-child { text-align: left; color: #fff; font-weight: 600; padding-left: 12px; white-space: nowrap; }
+        .strat-chart tbody tr:hover { background: rgba(212, 168, 67, 0.04); }
+        .action-h { color: #60a5fa; font-weight: 700; }
+        .action-s { color: #22c55e; font-weight: 700; }
+        .action-d { color: #f59e0b; font-weight: 700; }
+        .action-p { color: #a78bfa; font-weight: 700; }
+        .action-rh, .action-rs { color: #ef4444; font-weight: 700; }
+        .action-uds { color: #ec4899; font-weight: 700; }
+        .legend { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 30px; padding: 16px 20px; background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--radius-sm); }
+        .legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: var(--color-text-muted); }
+        .legend-item span { font-weight: 700; font-size: 0.9rem; }
+        .tip-card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 24px; margin-bottom: 20px; border-left: 3px solid var(--color-gold); }
+        .tip-card h4 { font-family: var(--font-primary); color: var(--color-gold); margin-bottom: 8px; }
+        .tip-card p { color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.7; margin: 0; }
+        @media (max-width: 768px) { .strat-chart { font-size: 0.7rem; } .strat-chart th, .strat-chart td { padding: 6px 3px; } }
+    </style>
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="container header__inner">
+            <a href="/" class="logo"><span class="logo__icon">&#9824;</span><span class="logo__text">Blackjack<span class="logo__accent">Online</span>Casinos</span></a>
+            <nav class="nav" id="nav">
+                                <ul class="nav__list">
+                    <li><a href="/" class="nav__link">Home</a></li>
+                    <li class="nav__dropdown nav__dropdown--active">
+                        <a href="#" class="nav__link nav__dropdown-toggle">Learn the Game <i class="fas fa-chevron-down"></i></a>
+                        <ul class="nav__submenu">
+                            <li><a href="rules.html" class="nav__link">Rules</a></li>
+                            <li><a href="basic-strategy.html" class="nav__link nav__link--active">Basic Strategy</a></li>
+                            <li><a href="blackjack-odds.html" class="nav__link">Odds & Probability</a></li>
+                            <li><a href="variations.html" class="nav__link">Variations</a></li>
+                            <li><a href="history.html" class="nav__link">History</a></li>
+                            <li><a href="glossary.html" class="nav__link">Glossary</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav__dropdown">
+                        <a href="#" class="nav__link nav__dropdown-toggle">Advanced Play <i class="fas fa-chevron-down"></i></a>
+                        <ul class="nav__submenu">
+                            <li><a href="advanced-strategy.html" class="nav__link">Advanced Strategy</a></li>
+                            <li><a href="card-counting.html" class="nav__link">Card Counting</a></li>
+                            <li><a href="shuffle-tracking.html" class="nav__link">Shuffle Tracking</a></li>
+                            <li><a href="side-bets.html" class="nav__link">Side Bets</a></li>
+                            <li><a href="tournament-blackjack.html" class="nav__link">Tournaments</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav__dropdown">
+                        <a href="#" class="nav__link nav__dropdown-toggle">Resources <i class="fas fa-chevron-down"></i></a>
+                        <ul class="nav__submenu">
+                            <li><a href="online-blackjack.html" class="nav__link">Online Blackjack</a></li>
+                            <li><a href="bankroll-management.html" class="nav__link">Bankroll Management</a></li>
+                            <li><a href="blackjack-myths.html" class="nav__link">Myths & Misconceptions</a></li>
+                            <li><a href="blackjack-etiquette.html" class="nav__link">Etiquette</a></li>
+                            <li><a href="blackjack-faq.html" class="nav__link">FAQ</a></li>
+                            <li><a href="books.html" class="nav__link">Best Blackjack Books</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="reviews.html" class="nav__link">Reviews</a></li>
+                    <li><a href="demo-casino.html" class="nav__link">Demo</a></li>
+                    <li><a href="contact.html" class="nav__link">Contact</a></li>
+                </ul>            </nav>
+            <button class="burger" id="burger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1 class="page-hero__title">Blackjack Basic Strategy</h1>
+                <p class="page-hero__subtitle">The mathematically optimal way to play every hand. Master these charts and reduce the house edge to under 0.5%.</p>
+            </div>
+        </section>
+
+        <section class="section content-page">
+            <div class="container">
+                <div class="content-page__main content-page__main--full">
+                    <p class="strategy-intro">Basic strategy is a mathematically derived set of rules that tells you the optimal decision — hit, stand, double down, split, or surrender — for every possible hand combination against every dealer upcard. It was first calculated in 1956 by four Army mathematicians and later refined by MIT professor Edward O. Thorp. Using basic strategy, the house edge drops from 2–3% (for typical player intuition) to just <strong>0.17–0.66%</strong>, depending on the specific rules.</p>
+
+                    <div class="alert alert--info">
+                        <i class="fas fa-lightbulb"></i>
+                        <p><strong>How to read these charts:</strong> Find your hand in the left column, find the dealer's upcard across the top row, and the cell where they meet tells you the optimal play. <strong>H</strong> = Hit, <strong>S</strong> = Stand, <strong>D</strong> = Double Down, <strong>P</strong> = Split, <strong>RH</strong> = Surrender if allowed (otherwise Hit), <strong>RS</strong> = Surrender if allowed (otherwise Stand).</p>
+                    </div>
+
+                    <div class="legend">
+                        <span class="legend-item"><span class="action-h">H</span> Hit</span>
+                        <span class="legend-item"><span class="action-s">S</span> Stand</span>
+                        <span class="legend-item"><span class="action-d">D</span> Double Down</span>
+                        <span class="legend-item"><span class="action-p">P</span> Split</span>
+                        <span class="legend-item"><span class="action-rh">RH</span> Surrender (or Hit)</span>
+                        <span class="legend-item"><span class="action-rs">RS</span> Surrender (or Stand)</span>
+                    </div>
+
+                    <!-- Hard Totals -->
+                    <div class="chart-section">
+                        <h2>Hard Totals</h2>
+                        <p class="chart-desc">Hard hands contain no Ace, or an Ace counted as 1 (because counting it as 11 would bust).</p>
+                        <div class="table-wrapper">
+                            <table class="strat-chart">
+                                <thead>
+                                    <tr>
+                                        <th>Player Hand</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                        <th>4</th>
+                                        <th>5</th>
+                                        <th>6</th>
+                                        <th>7</th>
+                                        <th>8</th>
+                                        <th>9</th>
+                                        <th>10</th>
+                                        <th>A</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>17+</td><td class="action-s" colspan="10">S</td></tr>
+                                    <tr><td>16</td><td class="action-s">S</td><td class="action-s">S</td><td class="action-s">S</td><td class="action-s">S</td><td class="action-s">S</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-rh">RH</td><td class="action-rh">RH</td><td class="action-rh">RH</td></tr>
+                                    <tr><td>15</td><td class="action-s">S</td><td class="action-s">S</td><td class="action-s">S</td><td class="action-s">S</td><td class="action-s">S</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-rh">RH</td><td class="action-h">H</td></tr>
+                                    <tr><td>14</td><td class="action-s">S</td><td class="action-s">S</td><td class="action-s">S</td><td class="action-s">S</td><td class="action-s">S</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td></tr>
+                                    <tr><td>13</td><td class="action-s">S</td><td class="action-s">S</td><td class="action-s">S</td><td class="action-s">S</td><td class="action-s">S</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td></tr>
+                                    <tr><td>12</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-s">S</td><td class="action-s">S</td><td class="action-s">S</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td></tr>
+                                    <tr><td>11</td><td class="action-d" colspan="10">D</td></tr>
+                                    <tr><td>10</td><td class="action-d">D</td><td class="action-d">D</td><td class="action-d">D</td><td class="action-d">D</td><td class="action-d">D</td><td class="action-d">D</td><td class="action-d">D</td><td class="action-d">D</td><td class="action-h">H</td><td class="action-h">H</td></tr>
+                                    <tr><td>9</td><td class="action-h">H</td><td class="action-d">D</td><td class="action-d">D</td><td class="action-d">D</td><td class="action-d">D</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td></tr>
+                                    <tr><td>8</td><td class="action-h" colspan="10">H</td></tr>
+                                    <tr><td>5–7</td><td class="action-h" colspan="10">H</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Soft Totals -->
+                    <div class="chart-section">
+                        <h2>Soft Totals</h2>
+                        <p class="chart-desc">Soft hands contain an Ace counted as 11. These are flexible hands — you can't bust by taking one card.</p>
+                        <div class="table-wrapper">
+                            <table class="strat-chart">
+                                <thead>
+                                    <tr>
+                                        <th>Player Hand</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                        <th>4</th>
+                                        <th>5</th>
+                                        <th>6</th>
+                                        <th>7</th>
+                                        <th>8</th>
+                                        <th>9</th>
+                                        <th>10</th>
+                                        <th>A</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>A,9 (soft 20)</td><td class="action-s" colspan="10">S</td></tr>
+                                    <tr><td>A,8 (soft 19)</td><td class="action-s">S</td><td class="action-s">S</td><td class="action-s">S</td><td class="action-s">S</td><td class="action-d">D</td><td class="action-s">S</td><td class="action-s">S</td><td class="action-s">S</td><td class="action-s">S</td><td class="action-s">S</td></tr>
+                                    <tr><td>A,7 (soft 18)</td><td class="action-d">D</td><td class="action-d">D</td><td class="action-d">D</td><td class="action-d">D</td><td class="action-d">D</td><td class="action-s">S</td><td class="action-s">S</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td></tr>
+                                    <tr><td>A,6 (soft 17)</td><td class="action-h">H</td><td class="action-d">D</td><td class="action-d">D</td><td class="action-d">D</td><td class="action-d">D</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td></tr>
+                                    <tr><td>A,5 (soft 16)</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-d">D</td><td class="action-d">D</td><td class="action-d">D</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td></tr>
+                                    <tr><td>A,4 (soft 15)</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-d">D</td><td class="action-d">D</td><td class="action-d">D</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td></tr>
+                                    <tr><td>A,3 (soft 14)</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-d">D</td><td class="action-d">D</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td></tr>
+                                    <tr><td>A,2 (soft 13)</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-d">D</td><td class="action-d">D</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Pair Splitting -->
+                    <div class="chart-section">
+                        <h2>Pair Splitting</h2>
+                        <p class="chart-desc">When your first two cards are the same value, you can split them into two separate hands. Here's when the math says you should.</p>
+                        <div class="table-wrapper">
+                            <table class="strat-chart">
+                                <thead>
+                                    <tr>
+                                        <th>Player Hand</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                        <th>4</th>
+                                        <th>5</th>
+                                        <th>6</th>
+                                        <th>7</th>
+                                        <th>8</th>
+                                        <th>9</th>
+                                        <th>10</th>
+                                        <th>A</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>A,A</td><td class="action-p" colspan="10">P</td></tr>
+                                    <tr><td>10,10</td><td class="action-s" colspan="10">S</td></tr>
+                                    <tr><td>9,9</td><td class="action-p">P</td><td class="action-p">P</td><td class="action-p">P</td><td class="action-p">P</td><td class="action-p">P</td><td class="action-s">S</td><td class="action-p">P</td><td class="action-p">P</td><td class="action-s">S</td><td class="action-s">S</td></tr>
+                                    <tr><td>8,8</td><td class="action-p" colspan="10">P</td></tr>
+                                    <tr><td>7,7</td><td class="action-p">P</td><td class="action-p">P</td><td class="action-p">P</td><td class="action-p">P</td><td class="action-p">P</td><td class="action-p">P</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td></tr>
+                                    <tr><td>6,6</td><td class="action-p">P</td><td class="action-p">P</td><td class="action-p">P</td><td class="action-p">P</td><td class="action-p">P</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td></tr>
+                                    <tr><td>5,5</td><td class="action-d" colspan="10">D (never split 5s)</td></tr>
+                                    <tr><td>4,4</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-p">P</td><td class="action-p">P</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td></tr>
+                                    <tr><td>3,3</td><td class="action-p">P</td><td class="action-p">P</td><td class="action-p">P</td><td class="action-p">P</td><td class="action-p">P</td><td class="action-p">P</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td></tr>
+                                    <tr><td>2,2</td><td class="action-p">P</td><td class="action-p">P</td><td class="action-p">P</td><td class="action-p">P</td><td class="action-p">P</td><td class="action-p">P</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td><td class="action-h">H</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <h2>How to Memorize Basic Strategy</h2>
+                    <p>Learning basic strategy by heart may seem daunting, but most players pick it up in a few hours of practice. Here are some simple rules of thumb to get you started:</p>
+
+                    <div class="tip-card">
+                        <h4>Hard Hands — The Golden Rule</h4>
+                        <p>Stand on <strong>17 or higher</strong> no matter what. Stand on <strong>13–16</strong> against dealer 2–6. Hit on <strong>12</strong> against dealer 2, 3, or 7+. Double on <strong>11</strong> always. Double on <strong>10</strong> against 2–9. Double on <strong>9</strong> against 3–6.</p>
+                    </div>
+
+                    <div class="tip-card">
+                        <h4>Soft Hands — The Ace Advantage</h4>
+                        <p>Never hit a soft 19 or 20. Always double soft 17 against dealer 3–6. Double soft 15–16 against dealer 4–6. Double soft 13–14 against dealer 5–6. Against everything else — just hit until you have a strong hard hand.</p>
+                    </div>
+
+                    <div class="tip-card">
+                        <h4>Pairs — The Split Decision</h4>
+                        <p><strong>Always</strong> split Aces and 8s. <strong>Never</strong> split 10s or 5s. Split 9s against everything except 7, 10, Ace. Split 2s, 3s, and 7s against dealer 2–7. Split 6s against dealer 2–6.</p>
+                    </div>
+
+                    <div class="alert alert--warn" style="margin-top: 32px;">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p><strong>Common Mistakes to Avoid:</strong> Taking insurance (it's a losing bet in the long run). Standing on 12–16 against a dealer 7+. Not splitting 8s against any dealer upcard. Playing by "gut feeling" instead of the math. Assuming the dealer is "due" for a bust.</p>
+                    </div>
+
+                    <h2>Advanced Strategy Considerations</h2>
+                    <p>Basic strategy charts are calculated for specific rule sets. If you're playing a game with different rules, the optimal play may change slightly. Key rule variations that affect strategy:</p>
+                    <p><strong>• Dealer hits soft 17 (H17):</strong> The house edge increases by about 0.2%. Strategy adjustments are minor but do exist — notably, you should double soft 18 against dealer 2, and surrender more aggressively.</p>
+                    <p><strong>• Double after split (DAS):</strong> When allowed (most casinos allow it), this slightly favors the player. Some borderline splits become profitable only when DAS is permitted.</p>
+                    <p><strong>• Surrender available:</strong> Late surrender reduces the house edge by about 0.08%. Use it on hard 16 against dealer 9, 10, Ace and hard 15 against dealer 10.</p>
+
+                    <div class="alert alert--info" style="margin-top: 32px;">
+                        <i class="fas fa-print"></i>
+                        <p><strong>Pro Tip:</strong> Print out this basic strategy chart and keep it next to you when you play online blackjack. Having the chart visible on a second screen is perfectly legal and will immediately improve your game. Most online casinos don't mind — they'd rather you play basic strategy than count cards!</p>
+                    </div>
+
+                    <h2>Practice Makes Perfect</h2>
+                    <p>The best way to learn basic strategy is to practice. Play free blackjack games online with the strategy chart next to you, and before long, the decisions will become second nature. Most experienced players don't even think about basic strategy — it becomes instinct through repetition.</p>
+                    <p>Once you've mastered basic strategy, you'll be ready to explore more advanced techniques like <a href="card-counting.html">card counting</a> and <a href="variations.html">game variation strategy</a>.</p>
+
+                    <div class="alert alert--warn" style="margin-top: 40px;">
+                        <i class="fas fa-shield-halved"></i>
+                        <p><strong>Play Responsibly:</strong> Even with perfect basic strategy, the house always has a small edge. Set loss limits, manage your bankroll, and never gamble more than you can afford to lose. <a href="responsible-gaming.html">Learn more about responsible gaming.</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__col">
+                    <a href="/" class="logo logo--footer"><span class="logo__icon">&#9824;</span><span class="logo__text">Blackjack<span class="logo__accent">Online</span>Casinos</span></a>
+                    <p class="footer__desc">Your trusted source for all blackjack information — from rules to detailed strategies and the best tips for playing online.</p>
+                    <div class="footer__rg-logos">
+                        <a href="https://safergamblinguk.org" target="_blank" rel="nofollow noopener"><i class="fas fa-shield-halved"></i> Safer Gambling</a>
+                        <a href="https://begambleaware.org" target="_blank" rel="nofollow noopener"><i class="fas fa-heart"></i> BeGambleAware</a>
+                    </div>
+                </div>
+                <div class="footer__col">
+                    <h4 class="footer__heading">Quick Links</h4>
+                    <ul class="footer__links">
+                        <li><a href="rules.html">Rules</a></li>
+                        <li><a href="basic-strategy.html">Basic Strategy</a></li>
+                        <li><a href="card-counting.html">Card Counting</a></li>
+                        <li><a href="reviews.html">Casino Reviews</a></li>
+                    </ul>
+                </div>
+                <div class="footer__col">
+                    <h4 class="footer__heading">Resources</h4>
+                    <ul class="footer__links">
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Use</a></li>
+                        <li><a href="responsible-gaming.html">Responsible Gaming</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__disclaimer-box">
+                <p><strong>Disclaimer and Terms:</strong> This website is for informational purposes only. No guarantees of accuracy, completeness, or reliability of content are made. Use of this site is at your own risk. BlackjackOnlineCasinos.com may receive compensation for third party content and outgoing affiliate links posted on this website.</p>
+                <p><strong>Cookie Policy:</strong> We use cookies to analyze website traffic and optimize your website experience. By using this site, you consent to our use of cookies.</p>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2026 BlackjackOnlineCasinos.com — All Rights Reserved.</p>
+                <p class="footer__disclaimer">18+ Only. Please gamble responsibly.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
