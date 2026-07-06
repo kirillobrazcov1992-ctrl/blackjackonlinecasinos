@@ -3,37 +3,31 @@
    6 languages: EN / FR / ES / DE / AR / IT
    ========================================== */
 
-const i18n = (() => {
+(function() {
+  'use strict';
+
   const STORAGE_KEY = 'bj_lang';
+  const DEFAULT_LANG = 'en';
 
   const LANGUAGES = {
-    en: { label: '🇬🇧 English', dir: 'ltr' },
-    fr: { label: '🇫🇷 Français', dir: 'ltr' },
-    es: { label: '🇪🇸 Español', dir: 'ltr' },
-    de: { label: '🇩🇪 Deutsch', dir: 'ltr' },
-    ar: { label: '🇸🇦 العربية', dir: 'rtl' },
-    it: { label: '🇮🇹 Italiano', dir: 'ltr' },
+    en: { short: 'EN', flag: '🇬🇧', dir: 'ltr' },
+    fr: { short: 'FR', flag: '🇫🇷', dir: 'ltr' },
+    es: { short: 'ES', flag: '🇪🇸', dir: 'ltr' },
+    de: { short: 'DE', flag: '🇩🇪', dir: 'ltr' },
+    ar: { short: 'AR', flag: '🇸🇦', dir: 'rtl' },
+    it: { short: 'IT', flag: '🇮🇹', dir: 'ltr' },
   };
 
-  const DEFAULT_LANG = 'en';
   let currentLang = localStorage.getItem(STORAGE_KEY) || DEFAULT_LANG;
+  if (!LANGUAGES[currentLang]) currentLang = DEFAULT_LANG;
 
   // ─── Translations ───
   const TRANSLATIONS = {
-    // ════════════════════════
-    //  GLOBAL (nav, footer, shared)
-    // ════════════════════════
     nav_home: {
       en: 'Home', fr: 'Accueil', es: 'Inicio', de: 'Start', ar: 'الرئيسية', it: 'Home'
     },
     nav_learn: {
       en: 'Learn the Game', fr: 'Apprendre le jeu', es: 'Aprende el juego', de: 'Lerne das Spiel', ar: 'تعلم اللعبة', it: 'Impara il gioco'
-    },
-    nav_advanced: {
-      en: 'Advanced Play', fr: 'Jeu avancé', es: 'Juego avanzado', de: 'Fortgeschritten', ar: 'لعب متقدم', it: 'Gioco avanzato'
-    },
-    nav_resources: {
-      en: 'Resources', fr: 'Ressources', es: 'Recursos', de: 'Ressourcen', ar: 'موارد', it: 'Risorse'
     },
     nav_rules: {
       en: 'Rules', fr: 'Règles', es: 'Reglas', de: 'Regeln', ar: 'القواعد', it: 'Regole'
@@ -53,6 +47,9 @@ const i18n = (() => {
     nav_glossary: {
       en: 'Glossary', fr: 'Glossaire', es: 'Glosario', de: 'Glossar', ar: 'قاموس المصطلحات', it: 'Glossario'
     },
+    nav_advanced: {
+      en: 'Advanced Play', fr: 'Jeu avancé', es: 'Juego avanzado', de: 'Fortgeschritten', ar: 'لعب متقدم', it: 'Gioco avanzato'
+    },
     nav_advanced_strategy: {
       en: 'Advanced Strategy', fr: 'Stratégie avancée', es: 'Estrategia avanzada', de: 'Fortgeschrittene Strategie', ar: 'استراتيجية متقدمة', it: 'Strategia avanzata'
     },
@@ -67,6 +64,9 @@ const i18n = (() => {
     },
     nav_tournaments: {
       en: 'Tournaments', fr: 'Tournois', es: 'Torneos', de: 'Turniere', ar: 'البطولات', it: 'Tornei'
+    },
+    nav_resources: {
+      en: 'Resources', fr: 'Ressources', es: 'Recursos', de: 'Ressourcen', ar: 'موارد', it: 'Risorse'
     },
     nav_online: {
       en: 'Online Blackjack', fr: 'Blackjack en ligne', es: 'Blackjack online', de: 'Online Blackjack', ar: 'البلاك جاك أونلاين', it: 'Blackjack online'
@@ -95,26 +95,16 @@ const i18n = (() => {
     nav_contact: {
       en: 'Contact', fr: 'Contact', es: 'Contacto', de: 'Kontakt', ar: 'اتصل بنا', it: 'Contatto'
     },
-
-    // Hero
     hero_badge: {
       en: '#1 Blackjack Resource Online', fr: '#1 Ressource Blackjack en ligne', es: '#1 Recurso de Blackjack Online', de: '#1 Blackjack-Ressource online', ar: '#1 مصدر البلاك جاك أونلاين', it: '#1 Risorsa Blackjack Online'
     },
-    hero_title_prefix: {
-      en: 'Master Blackjack: ',
-      fr: 'Maîtrisez le Blackjack : ',
-      es: 'Domina el Blackjack: ',
-      de: 'Meistere Blackjack: ',
-      ar: 'أتقن البلاك جاك: ',
-      it: 'Padroneggia il Blackjack: '
-    },
-    hero_title_suffix: {
-      en: 'Rules, Strategy & Best Casinos',
-      fr: 'Règles, Stratégie et Meilleurs Casinos',
-      es: 'Reglas, Estrategia y Mejores Casinos',
-      de: 'Regeln, Strategie und beste Casinos',
-      ar: 'القواعد والاستراتيجية وأفضل الكازينوهات',
-      it: 'Regole, Strategia e Migliori Casinò'
+    hero_title: {
+      en: 'Master Blackjack: <span class="gold-text animate-neon">Rules, Strategy &amp; Best Casinos</span>',
+      fr: 'Maîtrisez le Blackjack&nbsp;: <span class="gold-text animate-neon">Règles, Stratégie et Meilleurs Casinos</span>',
+      es: 'Domina el Blackjack: <span class="gold-text animate-neon">Reglas, Estrategia y Mejores Casinos</span>',
+      de: 'Meistere Blackjack: <span class="gold-text animate-neon">Regeln, Strategie und beste Casinos</span>',
+      ar: 'أتقن البلاك جاك: <span class="gold-text animate-neon">القواعد والاستراتيجية وأفضل الكازينوهات</span>',
+      it: 'Padroneggia il Blackjack: <span class="gold-text animate-neon">Regole, Strategia e Migliori Casinò</span>'
     },
     hero_subtitle: {
       en: "Whether you're a complete beginner or a seasoned player — we've got you covered. Learn the game, sharpen your strategy, and find the best online casinos to play for real money.",
@@ -125,13 +115,21 @@ const i18n = (() => {
       it: 'Che tu sia un principiante o un giocatore esperto — abbiamo quello che fa per te. Impara il gioco, affina la tua strategia e trova i migliori casinò online per giocare con soldi veri.'
     },
     hero_btn_rules: {
-      en: 'Learn the Rules', fr: 'Apprendre les règles', es: 'Aprende las reglas', de: 'Regeln lernen', ar: 'تعلم القواعد', it: 'Impara le regole'
+      en: '<i class="fas fa-book"></i> Learn the Rules',
+      fr: '<i class="fas fa-book"></i> Apprendre les règles',
+      es: '<i class="fas fa-book"></i> Aprende las reglas',
+      de: '<i class="fas fa-book"></i> Regeln lernen',
+      ar: '<i class="fas fa-book"></i> تعلم القواعد',
+      it: '<i class="fas fa-book"></i> Impara le regole'
     },
     hero_btn_strategy: {
-      en: 'Master Strategy', fr: 'Maîtriser la stratégie', es: 'Dominar la estrategia', de: 'Strategie meistern', ar: 'إتقان الاستراتيجية', it: 'Padroneggia la strategia'
+      en: '<i class="fas fa-chess"></i> Master Strategy',
+      fr: '<i class="fas fa-chess"></i> Maîtriser la stratégie',
+      es: '<i class="fas fa-chess"></i> Dominar la estrategia',
+      de: '<i class="fas fa-chess"></i> Strategie meistern',
+      ar: '<i class="fas fa-chess"></i> إتقان الاستراتيجية',
+      it: '<i class="fas fa-chess"></i> Padroneggia la strategia'
     },
-
-    // Intro section
     intro_title: {
       en: 'Welcome to BlackjackOnlineCasinos.com',
       fr: 'Bienvenue sur BlackjackOnlineCasinos.com',
@@ -148,8 +146,13 @@ const i18n = (() => {
       ar: 'مصدرك الموثوق لجميع معلومات البلاك جاك — من القواعد إلى الاستراتيجيات المفصلة وأفضل النصائح للعب عبر الإنترنت! نقدم العديد من النصائح والتوصيات المفيدة حتى تتمكن من دراسة اللعبة بثقة.',
       it: 'La tua fonte affidabile per tutte le informazioni sul blackjack — dalle regole alle strategie dettagliate e i migliori consigli per giocare online! Forniamo molti suggerimenti utili e raccomandazioni per permetterti di studiare il gioco con sicurezza.'
     },
-    intro_read_guide: {
-      en: 'Read Full Guide', fr: 'Lire le guide complet', es: 'Leer la guía completa', de: 'Vollständigen Leitfaden lesen', ar: 'اقرأ الدليل الكامل', it: 'Leggi la guida completa'
+    intro_btn: {
+      en: 'Read Full Guide <i class="fas fa-arrow-right"></i>',
+      fr: 'Lire le guide complet <i class="fas fa-arrow-right"></i>',
+      es: 'Leer la guía completa <i class="fas fa-arrow-right"></i>',
+      de: 'Vollständigen Leitfaden lesen <i class="fas fa-arrow-right"></i>',
+      ar: 'اقرأ الدليل الكامل <i class="fas fa-arrow-right"></i>',
+      it: 'Leggi la guida completa <i class="fas fa-arrow-right"></i>'
     },
     stat_perfect_hand: {
       en: 'The Perfect Hand', fr: 'La main parfaite', es: 'La mano perfecta', de: 'Die perfekte Hand', ar: 'اليد المثالية', it: 'La mano perfetta'
@@ -160,15 +163,8 @@ const i18n = (() => {
     stat_casinos_reviewed: {
       en: 'Online Casinos Reviewed', fr: 'Casinos en ligne évalués', es: 'Casinos online revisados', de: 'Online-Casinos bewertet', ar: 'الكازينوهات التي تمت مراجعتها', it: 'Casinò online recensiti'
     },
-
-    // Casino ticker
     ticker_title: {
-      en: 'Top Rated Blackjack Casinos',
-      fr: 'Meilleurs casinos de blackjack',
-      es: 'Los mejores casinos de blackjack',
-      de: 'Top-bewertete Blackjack-Casinos',
-      ar: 'أفضل كازينوهات البلاك جاك',
-      it: 'I migliori casinò di blackjack'
+      en: 'Top Rated Blackjack Casinos', fr: 'Meilleurs casinos de blackjack', es: 'Los mejores casinos de blackjack', de: 'Top-bewertete Blackjack-Casinos', ar: 'أفضل كازينوهات البلاك جاك', it: 'I migliori casinò di blackjack'
     },
     ticker_subtitle: {
       en: 'Play at the best online casinos — tested and approved by our experts.',
@@ -178,11 +174,14 @@ const i18n = (() => {
       ar: 'العب في أفضل الكازينوهات عبر الإنترنت — تم اختبارها والموافقة عليها من قبل خبرائنا.',
       it: 'Gioca nei migliori casinò online — testati e approvati dai nostri esperti.'
     },
-    ticker_view_all: {
-      en: 'View All Casino Reviews', fr: 'Voir tous les avis', es: 'Ver todas las reseñas', de: 'Alle Bewertungen anzeigen', ar: 'عرض جميع المراجعات', it: 'Vedi tutte le recensioni'
+    ticker_btn: {
+      en: 'View All Casino Reviews <i class="fas fa-arrow-right"></i>',
+      fr: 'Voir tous les avis <i class="fas fa-arrow-right"></i>',
+      es: 'Ver todas las reseñas <i class="fas fa-arrow-right"></i>',
+      de: 'Alle Bewertungen anzeigen <i class="fas fa-arrow-right"></i>',
+      ar: 'عرض جميع المراجعات <i class="fas fa-arrow-right"></i>',
+      it: 'Vedi tutte le recensioni <i class="fas fa-arrow-right"></i>'
     },
-
-    // Categories
     explore_title: {
       en: 'Explore Blackjack', fr: 'Explorez le Blackjack', es: 'Explora el Blackjack', de: 'Blackjack entdecken', ar: 'استكشف البلاك جاك', it: 'Esplora il Blackjack'
     },
@@ -195,7 +194,7 @@ const i18n = (() => {
       it: 'Tutto ciò che devi sapere sul gioco, tutto in un unico posto.'
     },
     cat_rules_title: {
-      en: 'Rules & Basics', fr: 'Règles et bases', es: 'Reglas y conceptos básicos', de: 'Regeln und Grundlagen', ar: 'القواعد والأساسيات', it: 'Regole e basi'
+      en: 'Rules &amp; Basics', fr: 'Règles et bases', es: 'Reglas y conceptos básicos', de: 'Regeln und Grundlagen', ar: 'القواعد والأساسيات', it: 'Regole e basi'
     },
     cat_rules_desc: {
       en: 'Learn how to play blackjack — card values, dealing, splitting, doubling down, and insurance explained simply.',
@@ -204,6 +203,14 @@ const i18n = (() => {
       de: 'Lernen Sie Blackjack zu spielen — Kartenwerte, Austeilen, Splitten, Verdoppeln und Versicherung einfach erklärt.',
       ar: 'تعلم كيفية لعب البلاك جاك — قيم البطاقات، والتوزيع، والتقسيم، والمضاعفة، والتأمين بشرح بسيط.',
       it: 'Impara a giocare a blackjack — valori delle carte, distribuzione, split, raddoppio e assicurazione spiegati semplicemente.'
+    },
+    cat_rules_link: {
+      en: 'Learn Rules <i class="fas fa-arrow-right"></i>',
+      fr: 'Apprendre les règles <i class="fas fa-arrow-right"></i>',
+      es: 'Aprende reglas <i class="fas fa-arrow-right"></i>',
+      de: 'Regeln lernen <i class="fas fa-arrow-right"></i>',
+      ar: 'تعلم القواعد <i class="fas fa-arrow-right"></i>',
+      it: 'Impara le regole <i class="fas fa-arrow-right"></i>'
     },
     cat_strategy_title: {
       en: 'Blackjack Strategy', fr: 'Stratégie de blackjack', es: 'Estrategia de blackjack', de: 'Blackjack-Strategie', ar: 'استراتيجية البلاك جاك', it: 'Strategia del blackjack'
@@ -216,6 +223,14 @@ const i18n = (() => {
       ar: 'أتقن الاستراتيجية الأساسية، وعد البطاقات، وإدارة الرصيد، والتكتيكات المتقدمة لتقليل ميزة الكازينو.',
       it: 'Padroneggia la strategia di base, il conteggio delle carte, la gestione del bankroll e le tattiche avanzate per minimizzare il vantaggio del banco.'
     },
+    cat_strategy_link: {
+      en: 'Explore Strategy <i class="fas fa-arrow-right"></i>',
+      fr: 'Explorer la stratégie <i class="fas fa-arrow-right"></i>',
+      es: 'Explorar estrategia <i class="fas fa-arrow-right"></i>',
+      de: 'Strategie erkunden <i class="fas fa-arrow-right"></i>',
+      ar: 'استكشف الاستراتيجية <i class="fas fa-arrow-right"></i>',
+      it: 'Esplora la strategia <i class="fas fa-arrow-right"></i>'
+    },
     cat_reviews_title: {
       en: 'Casino Reviews', fr: 'Avis sur les casinos', es: 'Reseñas de casinos', de: 'Casino-Bewertungen', ar: 'مراجعات الكازينوهات', it: 'Recensioni dei casinò'
     },
@@ -226,6 +241,14 @@ const i18n = (() => {
       de: 'Ehrliche, fachkundige Bewertungen der besten Online-Casinos für Blackjack mit echtem Geld. Boni, Spielvielfalt, Auszahlungsgeschwindigkeit.',
       ar: 'مراجعات صادقة وخبيرة لأفضل الكازينوهات عبر الإنترنت للعب البلاك جاك بأموال حقيقية. المكافآت، تنوع الألعاب، سرعة الدفع.',
       it: 'Recensioni oneste ed esperte dei migliori casinò online per giocare a blackjack con soldi veri. Bonus, varietà di giochi, velocità di pagamento.'
+    },
+    cat_reviews_link: {
+      en: 'View Reviews <i class="fas fa-arrow-right"></i>',
+      fr: 'Voir les avis <i class="fas fa-arrow-right"></i>',
+      es: 'Ver reseñas <i class="fas fa-arrow-right"></i>',
+      de: 'Bewertungen anzeigen <i class="fas fa-arrow-right"></i>',
+      ar: 'عرض المراجعات <i class="fas fa-arrow-right"></i>',
+      it: 'Vedi recensioni <i class="fas fa-arrow-right"></i>'
     },
     cat_glossary_title: {
       en: 'Glossary', fr: 'Glossaire', es: 'Glosario', de: 'Glossar', ar: 'قاموس المصطلحات', it: 'Glossario'
@@ -238,20 +261,14 @@ const i18n = (() => {
       ar: 'قاموس كامل لمصطلحات البلاك جاك — من "Action" إلى "Yo" — حتى لا تشعر بالضياع على الطاولة أبدًا.',
       it: 'Dizionario completo dei termini del blackjack — da "Action" a "Yo" — per non sentirsi mai persi al tavolo.'
     },
-    cat_rules_link: {
-      en: 'Learn Rules', fr: 'Apprendre les règles', es: 'Aprende reglas', de: 'Regeln lernen', ar: 'تعلم القواعد', it: 'Impara le regole'
-    },
-    cat_strategy_link: {
-      en: 'Explore Strategy', fr: 'Explorer la stratégie', es: 'Explorar estrategia', de: 'Strategie erkunden', ar: 'استكشف الاستراتيجية', it: 'Esplora la strategia'
-    },
-    cat_reviews_link: {
-      en: 'View Reviews', fr: 'Voir les avis', es: 'Ver reseñas', de: 'Bewertungen anzeigen', ar: 'عرض المراجعات', it: 'Vedi recensioni'
-    },
     cat_glossary_link: {
-      en: 'Browse Terms', fr: 'Parcourir les termes', es: 'Explorar términos', de: 'Begriffe durchsuchen', ar: 'تصفح المصطلحات', it: 'Sfoglia i termini'
+      en: 'Browse Terms <i class="fas fa-arrow-right"></i>',
+      fr: 'Parcourir les termes <i class="fas fa-arrow-right"></i>',
+      es: 'Explorar términos <i class="fas fa-arrow-right"></i>',
+      de: 'Begriffe durchsuchen <i class="fas fa-arrow-right"></i>',
+      ar: 'تصفح المصطلحات <i class="fas fa-arrow-right"></i>',
+      it: 'Sfoglia i termini <i class="fas fa-arrow-right"></i>'
     },
-
-    // Providers
     providers_title: {
       en: 'Recommended Live Dealer Blackjack Software Providers',
       fr: 'Fournisseurs de logiciels de blackjack en direct recommandés',
@@ -268,15 +285,8 @@ const i18n = (() => {
       ar: 'نوصي فقط بألعاب من أكثر مقدمي الخدمات الموثوقين والمرخصين في الصناعة.',
       it: 'Raccomandiamo solo giochi dei fornitori più affidabili e autorizzati del settore.'
     },
-
-    // Why us
     why_title: {
-      en: 'Why Play at Licensed Casinos?',
-      fr: 'Pourquoi jouer dans des casinos agréés ?',
-      es: '¿Por qué jugar en casinos con licencia?',
-      de: 'Warum in lizenzierten Casinos spielen?',
-      ar: 'لماذا تلعب في الكازينوهات المرخصة؟',
-      it: 'Perché giocare nei casinò autorizzati?'
+      en: 'Why Play at Licensed Casinos?', fr: 'Pourquoi jouer dans des casinos agréés ?', es: '¿Por qué jugar en casinos con licencia?', de: 'Warum in lizenzierten Casinos spielen?', ar: 'لماذا تلعب في الكازينوهات المرخصة؟', it: 'Perché giocare nei casinò autorizzati?'
     },
     why_subtitle: {
       en: 'Licensed casinos guarantee fair play, secure transactions, and reliable payouts.',
@@ -287,7 +297,7 @@ const i18n = (() => {
       it: 'I casinò autorizzati garantiscono gioco equo, transazioni sicure e pagamenti affidabili.'
     },
     why_licensed_title: {
-      en: 'Licensed & Regulated', fr: 'Agréé et réglementé', es: 'Con licencia y regulado', de: 'Lizenziert und reguliert', ar: 'مرخص ومنظم', it: 'Autorizzato e regolamentato'
+      en: 'Licensed &amp; Regulated', fr: 'Agréé et réglementé', es: 'Con licencia y regulado', de: 'Lizenziert und reguliert', ar: 'مرخص ومنظم', it: 'Autorizzato e regolamentato'
     },
     why_licensed_text: {
       en: 'All recommended casinos are fully licensed, secure, and guarantee all payouts with around-the-clock customer support.',
@@ -330,8 +340,6 @@ const i18n = (() => {
       ar: 'دعم على مدار الساعة عبر الدردشة المباشرة والبريد الإلكتروني والهاتف. احصل على المساعدة عندما تحتاجها.',
       it: 'Supporto 24 ore su 24 tramite chat dal vivo, email e telefono. Ottieni aiuto quando ne hai bisogno.'
     },
-
-    // Testimonials
     testimonials_title: {
       en: 'What Players Say', fr: 'Ce que disent les joueurs', es: 'Lo que dicen los jugadores', de: 'Was Spieler sagen', ar: 'ماذا يقول اللاعبون', it: 'Cosa dicono i giocatori'
     },
@@ -343,12 +351,10 @@ const i18n = (() => {
       ar: 'تعليقات حقيقية من مجتمعنا من لاعبي البلاك جاك.',
       it: 'Feedback reali dalla nostra comunità di giocatori di blackjack.'
     },
-
-    // Review form
-    review_form_title: {
+    review_title: {
       en: 'Leave Your Review', fr: 'Laissez votre avis', es: 'Deja tu reseña', de: 'Hinterlassen Sie Ihre Bewertung', ar: 'اترك مراجعتك', it: 'Lascia la tua recensione'
     },
-    review_form_subtitle: {
+    review_subtitle: {
       en: 'Share your experience with the blackjack community.',
       fr: 'Partagez votre expérience avec la communauté du blackjack.',
       es: 'Comparte tu experiencia con la comunidad de blackjack.',
@@ -376,8 +382,13 @@ const i18n = (() => {
       ar: 'أخبرنا عن تجربتك في لعب البلاك جاك...',
       it: 'Raccontaci la tua esperienza giocando a blackjack...'
     },
-    review_submit: {
-      en: 'Submit Review', fr: 'Soumettre l\'avis', es: 'Enviar reseña', de: 'Bewertung absenden', ar: 'إرسال المراجعة', it: 'Invia recensione'
+    review_btn: {
+      en: '<i class="fas fa-paper-plane"></i> Submit Review',
+      fr: '<i class="fas fa-paper-plane"></i> Soumettre l\'avis',
+      es: '<i class="fas fa-paper-plane"></i> Enviar reseña',
+      de: '<i class="fas fa-paper-plane"></i> Bewertung absenden',
+      ar: '<i class="fas fa-paper-plane"></i> إرسال المراجعة',
+      it: '<i class="fas fa-paper-plane"></i> Invia recensione'
     },
     review_success: {
       en: 'Thank you! Your review has been submitted.',
@@ -387,8 +398,6 @@ const i18n = (() => {
       ar: 'شكرًا لك! تم إرسال مراجعتك.',
       it: 'Grazie! La tua recensione è stata inviata.'
     },
-
-    // CTA
     cta_title: {
       en: 'Play Live Dealer Blackjack Today',
       fr: 'Jouez au Blackjack en direct aujourd\'hui',
@@ -406,10 +415,13 @@ const i18n = (() => {
       it: 'Vivi l\'emozione del vero blackjack con croupier dal vivo professionisti, streaming HD e gameplay interattivo comodamente da casa tua.'
     },
     cta_btn: {
-      en: 'See Recommended Casinos', fr: 'Voir les casinos recommandés', es: 'Ver casinos recomendados', de: 'Empfohlene Casinos anzeigen', ar: 'عرض الكازينوهات الموصى بها', it: 'Vedi i casinò consigliati'
+      en: '<i class="fas fa-trophy animate-glow"></i> See Recommended Casinos',
+      fr: '<i class="fas fa-trophy animate-glow"></i> Voir les casinos recommandés',
+      es: '<i class="fas fa-trophy animate-glow"></i> Ver casinos recomendados',
+      de: '<i class="fas fa-trophy animate-glow"></i> Empfohlene Casinos anzeigen',
+      ar: '<i class="fas fa-trophy animate-glow"></i> عرض الكازينوهات الموصى بها',
+      it: '<i class="fas fa-trophy animate-glow"></i> Vedi i casinò consigliati'
     },
-
-    // Footer
     footer_desc: {
       en: 'Your trusted source for all blackjack information — from rules to detailed strategies and the best tips for playing online.',
       fr: 'Votre source fiable pour toutes les informations sur le blackjack — des règles aux stratégies détaillées et aux meilleurs conseils pour jouer en ligne.',
@@ -437,20 +449,20 @@ const i18n = (() => {
       en: 'Responsible Gaming', fr: 'Jeu responsable', es: 'Juego responsable', de: 'Verantwortungsvolles Spielen', ar: 'اللعب المسؤول', it: 'Gioco responsabile'
     },
     footer_disclaimer: {
-      en: 'Disclaimer and Terms: This website is for informational purposes only. No guarantees of accuracy, completeness, or reliability of content are made. Use of this site is at your own risk. BlackjackOnlineCasinos.com may receive compensation for third party content and outgoing affiliate links posted on this website.',
-      fr: 'Avertissement et conditions : Ce site web est à titre informatif uniquement. Aucune garantie d\'exactitude, d\'exhaustivité ou de fiabilité du contenu n\'est faite. L\'utilisation de ce site est à vos propres risques. BlackjackOnlineCasinos.com peut recevoir une compensation pour le contenu tiers et les liens d\'affiliation sortants publiés sur ce site.',
-      es: 'Descargo de responsabilidad y términos: Este sitio web es solo para fines informativos. No se ofrecen garantías de precisión, integridad o confiabilidad del contenido. El uso de este sitio es bajo su propio riesgo. BlackjackOnlineCasinos.com puede recibir compensación por contenido de terceros y enlaces de afiliados salientes publicados en este sitio web.',
-      de: 'Haftungsausschluss und Bedingungen: Diese Website dient nur zu Informationszwecken. Es werden keine Garantien für die Richtigkeit, Vollständigkeit oder Zuverlässigkeit des Inhalts übernommen. Die Nutzung dieser Website erfolgt auf eigenes Risiko. BlackjackOnlineCasinos.com kann eine Vergütung für Inhalte Dritter und ausgehende Affiliate-Links auf dieser Website erhalten.',
-      ar: 'إخلاء المسؤولية والشروط: هذا الموقع لأغراض إعلامية فقط. لا نقدم أي ضمانات بشأن دقة أو اكتمال أو موثوقية المحتوى. استخدام هذا الموقع على مسؤوليتك الخاصة. قد يحصل BlackjackOnlineCasinos.com على تعويض عن محتوى الطرف الثالث والروابط التابعة الصادرة المنشورة على هذا الموقع.',
-      it: 'Disclaimer e termini: Questo sito web è solo a scopo informativo. Non vengono fornite garanzie di accuratezza, completezza o affidabilità dei contenuti. L\'uso di questo sito è a proprio rischio. BlackjackOnlineCasinos.com potrebbe ricevere un compenso per contenuti di terze parti e link di affiliazione in uscita pubblicati su questo sito web.'
+      en: '<strong>Disclaimer and Terms:</strong> This website is for informational purposes only. No guarantees of accuracy, completeness, or reliability of content are made. Use of this site is at your own risk. BlackjackOnlineCasinos.com may receive compensation for third party content and outgoing affiliate links posted on this website.',
+      fr: '<strong>Avertissement et conditions :</strong> Ce site web est à titre informatif uniquement. Aucune garantie d\'exactitude, d\'exhaustivité ou de fiabilité du contenu n\'est faite. L\'utilisation de ce site est à vos propres risques. BlackjackOnlineCasinos.com peut recevoir une compensation pour le contenu tiers et les liens d\'affiliation sortants publiés sur ce site.',
+      es: '<strong>Descargo de responsabilidad y términos:</strong> Este sitio web es solo para fines informativos. No se ofrecen garantías de precisión, integridad o confiabilidad del contenido. El uso de este sitio es bajo su propio riesgo. BlackjackOnlineCasinos.com puede recibir compensación por contenido de terceros y enlaces de afiliados salientes publicados en este sitio web.',
+      de: '<strong>Haftungsausschluss und Bedingungen:</strong> Diese Website dient nur zu Informationszwecken. Es werden keine Garantien für die Richtigkeit, Vollständigkeit oder Zuverlässigkeit des Inhalts übernommen. Die Nutzung dieser Website erfolgt auf eigenes Risiko. BlackjackOnlineCasinos.com kann eine Vergütung für Inhalte Dritter und ausgehende Affiliate-Links auf dieser Website erhalten.',
+      ar: '<strong>إخلاء المسؤولية والشروط:</strong> هذا الموقع لأغراض إعلامية فقط. لا نقدم أي ضمانات بشأن دقة أو اكتمال أو موثوقية المحتوى. استخدام هذا الموقع على مسؤوليتك الخاصة. قد يحصل BlackjackOnlineCasinos.com على تعويض عن محتوى الطرف الثالث والروابط التابعة الصادرة المنشورة على هذا الموقع.',
+      it: '<strong>Disclaimer e termini:</strong> Questo sito web è solo a scopo informativo. Non vengono fornite garanzie di accuratezza, completezza o affidabilità dei contenuti. L\'uso di questo sito è a proprio rischio. BlackjackOnlineCasinos.com potrebbe ricevere un compenso per contenuti di terze parti e link di affiliazione in uscita pubblicati su questo sito web.'
     },
     footer_cookie: {
-      en: 'Cookie Policy: We use cookies to analyze website traffic and optimize your website experience. By using this site, you consent to our use of cookies.',
-      fr: 'Politique de cookies : Nous utilisons des cookies pour analyser le trafic du site et optimiser votre expérience. En utilisant ce site, vous consentez à notre utilisation des cookies.',
-      es: 'Política de cookies: Utilizamos cookies para analizar el tráfico del sitio web y optimizar su experiencia. Al usar este sitio, usted acepta nuestro uso de cookies.',
-      de: 'Cookie-Richtlinie: Wir verwenden Cookies, um den Website-Traffic zu analysieren und Ihr Website-Erlebnis zu optimieren. Durch die Nutzung dieser Website stimmen Sie der Verwendung von Cookies zu.',
-      ar: 'سياسة ملفات تعريف الارتباط: نستخدم ملفات تعريف الارتباط لتحليل حركة مرور الموقع وتحسين تجربتك. باستخدام هذا الموقع، فإنك توافق على استخدامنا لملفات تعريف الارتباط.',
-      it: 'Politica sui cookie: Utilizziamo i cookie per analizzare il traffico del sito web e ottimizzare la tua esperienza. Utilizzando questo sito, acconsenti all\'uso dei cookie.'
+      en: '<strong>Cookie Policy:</strong> We use cookies to analyze website traffic and optimize your website experience. By using this site, you consent to our use of cookies.',
+      fr: '<strong>Politique de cookies :</strong> Nous utilisons des cookies pour analyser le trafic du site et optimiser votre expérience. En utilisant ce site, vous consentez à notre utilisation des cookies.',
+      es: '<strong>Política de cookies:</strong> Utilizamos cookies para analizar el tráfico del sitio web y optimizar su experiencia. Al usar este sitio, usted acepta nuestro uso de cookies.',
+      de: '<strong>Cookie-Richtlinie:</strong> Wir verwenden Cookies, um den Website-Traffic zu analysieren und Ihr Website-Erlebnis zu optimieren. Durch die Nutzung dieser Website stimmen Sie der Verwendung von Cookies zu.',
+      ar: '<strong>سياسة ملفات تعريف الارتباط:</strong> نستخدم ملفات تعريف الارتباط لتحليل حركة مرور الموقع وتحسين تجربتك. باستخدام هذا الموقع، فإنك توافق على استخدامنا لملفات تعريف الارتباط.',
+      it: '<strong>Politica sui cookie:</strong> Utilizziamo i cookie per analizzare il traffico del sito web e ottimizzare la tua esperienza. Utilizzando questo sito, acconsenti all\'uso dei cookie.'
     },
     footer_rights: {
       en: 'All Rights Reserved.', fr: 'Tous droits réservés.', es: 'Todos los derechos reservados.', de: 'Alle Rechte vorbehalten.', ar: 'جميع الحقوق محفوظة.', it: 'Tutti i diritti riservati.'
@@ -465,15 +477,22 @@ const i18n = (() => {
     },
   };
 
-  // ─── Get translation ───
+  // ─── Translate a single key ───
   function t(key) {
     const entry = TRANSLATIONS[key];
     if (!entry) return key;
     return entry[currentLang] || entry[DEFAULT_LANG] || key;
   }
 
-  // ─── Apply translations to the page ───
+  // ─── Apply translations ───
   function applyTranslations() {
+    // Translate innerHTML elements (can contain icons)
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      const key = el.getAttribute('data-i18n-html');
+      el.innerHTML = t(key);
+    });
+
+    // Translate text-only elements
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       const translated = t(key);
@@ -484,23 +503,19 @@ const i18n = (() => {
           el.value = translated;
         }
       } else {
-        el.textContent = translated;
+        el.innerHTML = translated;
       }
     });
 
-    // Update HTML lang attribute
+    // Update html lang and dir
     document.documentElement.lang = currentLang;
-
-    // Update RTL
     document.documentElement.dir = LANGUAGES[currentLang].dir;
 
-    // Update language selector button
+    // Update language selector
     const langBtn = document.getElementById('langBtn');
     if (langBtn) {
-      langBtn.textContent = LANGUAGES[currentLang].label;
+      langBtn.innerHTML = `${LANGUAGES[currentLang].flag} ${LANGUAGES[currentLang].short} <i class="fas fa-chevron-down"></i>`;
     }
-
-    // Update active class in dropdown
     document.querySelectorAll('.lang-option').forEach(opt => {
       opt.classList.toggle('active', opt.dataset.lang === currentLang);
     });
@@ -512,55 +527,54 @@ const i18n = (() => {
     currentLang = lang;
     localStorage.setItem(STORAGE_KEY, lang);
     applyTranslations();
-    // Close dropdown
-    const dropdown = document.getElementById('langDropdown');
-    if (dropdown) dropdown.classList.remove('active');
+    const dd = document.getElementById('langDropdown');
+    if (dd) dd.classList.remove('active');
   }
 
   // ─── Init ───
   function init() {
-    // Build language switcher if container exists
     const container = document.getElementById('langSwitcher');
-    if (container && !container.hasAttribute('data-initialized')) {
-      container.setAttribute('data-initialized', 'true');
-      container.innerHTML = `
-        <button class="lang-btn" id="langBtn" aria-label="Select language">
-          ${LANGUAGES[currentLang].label}
-          <i class="fas fa-chevron-down" style="font-size:10px;margin-left:4px;"></i>
-        </button>
-        <div class="lang-dropdown" id="langDropdown">
-          ${Object.entries(LANGUAGES).map(([code, lang]) => `
-            <button class="lang-option ${code === currentLang ? 'active' : ''}" data-lang="${code}" onclick="window.i18nSetLang('${code}')">
-              ${lang.label}
-            </button>
-          `).join('')}
-        </div>
-      `;
+    if (container && !container.hasAttribute('data-done')) {
+      container.setAttribute('data-done', '1');
+      container.innerHTML = [
+        '<button class="lang-btn" id="langBtn" aria-label="Select language">',
+          `${LANGUAGES[currentLang].flag} ${LANGUAGES[currentLang].short} <i class="fas fa-chevron-down"></i>`,
+        '</button>',
+        '<div class="lang-dropdown" id="langDropdown">',
+          Object.entries(LANGUAGES).map(([code, lang]) =>
+            `<button class="lang-option ${code === currentLang ? 'active' : ''}" data-lang="${code}">${lang.flag} ${lang.short} — ${lang.flag === '🇸🇦' ? 'العربية' : code === 'en' ? 'English' : code === 'fr' ? 'Français' : code === 'es' ? 'Español' : code === 'de' ? 'Deutsch' : 'Italiano'}</button>`
+          ).join(''),
+        '</div>'
+      ].join('');
 
-      // Toggle dropdown
-      document.getElementById('langBtn').addEventListener('click', (e) => {
+      // Toggle + outside click
+      document.getElementById('langBtn').addEventListener('click', function(e) {
         e.stopPropagation();
         document.getElementById('langDropdown').classList.toggle('active');
       });
-
-      // Close on outside click
       document.addEventListener('click', () => {
-        document.getElementById('langDropdown')?.classList.remove('active');
+        const dd = document.getElementById('langDropdown');
+        if (dd) dd.classList.remove('active');
+      });
+
+      // Delegate clicks on lang-option
+      container.addEventListener('click', function(e) {
+        const opt = e.target.closest('.lang-option');
+        if (opt && opt.dataset.lang) {
+          setLang(opt.dataset.lang);
+        }
       });
     }
 
     applyTranslations();
   }
 
-  // ─── Init on DOM ready ───
+  // ─── Boot ───
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
     init();
   }
 
-  return { t, setLang, init, currentLang: () => currentLang, languages: LANGUAGES };
+  window.i18nSetLang = setLang;
 })();
-
-// Make setLang available globally
-window.i18nSetLang = (lang) => i18n.setLang(lang);
