@@ -23,7 +23,7 @@
     --font-secondary: 'Open Sans', sans-serif;
 
     --container-w: 1100px;
-    --header-h: 120px;
+    --header-h: 190px;
     --radius: 12px;
     --radius-sm: 8px;
 
@@ -243,20 +243,14 @@ img { max-width: 100%; display: block; }
 
 .section__title--center {
     text-align: center;
-}
-/* Gold gradient for section titles */
-.section__title--center {
     background: linear-gradient(135deg, #e8d48b, #d4a843, #b8912e, #d4a843, #e8d48b);
     background-size: 300% 100%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     animation: goldWave 5s ease infinite;
-    display: inline-block;
-    width: auto;
     max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto 16px;
 }
 
 .section__subtitle {
@@ -340,7 +334,7 @@ img { max-width: 100%; display: block; }
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 14px;
+    gap: 6px;
 }
 
 .header__bottom {
@@ -348,8 +342,7 @@ img { max-width: 100%; display: block; }
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 6px 0 12px;
-    gap: 6px;
+    padding: 4px 0 10px;
 }
 
 /* --- Logo --- */
@@ -420,7 +413,7 @@ img { max-width: 100%; display: block; }
     font-weight: 500;
     color: var(--color-text-muted);
     text-align: center;
-    margin-top: 0;
+    margin: 2px 0 4px;
     letter-spacing: 3px;
     text-transform: uppercase;
     opacity: 0.6;
@@ -1317,7 +1310,7 @@ img { max-width: 100%; display: block; }
 /* --- Tablet / Small desktop --- */
 @media (max-width: 1024px) {
     :root {
-        --header-h: 100px;
+        --header-h: 170px;
     }
 
     .logo__icon {
@@ -1351,7 +1344,7 @@ img { max-width: 100%; display: block; }
 /* --- Mobile --- */
 @media (max-width: 768px) {
     :root {
-        --header-h: 90px;
+        --header-h: 110px;
     }
 
     .section {
@@ -1529,7 +1522,7 @@ img { max-width: 100%; display: block; }
 
 @media (max-width: 480px) {
     :root {
-        --header-h: 80px;
+        --header-h: 100px;
     }
 
     .logo__icon {
@@ -1655,7 +1648,7 @@ html[dir="rtl"] .nav__dropdown-toggle i {
         padding: 10px 4px;
     }
     .header__bottom {
-        padding: 6px 4px 10px;
+        padding: 4px 4px 8px;
     }
 
     .lang-btn {
@@ -1670,7 +1663,7 @@ html[dir="rtl"] .nav__dropdown-toggle i {
 
 /* --- Page Hero (inner pages) --- */
 .page-hero {
-    padding: 140px 0 60px;
+    padding: calc(var(--header-h) + 30px) 0 60px;
     background: linear-gradient(135deg, #0c0f14 0%, #151b26 50%, #0c0f14 100%);
     text-align: center;
     border-bottom: 1px solid var(--color-border);
@@ -2317,7 +2310,7 @@ select.form-control {
 
 @media (max-width: 768px) {
     .page-hero {
-        padding: 120px 0 40px;
+        padding: calc(var(--header-h) + 20px) 0 40px;
     }
 
     .page-hero__title {
