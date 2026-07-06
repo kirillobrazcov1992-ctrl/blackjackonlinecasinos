@@ -23,7 +23,7 @@
     --font-secondary: 'Open Sans', sans-serif;
 
     --container-w: 1100px;
-    --header-h: 130px;
+    --header-h: 120px;
     --radius: 12px;
     --radius-sm: 8px;
 
@@ -331,9 +331,16 @@ img { max-width: 100%; display: block; }
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 12px 60px 4px;
+    padding: 14px 60px 6px;
     position: relative;
-    min-height: 44px;
+    min-height: 70px;
+}
+
+.header__top-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
 }
 
 .header__bottom {
@@ -341,17 +348,8 @@ img { max-width: 100%; display: block; }
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 10px 0 14px;
-    gap: 4px;
-}
-
-.header__bottom-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    gap: 14px;
-    position: relative;
+    padding: 6px 0 12px;
+    gap: 6px;
 }
 
 /* --- Logo --- */
@@ -554,6 +552,11 @@ img { max-width: 100%; display: block; }
     border: none;
     cursor: pointer;
     padding: 4px;
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1001;
 }
 
 .burger span {
@@ -1314,7 +1317,7 @@ img { max-width: 100%; display: block; }
 /* --- Tablet / Small desktop --- */
 @media (max-width: 1024px) {
     :root {
-        --header-h: 120px;
+        --header-h: 100px;
     }
 
     .logo__icon {
@@ -1348,7 +1351,7 @@ img { max-width: 100%; display: block; }
 /* --- Mobile --- */
 @media (max-width: 768px) {
     :root {
-        --header-h: 100px;
+        --header-h: 90px;
     }
 
     .section {
@@ -1526,7 +1529,7 @@ img { max-width: 100%; display: block; }
 
 @media (max-width: 480px) {
     :root {
-        --header-h: 90px;
+        --header-h: 80px;
     }
 
     .logo__icon {
@@ -1534,9 +1537,6 @@ img { max-width: 100%; display: block; }
     }
     .logo__text {
         font-size: 1.4rem;
-    }
-    .header__bottom-row {
-        gap: 6px;
     }
 
     .hero__title {
@@ -1655,10 +1655,7 @@ html[dir="rtl"] .nav__dropdown-toggle i {
         padding: 10px 4px;
     }
     .header__bottom {
-        padding: 8px 4px 12px;
-    }
-    .header__bottom-row {
-        gap: 8px;
+        padding: 6px 4px 10px;
     }
 
     .lang-btn {

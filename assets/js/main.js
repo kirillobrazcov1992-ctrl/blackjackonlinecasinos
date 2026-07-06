@@ -210,4 +210,40 @@ document.addEventListener('DOMContentLoaded', () => {
             reviewSuccess.style.display = 'block';
         });
     }
+
+
+    /* ===== Fallback for broken casino logos ===== */
+    function createCasinoFallback(img) {
+        const wrap = img.closest('.ticker-casino__logo-wrap, .casino-card__left');
+        if (!wrap) return;
+
+        // Create a placeholder div
+        const placeholder = document.createElement('div');
+        placeholder.style.cssText = `
+            display: flex; align-items: center; justify-content: center;
+            width: 100%; height: 100%;
+            min-height: 60px;
+            background: linear-gradient(135deg, #1a1e27, #232833);
+            border-radius: 8px;
+            border: 1px solid rgba(212, 168, 67, 0.15);
+        `;
+
+        const icon = document.createElement('i');
+        icon.className = 'fas fa-chess-king';
+        icon.style.cssText = 'font-size:2rem;color:var(--color-gold);opacity:0.6;';
+        placeholder.appendChild(icon);
+
+        img.style.display = 'none';
+        wrap.appendChild(placeholder);
+    }
+
+    document.querySelectorAll('.ticker-casino__logo, .casino-card__logo').forEach(img => {
+        img.addEventListener('error', function() {
+            createCasinoFallback(this);
+        });
+        if (img.complete && (img.naturalWidth === 0 || img.naturalHeight === 0)) {
+            createCasinoFallback(img);
+        }
+    });
+
 });
