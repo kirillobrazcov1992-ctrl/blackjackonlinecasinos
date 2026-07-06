@@ -250,7 +250,14 @@ img { max-width: 100%; display: block; }
     background-clip: text;
     animation: goldWave 5s ease infinite;
     max-width: 800px;
-    margin: 0 auto 16px;
+    margin: 0 auto;
+    display: block;
+}
+
+.section__title-wrap {
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
 .section__subtitle {
@@ -330,11 +337,12 @@ img { max-width: 100%; display: block; }
     min-height: 70px;
 }
 
-.header__top-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
+#langSwitcher {
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1001;
 }
 
 .header__bottom {
@@ -1550,11 +1558,6 @@ img { max-width: 100%; display: block; }
 /* ========================================
    LANGUAGE SELECTOR
    ======================================== */
-#langSwitcher {
-    flex-shrink: 0;
-    z-index: 1001;
-}
-
 .lang-btn {
     display: flex;
     align-items: center;
