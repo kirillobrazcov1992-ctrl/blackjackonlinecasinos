@@ -47,43 +47,45 @@
 
             <nav class="nav" id="nav">
                                 <ul class="nav__list">
-                    <li><a href="/" class="nav__link nav__link--active">Home</a></li>
+                    <li><a href="/" class="nav__link nav__link--active"><span data-i18n="nav_home">Home</span></a></li>
                     <li class="nav__dropdown">
-                        <a href="#" class="nav__link nav__dropdown-toggle">Learn the Game <i class="fas fa-chevron-down"></i></a>
+                        <a href="#" class="nav__link nav__dropdown-toggle"><span data-i18n="nav_learn">Learn the Game</span> <i class="fas fa-chevron-down"></i></a>
                         <ul class="nav__submenu">
-                            <li><a href="rules.html" class="nav__link">Rules</a></li>
-                            <li><a href="basic-strategy.html" class="nav__link">Basic Strategy</a></li>
-                            <li><a href="blackjack-odds.html" class="nav__link">Odds & Probability</a></li>
-                            <li><a href="variations.html" class="nav__link">Variations</a></li>
-                            <li><a href="history.html" class="nav__link">History</a></li>
-                            <li><a href="glossary.html" class="nav__link">Glossary</a></li>
+                            <li><a href="rules.html" class="nav__link"><span data-i18n="nav_rules">Rules</span></a></li>
+                            <li><a href="basic-strategy.html" class="nav__link"><span data-i18n="nav_basic_strategy">Basic Strategy</span></a></li>
+                            <li><a href="blackjack-odds.html" class="nav__link"><span data-i18n="nav_odds">Odds & Probability</span></a></li>
+                            <li><a href="variations.html" class="nav__link"><span data-i18n="nav_variations">Variations</span></a></li>
+                            <li><a href="history.html" class="nav__link"><span data-i18n="nav_history">History</span></a></li>
+                            <li><a href="glossary.html" class="nav__link"><span data-i18n="nav_glossary">Glossary</span></a></li>
                         </ul>
                     </li>
                     <li class="nav__dropdown">
-                        <a href="#" class="nav__link nav__dropdown-toggle">Advanced Play <i class="fas fa-chevron-down"></i></a>
+                        <a href="#" class="nav__link nav__dropdown-toggle"><span data-i18n="nav_advanced">Advanced Play</span> <i class="fas fa-chevron-down"></i></a>
                         <ul class="nav__submenu">
-                            <li><a href="advanced-strategy.html" class="nav__link">Advanced Strategy</a></li>
-                            <li><a href="card-counting.html" class="nav__link">Card Counting</a></li>
-                            <li><a href="shuffle-tracking.html" class="nav__link">Shuffle Tracking</a></li>
-                            <li><a href="side-bets.html" class="nav__link">Side Bets</a></li>
-                            <li><a href="tournament-blackjack.html" class="nav__link">Tournaments</a></li>
+                            <li><a href="advanced-strategy.html" class="nav__link"><span data-i18n="nav_advanced_strategy">Advanced Strategy</span></a></li>
+                            <li><a href="card-counting.html" class="nav__link"><span data-i18n="nav_card_counting">Card Counting</span></a></li>
+                            <li><a href="shuffle-tracking.html" class="nav__link"><span data-i18n="nav_shuffle_tracking">Shuffle Tracking</span></a></li>
+                            <li><a href="side-bets.html" class="nav__link"><span data-i18n="nav_side_bets">Side Bets</span></a></li>
+                            <li><a href="tournament-blackjack.html" class="nav__link"><span data-i18n="nav_tournaments">Tournaments</span></a></li>
                         </ul>
                     </li>
                     <li class="nav__dropdown">
-                        <a href="#" class="nav__link nav__dropdown-toggle">Resources <i class="fas fa-chevron-down"></i></a>
+                        <a href="#" class="nav__link nav__dropdown-toggle"><span data-i18n="nav_resources">Resources</span> <i class="fas fa-chevron-down"></i></a>
                         <ul class="nav__submenu">
-                            <li><a href="online-blackjack.html" class="nav__link">Online Blackjack</a></li>
-                            <li><a href="bankroll-management.html" class="nav__link">Bankroll Management</a></li>
-                            <li><a href="blackjack-myths.html" class="nav__link">Myths & Misconceptions</a></li>
-                            <li><a href="blackjack-etiquette.html" class="nav__link">Etiquette</a></li>
-                            <li><a href="blackjack-faq.html" class="nav__link">FAQ</a></li>
-                            <li><a href="books.html" class="nav__link">Best Blackjack Books</a></li>
+                            <li><a href="online-blackjack.html" class="nav__link"><span data-i18n="nav_online">Online Blackjack</span></a></li>
+                            <li><a href="bankroll-management.html" class="nav__link"><span data-i18n="nav_bankroll">Bankroll Management</span></a></li>
+                            <li><a href="blackjack-myths.html" class="nav__link"><span data-i18n="nav_myths">Myths & Misconceptions</span></a></li>
+                            <li><a href="blackjack-etiquette.html" class="nav__link"><span data-i18n="nav_etiquette">Etiquette</span></a></li>
+                            <li><a href="blackjack-faq.html" class="nav__link"><span data-i18n="nav_faq">FAQ</span></a></li>
+                            <li><a href="books.html" class="nav__link"><span data-i18n="nav_books">Best Blackjack Books</span></a></li>
                         </ul>
                     </li>
-                    <li><a href="reviews.html" class="nav__link">Reviews</a></li>
-                    <li><a href="demo-casino.html" class="nav__link">Demo</a></li>
-                    <li><a href="contact.html" class="nav__link">Contact</a></li>
+                    <li><a href="reviews.html" class="nav__link"><span data-i18n="nav_reviews">Reviews</span></a></li>
+                    <li><a href="demo-casino.html" class="nav__link"><span data-i18n="nav_demo">Demo</span></a></li>
+                    <li><a href="contact.html" class="nav__link"><span data-i18n="nav_contact">Contact</span></a></li>
                 </ul>            </nav>
+
+            <div id="langSwitcher"></div>
 
             <button class="burger" id="burger" aria-label="Toggle menu">
                 <span></span>
@@ -98,18 +100,18 @@
         <section class="hero">
             <div class="container hero__inner">
                 <div class="hero__content">
-                    <span class="hero__badge animate-deal">#1 Blackjack Resource Online</span>
-                    <h1 class="hero__title animate-deal delay-1">Master Blackjack: <span class="gold-text animate-neon">Rules, Strategy &amp; Best Casinos</span></h1>
-                    <p class="hero__subtitle animate-deal delay-2">
+                    <span class="hero__badge animate-deal" data-i18n="hero_badge">#1 Blackjack Resource Online</span>
+                    <h1 class="hero__title animate-deal delay-1"><span data-i18n="hero_title_prefix">Master Blackjack: </span><span class="gold-text animate-neon" data-i18n="hero_title_suffix">Rules, Strategy &amp; Best Casinos</span></h1>
+                    <p class="hero__subtitle animate-deal delay-2" data-i18n="hero_subtitle">
                         Whether you're a complete beginner or a seasoned player — we've got you covered.
                         Learn the game, sharpen your strategy, and find the best online casinos to play for real money.
                     </p>
                     <div class="hero__actions animate-deal delay-3">
                         <a href="rules.html" class="btn btn--primary">
-                            <i class="fas fa-book"></i> Learn the Rules
+                            <i class="fas fa-book"></i> <span data-i18n="hero_btn_rules">Learn the Rules</span>
                         </a>
                         <a href="strategy.html" class="btn btn--outline">
-                            <i class="fas fa-chess"></i> Master Strategy
+                            <i class="fas fa-chess"></i> <span data-i18n="hero_btn_strategy">Master Strategy</span>
                         </a>
                     </div>
                 </div>
@@ -144,24 +146,24 @@
             <div class="container">
                 <div class="intro__wrapper">
                     <div class="intro__text">
-                        <h2 class="section__title">Welcome to BlackjackOnlineCasinos.com</h2>
-                        <p>Your trusted source for all blackjack information — from rules to detailed strategies and the best tips for playing online! We provide many useful tips and recommendations so you can study the game with confidence.</p>
+                        <h2 class="section__title" data-i18n="intro_title">Welcome to BlackjackOnlineCasinos.com</h2>
+                        <p data-i18n="intro_text1">Your trusted source for all blackjack information — from rules to detailed strategies and the best tips for playing online! We provide many useful tips and recommendations so you can study the game with confidence.</p>
                         <p>We recommend you choose a casino from the list below. All our recommended casinos are <strong>licensed, safe, offer lucrative bonuses, and guarantee all payouts</strong> in over 4 currencies. Apply long-term strategies to improve your earnings.</p>
                         <p>While blackjack uses luck, <strong>skill matters more</strong>. To increase your chances of winning we recommend you play perfect strategy, count cards, and learn the steps for improving your stiff and pat hands. Always play at licensed casinos — they guarantee all payouts and offer around-the-clock customer support, along with online security.</p>
-                        <a href="rules.html" class="btn btn--outline">Read Full Guide <i class="fas fa-arrow-right"></i></a>
+                        <a href="rules.html" class="btn btn--outline"><span data-i18n="intro_read_guide">Read Full Guide</span> <i class="fas fa-arrow-right"></i></a>
                     </div>
                     <div class="intro__stats">
                         <div class="stat-card animate-scale delay-1">
                             <span class="stat-card__number animate-neon">21</span>
-                            <span class="stat-card__label">The Perfect Hand</span>
+                            <span class="stat-card__label" data-i18n="stat_perfect_hand">The Perfect Hand</span>
                         </div>
                         <div class="stat-card animate-scale delay-2">
                             <span class="stat-card__number animate-neon">&lt;0.5%</span>
-                            <span class="stat-card__label">House Edge with Basic Strategy</span>
+                            <span class="stat-card__label" data-i18n="stat_house_edge">House Edge with Basic Strategy</span>
                         </div>
                         <div class="stat-card animate-scale delay-3">
                             <span class="stat-card__number animate-neon">300+</span>
-                            <span class="stat-card__label">Online Casinos Reviewed</span>
+                            <span class="stat-card__label" data-i18n="stat_casinos_reviewed">Online Casinos Reviewed</span>
                         </div>
                     </div>
                 </div>
@@ -171,8 +173,8 @@
                 <!-- ========== CASINO TICKER ========== -->
         <section class="section casinos-ticker">
             <div class="container">
-                <h2 class="section__title section__title--center">Top Rated Blackjack Casinos</h2>
-                <p class="section__subtitle">Play at the best online casinos — tested and approved by our experts.</p>
+                <h2 class="section__title section__title--center" data-i18n="ticker_title">Top Rated Blackjack Casinos</h2>
+                <p class="section__subtitle" data-i18n="ticker_subtitle">Play at the best online casinos — tested and approved by our experts.</p>
                 <div class="ticker-casino__wrapper">
                     <div class="ticker-casino__track" id="casinoTickerTrack">
                         <a href="https://wordpress-1617239-6374018.cloudwaysapps.com/go/slotnite_casino" class="ticker-casino__card" target="_blank" rel="nofollow sponsored">
@@ -404,43 +406,43 @@
                     <button class="ticker-casino__pause" id="casinoTickerPause" aria-label="Pause"><i class="fas fa-pause"></i></button>
                 </div>
                 <div style="text-align:center;margin-top:32px;">
-                    <a href="reviews.html" class="btn btn--outline">View All Casino Reviews <i class="fas fa-arrow-right"></i></a>
+                    <a href="reviews.html" class="btn btn--outline"><span data-i18n="ticker_view_all">View All Casino Reviews</span> <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </section>
 <!-- ========== CATEGORIES ========== -->
         <section class="section categories">
             <div class="container">
-                <h2 class="section__title section__title--center">Explore Blackjack</h2>
-                <p class="section__subtitle">Everything you need to know about the game, all in one place.</p>
+                <h2 class="section__title section__title--center" data-i18n="explore_title">Explore Blackjack</h2>
+                <p class="section__subtitle" data-i18n="explore_subtitle">Everything you need to know about the game, all in one place.</p>
 
                 <div class="categories__grid">
                     <a href="rules.html" class="category-card animate-slide-left delay-1">
                         <div class="category-card__icon"><i class="fas fa-scroll animate-suit"></i></div>
-                        <h3 class="category-card__title">Rules &amp; Basics</h3>
-                        <p class="category-card__desc">Learn how to play blackjack — card values, dealing, splitting, doubling down, and insurance explained simply.</p>
-                        <span class="category-card__link">Learn Rules <i class="fas fa-arrow-right"></i></span>
+                        <h3 class="category-card__title" data-i18n="cat_rules_title">Rules &amp; Basics</h3>
+                        <p class="category-card__desc" data-i18n="cat_rules_desc">Learn how to play blackjack — card values, dealing, splitting, doubling down, and insurance explained simply.</p>
+                        <span class="category-card__link"><span data-i18n="cat_rules_link">Learn Rules</span> <i class="fas fa-arrow-right"></i></span>
                     </a>
 
                     <a href="strategy.html" class="category-card animate-slide-right delay-2">
                         <div class="category-card__icon"><i class="fas fa-chess-knight animate-glow"></i></div>
-                        <h3 class="category-card__title">Blackjack Strategy</h3>
-                        <p class="category-card__desc">Master basic strategy, card counting, bankroll management, and advanced tactics to minimize the house edge.</p>
-                        <span class="category-card__link">Explore Strategy <i class="fas fa-arrow-right"></i></span>
+                        <h3 class="category-card__title" data-i18n="cat_strategy_title">Blackjack Strategy</h3>
+                        <p class="category-card__desc" data-i18n="cat_strategy_desc">Master basic strategy, card counting, bankroll management, and advanced tactics to minimize the house edge.</p>
+                        <span class="category-card__link"><span data-i18n="cat_strategy_link">Explore Strategy</span> <i class="fas fa-arrow-right"></i></span>
                     </a>
 
                     <a href="reviews.html" class="category-card animate-slide-left delay-3">
                         <div class="category-card__icon"><i class="fas fa-star animate-sparkle"></i></div>
-                        <h3 class="category-card__title">Casino Reviews</h3>
-                        <p class="category-card__desc">Honest, expert reviews of the best online casinos to play blackjack for real money. Bonuses, game variety, payout speed.</p>
-                        <span class="category-card__link">View Reviews <i class="fas fa-arrow-right"></i></span>
+                        <h3 class="category-card__title" data-i18n="cat_reviews_title">Casino Reviews</h3>
+                        <p class="category-card__desc" data-i18n="cat_reviews_desc">Honest, expert reviews of the best online casinos to play blackjack for real money. Bonuses, game variety, payout speed.</p>
+                        <span class="category-card__link"><span data-i18n="cat_reviews_link">View Reviews</span> <i class="fas fa-arrow-right"></i></span>
                     </a>
 
                     <a href="glossary.html" class="category-card animate-slide-right delay-4">
                         <div class="category-card__icon"><i class="fas fa-book"></i></div>
-                        <h3 class="category-card__title">Glossary</h3>
-                        <p class="category-card__desc">Complete dictionary of blackjack terms — from "Action" to "Yo" — so you never feel lost at the table.</p>
-                        <span class="category-card__link">Browse Terms <i class="fas fa-arrow-right"></i></span>
+                        <h3 class="category-card__title" data-i18n="cat_glossary_title">Glossary</h3>
+                        <p class="category-card__desc" data-i18n="cat_glossary_desc">Complete dictionary of blackjack terms — from "Action" to "Yo" — so you never feel lost at the table.</p>
+                        <span class="category-card__link"><span data-i18n="cat_glossary_link">Browse Terms</span> <i class="fas fa-arrow-right"></i></span>
                     </a>
                 </div>
             </div>
@@ -449,8 +451,8 @@
         <!-- ========== SOFTWARE PROVIDERS ========== -->
         <section class="section providers">
             <div class="container">
-                <h2 class="section__title section__title--center">Recommended Live Dealer Blackjack Software Providers</h2>
-                <p class="section__subtitle">We only recommend games from the industry's most trusted and licensed providers.</p>
+                <h2 class="section__title section__title--center" data-i18n="providers_title">Recommended Live Dealer Blackjack Software Providers</h2>
+                <p class="section__subtitle" data-i18n="providers_subtitle">We only recommend games from the industry's most trusted and licensed providers.</p>
 
                 <div class="providers__grid">
                     <div class="provider-card animate-scale delay-1">
@@ -490,29 +492,29 @@
         <!-- ========== WHY US ========== -->
         <section class="section why-us">
             <div class="container">
-                <h2 class="section__title section__title--center">Why Play at Licensed Casinos?</h2>
-                <p class="section__subtitle">Licensed casinos guarantee fair play, secure transactions, and reliable payouts.</p>
+                <h2 class="section__title section__title--center" data-i18n="why_title">Why Play at Licensed Casinos?</h2>
+                <p class="section__subtitle" data-i18n="why_subtitle">Licensed casinos guarantee fair play, secure transactions, and reliable payouts.</p>
 
                 <div class="why-us__grid">
                     <div class="why-card animate-slide-left delay-1">
                         <i class="fas fa-shield-halved why-card__icon animate-glow"></i>
-                        <h3 class="why-card__title">Licensed &amp; Regulated</h3>
-                        <p>All recommended casinos are fully licensed, secure, and guarantee all payouts with around-the-clock customer support.</p>
+                        <h3 class="why-card__title" data-i18n="why_licensed_title">Licensed &amp; Regulated</h3>
+                        <p data-i18n="why_licensed_text">All recommended casinos are fully licensed, secure, and guarantee all payouts with around-the-clock customer support.</p>
                     </div>
                     <div class="why-card animate-slide-right delay-2">
                         <i class="fas fa-hand-holding-dollar why-card__icon animate-sparkle"></i>
-                        <h3 class="why-card__title">Lucrative Bonuses</h3>
-                        <p>Welcome bonuses, free spins, and regular promotions. Play with extra value and increase your bankroll from day one.</p>
+                        <h3 class="why-card__title" data-i18n="why_bonuses_title">Lucrative Bonuses</h3>
+                        <p data-i18n="why_bonuses_text">Welcome bonuses, free spins, and regular promotions. Play with extra value and increase your bankroll from day one.</p>
                     </div>
                     <div class="why-card animate-slide-left delay-3">
                         <i class="fas fa-globe why-card__icon animate-glow"></i>
-                        <h3 class="why-card__title">Multi-Currency Support</h3>
-                        <p>Deposits and withdrawals in over 4 currencies. Play from anywhere in the world without worrying about exchange rates.</p>
+                        <h3 class="why-card__title" data-i18n="why_currency_title">Multi-Currency Support</h3>
+                        <p data-i18n="why_currency_text">Deposits and withdrawals in over 4 currencies. Play from anywhere in the world without worrying about exchange rates.</p>
                     </div>
                     <div class="why-card animate-slide-right delay-4">
                         <i class="fas fa-headset why-card__icon"></i>
-                        <h3 class="why-card__title">24/7 Customer Support</h3>
-                        <p>Round-the-clock support via live chat, email, and phone. Get help whenever you need it.</p>
+                        <h3 class="why-card__title" data-i18n="why_support_title">24/7 Customer Support</h3>
+                        <p data-i18n="why_support_text">Round-the-clock support via live chat, email, and phone. Get help whenever you need it.</p>
                     </div>
                 </div>
             </div>
@@ -521,8 +523,8 @@
         <!-- ========== TESTIMONIALS TICKER ========== -->
         <section class="section testimonials">
             <div class="container">
-                <h2 class="section__title section__title--center">What Players Say</h2>
-                <p class="section__subtitle">Real feedback from our community of blackjack players.</p>
+                <h2 class="section__title section__title--center" data-i18n="testimonials_title">What Players Say</h2>
+                <p class="section__subtitle" data-i18n="testimonials_subtitle">Real feedback from our community of blackjack players.</p>
 
                 <div class="ticker-wrapper">
                     <div class="ticker-track" id="tickerTrack">
@@ -579,30 +581,30 @@
         <section class="section review-form-section">
             <div class="container">
                 <div class="review-form__box">
-                    <h2 class="section__title section__title--center">Leave Your Review</h2>
-                    <p class="section__subtitle">Share your experience with the blackjack community.</p>
+                    <h2 class="section__title section__title--center" data-i18n="review_form_title">Leave Your Review</h2>
+                    <p class="section__subtitle" data-i18n="review_form_subtitle">Share your experience with the blackjack community.</p>
 
                     <form class="review-form" id="reviewForm" method="POST" action="#">
                         <div class="review-form__row">
                             <div class="form-group">
-                                <label for="reviewName">Your Name</label>
-                                <input type="text" id="reviewName" class="form-control" placeholder="e.g. John D." required>
+                                <label for="reviewName" data-i18n="review_name_label">Your Name</label>
+                                <input type="text" id="reviewName" class="form-control" data-i18n="review_name_placeholder" placeholder="e.g. John D." required>
                             </div>
                             <div class="form-group">
-                                <label for="reviewEmail">Email (not published)</label>
+                                <label for="reviewEmail" data-i18n="review_email_label">Email (not published)</label>
                                 <input type="email" id="reviewEmail" class="form-control" placeholder="john@example.com" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="reviewMessage">Your Review</label>
-                            <textarea id="reviewMessage" class="form-control" placeholder="Tell us about your experience playing blackjack..." rows="4" required></textarea>
+                            <label for="reviewMessage" data-i18n="review_message_label">Your Review</label>
+                            <textarea id="reviewMessage" class="form-control" data-i18n="review_message_placeholder" placeholder="Tell us about your experience playing blackjack..." rows="4" required></textarea>
                         </div>
                         <button type="submit" class="btn btn--primary">
-                            <i class="fas fa-paper-plane"></i> Submit Review
+                            <i class="fas fa-paper-plane"></i> <span data-i18n="review_submit">Submit Review</span>
                         </button>
                     </form>
                     <div class="review-form__success" id="reviewSuccess">
-                        <i class="fas fa-check-circle"></i> Thank you! Your review has been submitted.
+                        <i class="fas fa-check-circle"></i> <span data-i18n="review_success">Thank you! Your review has been submitted.</span>
                     </div>
                 </div>
             </div>
@@ -612,10 +614,10 @@
         <section class="section cta">
             <div class="container">
                 <div class="cta__box">
-                    <h2 class="cta__title animate-neon">Play Live Dealer Blackjack Today</h2>
-                    <p class="cta__text animate-deal delay-1">Experience the thrill of real blackjack with professional live dealers, HD streaming, and interactive gameplay from the comfort of your home.</p>
+                    <h2 class="cta__title animate-neon" data-i18n="cta_title">Play Live Dealer Blackjack Today</h2>
+                    <p class="cta__text animate-deal delay-1" data-i18n="cta_text">Experience the thrill of real blackjack with professional live dealers, HD streaming, and interactive gameplay from the comfort of your home.</p>
                     <a href="reviews.html" class="btn btn--primary btn--lg animate-scale delay-2">
-                        <i class="fas fa-trophy animate-glow"></i> See Recommended Casinos
+                        <i class="fas fa-trophy animate-glow"></i> <span data-i18n="cta_btn">See Recommended Casinos</span>
                     </a>
                 </div>
             </div>
@@ -631,48 +633,49 @@
                         <span class="logo__icon">&#9824;</span>
                         <span class="logo__text">Blackjack<span class="logo__accent">Online</span>Casinos</span>
                     </a>
-                    <p class="footer__desc">Your trusted source for all blackjack information — from rules to detailed strategies and the best tips for playing online.</p>
+                    <p class="footer__desc" data-i18n="footer_desc">Your trusted source for all blackjack information — from rules to detailed strategies and the best tips for playing online.</p>
                     <div class="footer__rg-logos">
                         <a href="https://safergamblinguk.org" target="_blank" rel="nofollow noopener"><i class="fas fa-shield-halved"></i> Safer Gambling</a>
                         <a href="https://begambleaware.org" target="_blank" rel="nofollow noopener"><i class="fas fa-heart"></i> BeGambleAware</a>
                     </div>
                 </div>
                 <div class="footer__col">
-                    <h4 class="footer__heading">Quick Links</h4>
+                    <h4 class="footer__heading" data-i18n="footer_quick_links">Quick Links</h4>
                     <ul class="footer__links">
-                        <li><a href="rules.html">Rules</a></li>
-                        <li><a href="basic-strategy.html">Basic Strategy</a></li>
-                        <li><a href="card-counting.html">Card Counting</a></li>
-                        <li><a href="variations.html">Variations</a></li>
-                        <li><a href="online-blackjack.html">Online Blackjack</a></li>
-                        <li><a href="reviews.html">Casino Reviews</a></li>
-                        <li><a href="glossary.html">Glossary</a></li>
+                        <li><a href="rules.html" data-i18n="nav_rules">Rules</a></li>
+                        <li><a href="basic-strategy.html" data-i18n="nav_basic_strategy">Basic Strategy</a></li>
+                        <li><a href="card-counting.html" data-i18n="nav_card_counting">Card Counting</a></li>
+                        <li><a href="variations.html" data-i18n="nav_variations">Variations</a></li>
+                        <li><a href="online-blackjack.html" data-i18n="nav_online">Online Blackjack</a></li>
+                        <li><a href="reviews.html" data-i18n="nav_reviews">Casino Reviews</a></li>
+                        <li><a href="glossary.html" data-i18n="nav_glossary">Glossary</a></li>
                     </ul>
                 </div>
                 <div class="footer__col">
-                    <h4 class="footer__heading">Resources</h4>
+                    <h4 class="footer__heading" data-i18n="footer_resources">Resources</h4>
                     <ul class="footer__links">
-                        <li><a href="contact.html">Contact Us</a></li>
-                        <li><a href="demo-casino.html">Demo Casino</a></li>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="terms.html">Terms of Use</a></li>
-                        <li><a href="responsible-gaming.html">Responsible Gaming</a></li>
+                        <li><a href="contact.html" data-i18n="footer_contact">Contact Us</a></li>
+                        <li><a href="demo-casino.html" data-i18n="nav_demo">Demo Casino</a></li>
+                        <li><a href="privacy.html" data-i18n="footer_privacy">Privacy Policy</a></li>
+                        <li><a href="terms.html" data-i18n="footer_terms">Terms of Use</a></li>
+                        <li><a href="responsible-gaming.html" data-i18n="footer_responsible">Responsible Gaming</a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="footer__disclaimer-box">
-                <p><strong>Disclaimer and Terms:</strong> This website is for informational purposes only. No guarantees of accuracy, completeness, or reliability of content are made. Use of this site is at your own risk. BlackjackOnlineCasinos.com may receive compensation for third party content and outgoing affiliate links posted on this website.</p>
-                <p><strong>Cookie Policy:</strong> We use cookies to analyze website traffic and optimize your website experience. By using this site, you consent to our use of cookies.</p>
+                <p data-i18n="footer_disclaimer"><strong>Disclaimer and Terms:</strong> This website is for informational purposes only. No guarantees of accuracy, completeness, or reliability of content are made. Use of this site is at your own risk. BlackjackOnlineCasinos.com may receive compensation for third party content and outgoing affiliate links posted on this website.</p>
+                <p data-i18n="footer_cookie"><strong>Cookie Policy:</strong> We use cookies to analyze website traffic and optimize your website experience. By using this site, you consent to our use of cookies.</p>
             </div>
 
             <div class="footer__bottom">
-                <p>&copy; 2026 BlackjackOnlineCasinos.com — All Rights Reserved.</p>
-                <p class="footer__disclaimer">18+ Only. Please gamble responsibly. If you or someone you know has a gambling problem, seek help. Gambling should be entertaining and played within your limits.</p>
+                <p>&copy; 2026 BlackjackOnlineCasinos.com — <span data-i18n="footer_rights">All Rights Reserved.</span></p>
+                <p class="footer__disclaimer" data-i18n="footer_18">18+ Only. Please gamble responsibly. If you or someone you know has a gambling problem, seek help. Gambling should be entertaining and played within your limits.</p>
             </div>
         </div>
     </footer>
 
+    <script src="assets/js/i18n.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>

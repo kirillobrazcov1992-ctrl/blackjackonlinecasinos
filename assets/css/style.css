@@ -1544,6 +1544,116 @@ img { max-width: 100%; display: block; }
 }
 
 /* ========================================
+   LANGUAGE SELECTOR
+   ======================================== */
+#langSwitcher {
+    position: relative;
+    margin-left: 8px;
+    flex-shrink: 0;
+    z-index: 1001;
+}
+
+.lang-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: rgba(212, 168, 67, 0.1);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    color: var(--color-gold);
+    font-family: var(--font-primary);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition);
+    white-space: nowrap;
+}
+
+.lang-btn:hover {
+    background: rgba(212, 168, 67, 0.2);
+    border-color: var(--color-gold-dark);
+}
+
+.lang-dropdown {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    min-width: 170px;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 6px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px);
+    transition: all var(--transition);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    z-index: 1002;
+}
+
+.lang-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.lang-option {
+    display: block;
+    width: 100%;
+    padding: 8px 14px;
+    background: none;
+    border: none;
+    border-radius: 6px;
+    color: var(--color-text-muted);
+    font-family: var(--font-primary);
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.lang-option:hover {
+    background: rgba(212, 168, 67, 0.1);
+    color: var(--color-gold);
+}
+
+.lang-option.active {
+    background: rgba(212, 168, 67, 0.15);
+    color: var(--color-gold);
+    font-weight: 600;
+}
+
+/* RTL overrides */
+html[dir="rtl"] .lang-dropdown {
+    right: auto;
+    left: 0;
+}
+
+html[dir="rtl"] .lang-option {
+    text-align: right;
+}
+
+html[dir="rtl"] .nav__dropdown-toggle i {
+    margin-right: 4px;
+    margin-left: 0;
+}
+
+/* Mobile lang switcher */
+@media (max-width: 768px) {
+    #langSwitcher {
+        margin-left: auto;
+        margin-right: 8px;
+    }
+
+    .lang-btn {
+        font-size: 0.78rem;
+        padding: 5px 10px;
+    }
+}
+
+/* ========================================
    INNER PAGES
    ======================================== */
 
