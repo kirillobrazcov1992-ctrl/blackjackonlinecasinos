@@ -1,0 +1,8 @@
+{
+  "name": "blackjackonlinecasinos",
+  "version": "1.0.0",
+  "description": "Blackjack Online Casinos — static site",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

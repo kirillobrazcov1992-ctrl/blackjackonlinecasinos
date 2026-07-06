@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: blackjackonlinecasinos
+    env: node
+    repo: https://github.com/kirillobrazcov1992-ctrl/blackjackonlinecasinos
+    branch: main
+    buildCommand: ""
+    startCommand: node server.js
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: 20
