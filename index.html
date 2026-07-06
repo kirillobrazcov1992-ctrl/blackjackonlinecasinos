@@ -98,13 +98,13 @@
         <section class="hero">
             <div class="container hero__inner">
                 <div class="hero__content">
-                    <span class="hero__badge">#1 Blackjack Resource Online</span>
-                    <h1 class="hero__title">Master Blackjack: <span class="gold-text">Rules, Strategy &amp; Best Casinos</span></h1>
-                    <p class="hero__subtitle">
+                    <span class="hero__badge animate-deal">#1 Blackjack Resource Online</span>
+                    <h1 class="hero__title animate-deal delay-1">Master Blackjack: <span class="gold-text animate-neon">Rules, Strategy &amp; Best Casinos</span></h1>
+                    <p class="hero__subtitle animate-deal delay-2">
                         Whether you're a complete beginner or a seasoned player — we've got you covered.
                         Learn the game, sharpen your strategy, and find the best online casinos to play for real money.
                     </p>
-                    <div class="hero__actions">
+                    <div class="hero__actions animate-deal delay-3">
                         <a href="rules.html" class="btn btn--primary">
                             <i class="fas fa-book"></i> Learn the Rules
                         </a>
@@ -114,13 +114,28 @@
                     </div>
                 </div>
                 <div class="hero__visual">
-                    <div class="hero__card hero__card--1">A<span class="hero__suit">&spades;</span></div>
-                    <div class="hero__card hero__card--2">K<span class="hero__suit">&hearts;</span></div>
-                    <div class="hero__card hero__card--3">Q<span class="hero__suit">&diams;</span></div>
+                    <div class="hero__card hero__card--1 animate-deal delay-2">A<span class="hero__suit animate-suit">&spades;</span></div>
+                    <div class="hero__card hero__card--2 animate-deal delay-3">K<span class="hero__suit animate-suit">&hearts;</span></div>
+                    <div class="hero__card hero__card--3 animate-deal delay-4">Q<span class="hero__suit animate-suit">&diams;</span></div>
+                    <!-- Золотая фишка -->
+                    <div class="hero__chip animate-chip delay-5">$</div>
                 </div>
             </div>
             <div class="hero__bg-circles">
                 <span></span><span></span><span></span>
+            </div>
+            <!-- Floating gold particles -->
+            <div class="hero__particles" style="position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0;">
+                <span class="gold-particle" style="left:10%;top:20%;animation-delay:0s;"></span>
+                <span class="gold-particle" style="left:25%;top:60%;animation-delay:0.5s;"></span>
+                <span class="gold-particle" style="left:45%;top:15%;animation-delay:1s;"></span>
+                <span class="gold-particle" style="left:60%;top:70%;animation-delay:1.5s;"></span>
+                <span class="gold-particle" style="left:75%;top:30%;animation-delay:2s;"></span>
+                <span class="gold-particle" style="left:90%;top:55%;animation-delay:2.5s;"></span>
+                <span class="gold-particle" style="left:5%;top:80%;animation-delay:3s;"></span>
+                <span class="gold-particle" style="left:35%;top:45%;animation-delay:1.2s;"></span>
+                <span class="gold-particle" style="left:80%;top:10%;animation-delay:0.8s;"></span>
+                <span class="gold-particle" style="left:50%;top:85%;animation-delay:2.2s;"></span>
             </div>
         </section>
 
@@ -136,16 +151,16 @@
                         <a href="rules.html" class="btn btn--outline">Read Full Guide <i class="fas fa-arrow-right"></i></a>
                     </div>
                     <div class="intro__stats">
-                        <div class="stat-card">
-                            <span class="stat-card__number">21</span>
+                        <div class="stat-card animate-scale delay-1">
+                            <span class="stat-card__number animate-neon">21</span>
                             <span class="stat-card__label">The Perfect Hand</span>
                         </div>
-                        <div class="stat-card">
-                            <span class="stat-card__number">&lt;0.5%</span>
+                        <div class="stat-card animate-scale delay-2">
+                            <span class="stat-card__number animate-neon">&lt;0.5%</span>
                             <span class="stat-card__label">House Edge with Basic Strategy</span>
                         </div>
-                        <div class="stat-card">
-                            <span class="stat-card__number">300+</span>
+                        <div class="stat-card animate-scale delay-3">
+                            <span class="stat-card__number animate-neon">300+</span>
                             <span class="stat-card__label">Online Casinos Reviewed</span>
                         </div>
                     </div>
@@ -400,28 +415,28 @@
                 <p class="section__subtitle">Everything you need to know about the game, all in one place.</p>
 
                 <div class="categories__grid">
-                    <a href="rules.html" class="category-card">
-                        <div class="category-card__icon"><i class="fas fa-scroll"></i></div>
+                    <a href="rules.html" class="category-card animate-slide-left delay-1">
+                        <div class="category-card__icon"><i class="fas fa-scroll animate-suit"></i></div>
                         <h3 class="category-card__title">Rules &amp; Basics</h3>
                         <p class="category-card__desc">Learn how to play blackjack — card values, dealing, splitting, doubling down, and insurance explained simply.</p>
                         <span class="category-card__link">Learn Rules <i class="fas fa-arrow-right"></i></span>
                     </a>
 
-                    <a href="strategy.html" class="category-card">
-                        <div class="category-card__icon"><i class="fas fa-chess-knight"></i></div>
+                    <a href="strategy.html" class="category-card animate-slide-right delay-2">
+                        <div class="category-card__icon"><i class="fas fa-chess-knight animate-glow"></i></div>
                         <h3 class="category-card__title">Blackjack Strategy</h3>
                         <p class="category-card__desc">Master basic strategy, card counting, bankroll management, and advanced tactics to minimize the house edge.</p>
                         <span class="category-card__link">Explore Strategy <i class="fas fa-arrow-right"></i></span>
                     </a>
 
-                    <a href="reviews.html" class="category-card">
-                        <div class="category-card__icon"><i class="fas fa-star"></i></div>
+                    <a href="reviews.html" class="category-card animate-slide-left delay-3">
+                        <div class="category-card__icon"><i class="fas fa-star animate-sparkle"></i></div>
                         <h3 class="category-card__title">Casino Reviews</h3>
                         <p class="category-card__desc">Honest, expert reviews of the best online casinos to play blackjack for real money. Bonuses, game variety, payout speed.</p>
                         <span class="category-card__link">View Reviews <i class="fas fa-arrow-right"></i></span>
                     </a>
 
-                    <a href="glossary.html" class="category-card">
+                    <a href="glossary.html" class="category-card animate-slide-right delay-4">
                         <div class="category-card__icon"><i class="fas fa-book"></i></div>
                         <h3 class="category-card__title">Glossary</h3>
                         <p class="category-card__desc">Complete dictionary of blackjack terms — from "Action" to "Yo" — so you never feel lost at the table.</p>
@@ -438,33 +453,33 @@
                 <p class="section__subtitle">We only recommend games from the industry's most trusted and licensed providers.</p>
 
                 <div class="providers__grid">
-                    <div class="provider-card">
-                        <div class="provider-card__icon"><i class="fas fa-crown"></i></div>
+                    <div class="provider-card animate-scale delay-1">
+                        <div class="provider-card__icon"><i class="fas fa-crown animate-glow"></i></div>
                         <h3 class="provider-card__name">Evolution</h3>
                         <p class="provider-card__desc">Live Dealer Blackjack Online Casinos</p>
                     </div>
-                    <div class="provider-card">
-                        <div class="provider-card__icon"><i class="fas fa-dice"></i></div>
+                    <div class="provider-card animate-scale delay-2">
+                        <div class="provider-card__icon"><i class="fas fa-dice animate-suit"></i></div>
                         <h3 class="provider-card__name">Microgaming</h3>
                         <p class="provider-card__desc">Live Dealer Blackjack Online Casinos</p>
                     </div>
-                    <div class="provider-card">
-                        <div class="provider-card__icon"><i class="fas fa-cubes"></i></div>
+                    <div class="provider-card animate-scale delay-3">
+                        <div class="provider-card__icon"><i class="fas fa-cubes animate-glow"></i></div>
                         <h3 class="provider-card__name">NETENT</h3>
                         <p class="provider-card__desc">Live Dealer Blackjack Online Casinos</p>
                     </div>
-                    <div class="provider-card">
+                    <div class="provider-card animate-scale delay-4">
                         <div class="provider-card__icon"><i class="fas fa-user-tie"></i></div>
                         <h3 class="provider-card__name">Real Dealer</h3>
                         <p class="provider-card__desc">Live Dealer Blackjack Online Casinos</p>
                     </div>
-                    <div class="provider-card">
-                        <div class="provider-card__icon"><i class="fas fa-gamepad"></i></div>
+                    <div class="provider-card animate-scale delay-1">
+                        <div class="provider-card__icon"><i class="fas fa-gamepad animate-sparkle"></i></div>
                         <h3 class="provider-card__name">Playtech</h3>
                         <p class="provider-card__desc">Live Dealer Blackjack Online Casinos</p>
                     </div>
-                    <div class="provider-card">
-                        <div class="provider-card__icon"><i class="fas fa-play-circle"></i></div>
+                    <div class="provider-card animate-scale delay-2">
+                        <div class="provider-card__icon"><i class="fas fa-play-circle animate-glow"></i></div>
                         <h3 class="provider-card__name">Pragmatic Play</h3>
                         <p class="provider-card__desc">Live Dealer Blackjack Online Casinos</p>
                     </div>
@@ -479,22 +494,22 @@
                 <p class="section__subtitle">Licensed casinos guarantee fair play, secure transactions, and reliable payouts.</p>
 
                 <div class="why-us__grid">
-                    <div class="why-card">
-                        <i class="fas fa-shield-halved why-card__icon"></i>
+                    <div class="why-card animate-slide-left delay-1">
+                        <i class="fas fa-shield-halved why-card__icon animate-glow"></i>
                         <h3 class="why-card__title">Licensed &amp; Regulated</h3>
                         <p>All recommended casinos are fully licensed, secure, and guarantee all payouts with around-the-clock customer support.</p>
                     </div>
-                    <div class="why-card">
-                        <i class="fas fa-hand-holding-dollar why-card__icon"></i>
+                    <div class="why-card animate-slide-right delay-2">
+                        <i class="fas fa-hand-holding-dollar why-card__icon animate-sparkle"></i>
                         <h3 class="why-card__title">Lucrative Bonuses</h3>
                         <p>Welcome bonuses, free spins, and regular promotions. Play with extra value and increase your bankroll from day one.</p>
                     </div>
-                    <div class="why-card">
-                        <i class="fas fa-globe why-card__icon"></i>
+                    <div class="why-card animate-slide-left delay-3">
+                        <i class="fas fa-globe why-card__icon animate-glow"></i>
                         <h3 class="why-card__title">Multi-Currency Support</h3>
                         <p>Deposits and withdrawals in over 4 currencies. Play from anywhere in the world without worrying about exchange rates.</p>
                     </div>
-                    <div class="why-card">
+                    <div class="why-card animate-slide-right delay-4">
                         <i class="fas fa-headset why-card__icon"></i>
                         <h3 class="why-card__title">24/7 Customer Support</h3>
                         <p>Round-the-clock support via live chat, email, and phone. Get help whenever you need it.</p>
@@ -597,10 +612,10 @@
         <section class="section cta">
             <div class="container">
                 <div class="cta__box">
-                    <h2 class="cta__title">Play Live Dealer Blackjack Today</h2>
-                    <p class="cta__text">Experience the thrill of real blackjack with professional live dealers, HD streaming, and interactive gameplay from the comfort of your home.</p>
-                    <a href="reviews.html" class="btn btn--primary btn--lg">
-                        <i class="fas fa-trophy"></i> See Recommended Casinos
+                    <h2 class="cta__title animate-neon">Play Live Dealer Blackjack Today</h2>
+                    <p class="cta__text animate-deal delay-1">Experience the thrill of real blackjack with professional live dealers, HD streaming, and interactive gameplay from the comfort of your home.</p>
+                    <a href="reviews.html" class="btn btn--primary btn--lg animate-scale delay-2">
+                        <i class="fas fa-trophy animate-glow"></i> See Recommended Casinos
                     </a>
                 </div>
             </div>
