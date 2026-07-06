@@ -50,12 +50,12 @@ document.addEventListener('DOMContentLoaded', () => {
         lastScroll = currentScroll;
     });
 
-    /* ----- Header shrink on scroll ----- */
+    /* ----- Header compact on scroll (add shadow) ----- */
     window.addEventListener('scroll', () => {
         if (window.pageYOffset > 200) {
-            header.style.height = '60px';
+            header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.3)';
         } else {
-            header.style.height = 'var(--header-h)';
+            header.style.boxShadow = 'none';
         }
     });
 

@@ -22,8 +22,8 @@
     --font-primary: 'Montserrat', sans-serif;
     --font-secondary: 'Open Sans', sans-serif;
 
-    --container-w: 1200px;
-    --header-h: 75px;
+    --container-w: 1100px;
+    --header-h: 80px;
     --radius: 12px;
     --radius-sm: 8px;
 
@@ -364,7 +364,7 @@ img { max-width: 100%; display: block; }
     top: 0;
     left: 0;
     width: 100%;
-    height: var(--header-h);
+    min-height: var(--header-h);
     background: var(--color-header-bg);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -372,11 +372,20 @@ img { max-width: 100%; display: block; }
     z-index: 1000;
 }
 
-.header__inner {
+.header__top {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    height: 100%;
+    justify-content: center;
+    padding: 12px 0 4px;
+    position: relative;
+    min-height: 44px;
+}
+
+.header__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 0 10px;
 }
 
 /* --- Logo --- */
@@ -384,6 +393,7 @@ img { max-width: 100%; display: block; }
     display: flex;
     align-items: center;
     gap: 8px;
+    justify-content: center;
 }
 
 .logo__icon {
@@ -1431,6 +1441,10 @@ img { max-width: 100%; display: block; }
 
     .burger {
         display: flex;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
     }
 
     /* Hero */
@@ -1547,8 +1561,10 @@ img { max-width: 100%; display: block; }
    LANGUAGE SELECTOR
    ======================================== */
 #langSwitcher {
-    position: relative;
-    margin-left: 8px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
     flex-shrink: 0;
     z-index: 1001;
 }
@@ -1645,6 +1661,10 @@ html[dir="rtl"] .nav__dropdown-toggle i {
     #langSwitcher {
         margin-left: auto;
         margin-right: 8px;
+        position: relative;
+        right: auto;
+        top: auto;
+        transform: none;
     }
 
     .lang-btn {
