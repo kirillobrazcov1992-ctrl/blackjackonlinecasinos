@@ -614,7 +614,7 @@
         '</button>',
         '<div class="lang-dropdown" id="langDropdown">',
           Object.entries(LANGUAGES).map(([code, lang]) =>
-            `<button class="lang-option ${code === currentLang ? 'active' : ''}" data-lang="${code}">${lang.flag} ${lang.short} — ${lang.flag === '🇸🇦' ? 'العربية' : code === 'en' ? 'English' : code === 'fr' ? 'Français' : code === 'es' ? 'Español' : code === 'de' ? 'Deutsch' : 'Italiano'}</button>`
+            `<button class="lang-option ${code === currentLang ? 'active' : ''}" data-lang="${code}">${lang.flag} ${lang.short}</button>`
           ).join(''),
         '</div>'
       ].join('');
