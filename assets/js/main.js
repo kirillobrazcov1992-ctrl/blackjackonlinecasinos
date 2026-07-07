@@ -212,6 +212,87 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
+    /* ===== Game Launcher (inline iframe) — auto-inject if missing ===== */
+    function initGameLauncher() {
+        let launcher = document.getElementById('gameLauncher');
+        let iframe = document.getElementById('gameLauncherIframe');
+        let titleEl = document.getElementById('gameLauncherTitle');
+        let closeBtn = document.getElementById('gameLauncherClose');
+
+        // Если на странице нет game launcher — инжектим его перед футером
+        if (!launcher) {
+            const main = document.querySelector('main');
+            const footer = document.querySelector('.footer');
+            const insertBefore = footer || document.body.lastElementChild;
+
+            launcher = document.createElement('section');
+            launcher.className = 'game-launcher';
+            launcher.id = 'gameLauncher';
+            launcher.innerHTML = `
+                <div class="container">
+                    <div class="game-launcher__header">
+                        <h2 class="game-launcher__title" id="gameLauncherTitle">Game</h2>
+                        <button class="game-launcher__close" id="gameLauncherClose" aria-label="Close game">
+                            <i class="fas fa-times"></i> Close <span class="hide-mobile">Game</span>
+                        </button>
+                    </div>
+                    <div class="game-launcher__frame">
+                        <iframe id="gameLauncherIframe" loading="lazy" allowfullscreen></iframe>
+                    </div>
+                </div>
+            `;
+            insertBefore.parentNode.insertBefore(launcher, insertBefore);
+
+            iframe = document.getElementById('gameLauncherIframe');
+            titleEl = document.getElementById('gameLauncherTitle');
+            closeBtn = document.getElementById('gameLauncherClose');
+        }
+
+        window.launchGame = function(url, title) {
+            if (!launcher || !iframe) return;
+            iframe.src = url;
+            if (titleEl && title) {
+                titleEl.textContent = title;
+            }
+            // Закрыть бургер-меню если открыто
+            if (burger) {
+                burger.classList.remove('active');
+                nav.classList.remove('active');
+            }
+            // Показать секцию (перекрываем CSS display:none)
+            launcher.style.display = 'block';
+            // Плавный скролл
+            setTimeout(() => {
+                launcher.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 150);
+        };
+
+        window.closeGame = function() {
+            if (!launcher || !iframe) return;
+            iframe.src = '';
+            launcher.style.display = 'none';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        if (closeBtn) {
+            closeBtn.addEventListener('click', window.closeGame);
+        }
+    }
+
+    initGameLauncher();
+
+    // Intercept game links (data-launch-game attribute)
+    document.addEventListener('click', function(e) {
+        const link = e.target.closest('[data-launch-game]');
+        if (!link) return;
+        e.preventDefault();
+        const url = link.getAttribute('data-launch-game');
+        const title = link.getAttribute('data-launch-title') || 'Game';
+        if (typeof launchGame === 'function') {
+            launchGame(url, title);
+        }
+    });
+
     /* ===== Fallback for broken casino logos ===== */
     function createCasinoFallback(img) {
         const wrap = img.closest('.ticker-casino__logo-wrap, .casino-card__left');

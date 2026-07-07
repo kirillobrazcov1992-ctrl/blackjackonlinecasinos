@@ -1167,16 +1167,30 @@ img { max-width: 100%; display: block; }
 }
 @media (max-width: 768px) {
     .ticker-casino__card {
-        width: 185px;
-        min-height: 270px;
-        padding: 12px 8px 10px;
-        margin-right: 14px;
+        width: 175px;
+        min-height: 250px;
+        padding: 10px 8px 8px;
+        margin-right: 12px;
     }
     .ticker-casino__logo-wrap {
-        height: 60px;
+        height: 52px;
     }
     .ticker-casino__name {
-        font-size: 0.82rem;
+        font-size: 0.75rem;
+    }
+    .ticker-casino__rating {
+        font-size: 0.68rem;
+    }
+    .ticker-casino__rating i {
+        font-size: 0.6rem;
+    }
+    .ticker-casino__bonus {
+        font-size: 0.65rem;
+        padding: 3px 6px;
+    }
+    .ticker-casino__btn {
+        font-size: 0.72rem;
+        padding: 6px 16px;
     }
     .ticker-casino__pause {
         display: none;
@@ -1365,26 +1379,35 @@ img { max-width: 100%; display: block; }
 /* --- Mobile --- */
 @media (max-width: 768px) {
     :root {
-        --header-h: 110px;
+        --header-h: 90px;
+    }
+
+    body {
+        font-size: 15px;
     }
 
     .section {
-        padding: 60px 0;
+        padding: 48px 0;
     }
 
     .section__title {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
+    }
+
+    .section__subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 32px;
     }
 
     /* Logo mobile */
     .logo__icon {
-        font-size: 3.2rem;
+        font-size: 2.4rem;
     }
     .logo__text {
-        font-size: 1.8rem;
+        font-size: 1.3rem;
     }
     .header__tagline {
-        font-size: 0.6rem;
+        font-size: 0.55rem;
         letter-spacing: 1.5px;
     }
 
@@ -1468,17 +1491,29 @@ img { max-width: 100%; display: block; }
     /* Hero */
     .hero__inner {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 24px;
         text-align: center;
     }
 
+    .hero {
+        min-height: 94vh;
+        padding-top: calc(var(--header-h) + 20px);
+    }
+
+    .hero__badge {
+        font-size: 0.7rem;
+        padding: 4px 14px;
+        margin-bottom: 16px;
+    }
+
     .hero__title {
-        font-size: 2rem;
+        font-size: 1.6rem;
     }
 
     .hero__subtitle {
         margin-left: auto;
         margin-right: auto;
+        font-size: 0.9rem;
     }
 
     .hero__actions {
@@ -1527,44 +1562,422 @@ img { max-width: 100%; display: block; }
 
     /* CTA */
     .cta__box {
-        padding: 40px 24px;
+        padding: 32px 20px;
     }
 
     .cta__title {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
+    }
+    .cta__text {
+        font-size: 0.9rem;
     }
 
     /* Footer */
     .footer__grid {
         grid-template-columns: 1fr;
-        gap: 32px;
+        gap: 28px;
+    }
+
+    .footer__rg-logos a {
+        font-size: 0.75rem;
+        padding: 5px 10px;
     }
 }
 
 @media (max-width: 480px) {
     :root {
-        --header-h: 100px;
+        --header-h: 70px;
+        --container-w: 100%;
+    }
+
+    body {
+        font-size: 14px;
+    }
+
+    .section {
+        padding: 36px 0;
+    }
+
+    .section__title {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    .section__subtitle {
+        font-size: 0.85rem;
+        margin-bottom: 28px;
     }
 
     .logo__icon {
-        font-size: 2.8rem;
+        font-size: 1.8rem;
     }
     .logo__text {
-        font-size: 1.4rem;
+        font-size: 1rem;
+    }
+
+    .header__top {
+        padding: 6px 4px !important;
+        min-height: unset;
+    }
+
+    .header__bottom {
+        padding: 2px 4px 6px !important;
+    }
+
+    .header__tagline {
+        font-size: 0.5rem !important;
+        letter-spacing: 1px !important;
+        margin: 0;
+    }
+
+    .hero {
+        min-height: 92vh;
+        padding-top: calc(var(--header-h) + 10px);
+    }
+
+    .hero__badge {
+        font-size: 0.62rem;
+        padding: 4px 12px;
+        margin-bottom: 14px;
     }
 
     .hero__title {
-        font-size: 1.6rem;
+        font-size: 1.25rem;
+        margin-bottom: 12px;
+    }
+
+    .hero__subtitle {
+        font-size: 0.82rem;
+        margin-bottom: 20px;
+        line-height: 1.6;
     }
 
     .hero__actions {
         flex-direction: column;
         align-items: center;
+        gap: 10px;
     }
 
     .btn {
         width: 100%;
         justify-content: center;
+        padding: 12px 20px;
+        font-size: 0.82rem;
+    }
+
+    .container {
+        padding: 0 12px;
+    }
+
+    .intro__wrapper {
+        gap: 24px;
+    }
+
+    .intro__text p {
+        font-size: 0.85rem;
+        margin-bottom: 12px;
+    }
+
+    .stat-card {
+        padding: 18px;
+    }
+
+    .stat-card__number {
+        font-size: 1.6rem !important;
+    }
+    .stat-card__label {
+        font-size: 0.72rem !important;
+    }
+
+    .categories__grid {
+        gap: 12px;
+    }
+
+    .category-card {
+        padding: 20px;
+    }
+
+    .category-card__title {
+        font-size: 1rem;
+    }
+    .category-card__desc {
+        font-size: 0.8rem;
+    }
+
+    .providers__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .provider-card {
+        padding: 20px 12px;
+    }
+    .provider-card__name {
+        font-size: 0.85rem;
+    }
+    .provider-card__desc {
+        font-size: 0.7rem;
+    }
+
+    .why-us__grid {
+        gap: 12px;
+    }
+
+    .why-card {
+        padding: 20px;
+    }
+    .why-card__title {
+        font-size: 0.95rem;
+    }
+    .why-card p {
+        font-size: 0.8rem;
+    }
+
+    .ticker-item {
+        width: 220px;
+        padding: 14px 12px;
+        font-size: 0.78rem;
+    }
+
+    .cta__box {
+        padding: 28px 16px;
+    }
+    .cta__title {
+        font-size: 1.2rem;
+    }
+    .cta__text {
+        font-size: 0.82rem;
+    }
+
+    .footer {
+        padding: 32px 0 20px;
+    }
+    .footer__grid {
+        gap: 20px;
+    }
+    .footer__desc {
+        font-size: 0.78rem;
+    }
+    .footer__heading {
+        font-size: 0.85rem;
+        margin-bottom: 12px;
+    }
+    .footer__links li {
+        margin-bottom: 6px;
+    }
+    .footer__links a {
+        font-size: 0.78rem;
+    }
+    .footer__bottom p {
+        font-size: 0.72rem;
+    }
+
+    .footer__rg-logos {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .footer__rg-logos a {
+        font-size: 0.72rem;
+        padding: 4px 10px;
+    }
+    .footer__disclaimer-box p {
+        font-size: 0.68rem;
+    }
+
+    .page-hero {
+        padding: calc(var(--header-h) + 16px) 0 28px;
+    }
+    .page-hero__title {
+        font-size: 1.3rem;
+    }
+    .page-hero__subtitle {
+        font-size: 0.85rem;
+    }
+    .content-page {
+        padding-top: 28px;
+    }
+
+    .game-launcher__header {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+    }
+    .game-launcher__title {
+        font-size: 1.1rem;
+    }
+    .game-launcher__close {
+        font-size: 0.78rem;
+        padding: 6px 16px;
+    }
+    .game-launcher__frame iframe {
+        height: 320px;
+    }
+    .game-launcher__grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-top: 16px;
+    }
+    .game-launcher__card {
+        padding: 14px;
+    }
+    .game-launcher__card-icon {
+        font-size: 1.6rem;
+        margin-bottom: 6px;
+    }
+    .game-launcher__card-title {
+        font-size: 0.85rem;
+    }
+    .game-launcher__card-desc {
+        font-size: 0.72rem;
+    }
+
+    .review-form__box {
+        padding: 16px;
+    }
+    .review-form__success {
+        font-size: 0.85rem;
+        padding: 20px 12px;
+    }
+
+    .lang-btn {
+        font-size: 0.7rem;
+        padding: 4px 8px;
+    }
+
+    .demo-tabs {
+        gap: 4px;
+    }
+    .demo-tab {
+        padding: 6px 12px;
+        font-size: 0.72rem;
+    }
+    .demo-card__header {
+        padding: 10px 12px;
+    }
+    .demo-card__thumb {
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
+    }
+    .demo-card__title {
+        font-size: 0.78rem;
+    }
+    .demo-card__provider {
+        font-size: 0.65rem;
+    }
+    .demo-card__play {
+        padding: 5px 14px;
+        font-size: 0.7rem;
+    }
+    .demo-card__body-inner iframe {
+        height: 360px;
+    }
+    .demo-info {
+        padding: 16px;
+        font-size: 0.75rem;
+    }
+
+    /* Casino ticker mobile */
+    .ticker-casino__card {
+        width: 160px;
+        min-height: 230px;
+        padding: 10px 6px 8px;
+        margin-right: 10px;
+    }
+    .ticker-casino__logo-wrap {
+        height: 44px;
+    }
+    .ticker-casino__logo {
+        max-height: 36px;
+    }
+    .ticker-casino__name {
+        font-size: 0.7rem;
+    }
+    .ticker-casino__rating {
+        font-size: 0.6rem;
+    }
+    .ticker-casino__rating i {
+        font-size: 0.55rem;
+    }
+    .ticker-casino__bonus {
+        font-size: 0.6rem;
+        padding: 3px 6px;
+    }
+    .ticker-casino__btn {
+        font-size: 0.65rem;
+        padding: 5px 14px;
+    }
+    .ticker-casino__pause {
+        display: none;
+    }
+
+    .casino-card {
+        padding: 14px;
+        gap: 10px;
+    }
+    .casino-card__logo {
+        width: 60px;
+    }
+    .casino-card__info h3 {
+        font-size: 0.9rem;
+    }
+    .casino-card__info p {
+        font-size: 0.72rem;
+    }
+
+    .top-casino-card {
+        padding: 12px;
+        gap: 8px;
+    }
+    .top-casino-card__rank {
+        min-width: 24px;
+        font-size: 1rem;
+    }
+    .top-casino-card__logo {
+        width: 56px;
+        height: 36px;
+    }
+    .top-casino-card__name {
+        font-size: 0.82rem;
+    }
+
+    .glossary-letter h2 {
+        font-size: 1.2rem;
+    }
+    .glossary-term {
+        font-size: 0.85rem;
+    }
+    .glossary-def {
+        font-size: 0.78rem;
+    }
+}
+
+/* Extra small phones */
+@media (max-width: 360px) {
+    :root {
+        --header-h: 60px;
+    }
+
+    .logo__icon {
+        font-size: 1.4rem;
+    }
+    .logo__text {
+        font-size: 0.85rem;
+    }
+
+    .hero__title {
+        font-size: 1.05rem;
+    }
+
+    .section__title {
+        font-size: 1rem;
+    }
+
+    .game-launcher__frame iframe {
+        height: 260px;
+    }
+    .demo-card__body-inner iframe {
+        height: 280px;
     }
 }
 
@@ -3544,6 +3957,143 @@ select.form-control {
 
 /* ===== END Strategy Trainer Styles ===== */
 /* ===== END Blackjack Game Styles ===== */
+
+/* ===== GAME LAUNCHER (inline iframe) ===== */
+.game-launcher {
+    background: var(--color-bg-alt);
+    border-top: 1px solid var(--color-border);
+    display: none;
+}
+
+.game-launcher--open {
+    display: block;
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.game-launcher__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.game-launcher__title {
+    font-family: var(--font-primary);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+}
+
+.game-launcher__close {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    border-radius: 50px;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-card);
+    color: var(--color-text-muted);
+    font-family: var(--font-primary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.game-launcher__close:hover {
+    border-color: var(--color-danger);
+    color: var(--color-danger);
+    background: rgba(239, 68, 68, 0.08);
+}
+
+.game-launcher__frame {
+    background: #000;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.game-launcher__frame iframe {
+    display: block;
+    width: 100%;
+    height: 600px;
+    border: none;
+}
+
+/* Game launcher cards (on index page) */
+.game-launcher__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+    margin-top: 32px;
+}
+
+.game-launcher__card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.game-launcher__card:hover {
+    border-color: var(--color-gold-dark);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+}
+
+.game-launcher__card-icon {
+    font-size: 2.5rem;
+    color: var(--color-gold);
+    margin-bottom: 12px;
+}
+
+.game-launcher__card-title {
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+}
+
+.game-launcher__card-desc {
+    font-size: 0.82rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .game-launcher__header {
+        flex-direction: column;
+        text-align: center;
+    }
+    .game-launcher__frame iframe {
+        height: 420px;
+    }
+    .game-launcher__grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-launcher__frame iframe {
+        height: 320px;
+    }
+}
+
+/* Utility */
+.hide-mobile {
+    display: inline;
+}
+@media (max-width: 480px) {
+    .hide-mobile { display: none; }
+}
 
 @media (max-width: 768px) {
     .page-hero {
