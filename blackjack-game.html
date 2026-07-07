@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Blackjack — Free Online Blackjack Game | BlackjackOnlineCasinos.com</title>
+    <meta name="description" content="Play free blackjack online. Practice your skills with our realistic 6-deck blackjack game. Hit, stand, double, split, and insurance — all free.">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Play Blackjack — Free Online Blackjack Game">
+    <meta property="og:description" content="Play free blackjack online. Practice your skills with our realistic 6-deck blackjack game.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://blackjackonlinecasinos.com/blackjack-game.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        /* Highlight current split hand */
+        .bj-hand-current {
+            box-shadow: inset 0 0 20px rgba(212,168,67,0.15);
+            border-color: rgba(212,168,67,0.3);
+        }
+
+        .bj-game-area {
+            margin-bottom: 40px;
+        }
+
+        /* Double bet display */
+        .bj-betting__current-bet {
+            font-size: 0.82rem;
+            color: var(--color-text-muted);
+        }
+        .bj-betting__current-bet span {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        /* Action hint */
+        .bj-hint {
+            text-align: center;
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.15);
+            margin-top: 8px;
+            font-family: var(--font-primary);
+            letter-spacing: 0.5px;
+        }
+        .bj-hint kbd {
+            background: rgba(255,255,255,0.08);
+            padding: 1px 6px;
+            border-radius: 3px;
+            font-size: 0.72rem;
+            font-family: var(--font-primary);
+            color: rgba(255,255,255,0.3);
+        }
+
+        /* All-in / clear bet */
+        .bj-betting-extra {
+            display: flex;
+            gap: 6px;
+        }
+        .bj-betting-extra .bj-btn-sm {
+            font-size: 0.7rem;
+            padding: 4px 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- ========== HEADER ========== -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header__top">
+                <a href="/" class="logo">
+                    <span class="logo__icon">&#9824;</span>
+                    <span class="logo__text">Blackjack<span class="logo__accent">Online</span>Casinos</span>
+                </a>
+                <button class="burger" id="burger" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+                <div id="langSwitcher"></div>
+            </div>
+            <p class="header__tagline" data-i18n="header_tagline">Your Ultimate Guide to Blackjack</p>
+            <div class="header__bottom">
+                <nav class="nav" id="nav">
+                    <ul class="nav__list">
+                        <li><a href="/" class="nav__link" data-i18n="nav_home">Home</a></li>
+                        <li class="nav__dropdown">
+                            <a href="#" class="nav__link nav__dropdown-toggle" data-i18n-html="nav_learn">Learn the Game <i class="fas fa-chevron-down"></i></a>
+                            <ul class="nav__submenu">
+                                <li><a href="rules.html" class="nav__link" data-i18n="nav_rules">Rules</a></li>
+                                <li><a href="basic-strategy.html" class="nav__link" data-i18n="nav_basic_strategy">Basic Strategy</a></li>
+                                <li><a href="blackjack-odds.html" class="nav__link" data-i18n="nav_odds">Odds & Probability</a></li>
+                                <li><a href="variations.html" class="nav__link" data-i18n="nav_variations">Variations</a></li>
+                                <li><a href="history.html" class="nav__link" data-i18n="nav_history">History</a></li>
+                                <li><a href="glossary.html" class="nav__link" data-i18n="nav_glossary">Glossary</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav__dropdown">
+                            <a href="#" class="nav__link nav__dropdown-toggle" data-i18n-html="nav_advanced">Advanced Play <i class="fas fa-chevron-down"></i></a>
+                            <ul class="nav__submenu">
+                                <li><a href="advanced-strategy.html" class="nav__link" data-i18n="nav_advanced_strategy">Advanced Strategy</a></li>
+                                <li><a href="card-counting.html" class="nav__link" data-i18n="nav_card_counting">Card Counting</a></li>
+                                <li><a href="shuffle-tracking.html" class="nav__link" data-i18n="nav_shuffle_tracking">Shuffle Tracking</a></li>
+                                <li><a href="side-bets.html" class="nav__link" data-i18n="nav_side_bets">Side Bets</a></li>
+                                <li><a href="tournament-blackjack.html" class="nav__link" data-i18n="nav_tournaments">Tournaments</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav__dropdown">
+                            <a href="#" class="nav__link nav__dropdown-toggle" data-i18n-html="nav_resources">Resources <i class="fas fa-chevron-down"></i></a>
+                            <ul class="nav__submenu">
+                                <li><a href="online-blackjack.html" class="nav__link" data-i18n="nav_online">Online Blackjack</a></li>
+                                <li><a href="bankroll-management.html" class="nav__link" data-i18n="nav_bankroll">Bankroll Management</a></li>
+                                <li><a href="blackjack-myths.html" class="nav__link" data-i18n="nav_myths">Myths & Misconceptions</a></li>
+                                <li><a href="blackjack-etiquette.html" class="nav__link" data-i18n="nav_etiquette">Etiquette</a></li>
+                                <li><a href="blackjack-faq.html" class="nav__link" data-i18n="nav_faq">FAQ</a></li>
+                                <li><a href="books.html" class="nav__link" data-i18n="nav_books">Best Blackjack Books</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="reviews.html" class="nav__link" data-i18n="nav_reviews">Reviews</a></li>
+                        <li><a href="demo-casino.html" class="nav__link nav__link--active" data-i18n="nav_demo">Demo</a></li>
+                        <li><a href="contact.html" class="nav__link" data-i18n="nav_contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ========== PAGE HERO ========== -->
+        <section class="page-hero">
+            <div class="container">
+                <h1 class="page-hero__title">Play Blackjack — Free Game</h1>
+                <p class="page-hero__subtitle">Practice your skills with our realistic 6-deck blackjack simulator. No registration, no deposit — just play.</p>
+            </div>
+        </section>
+
+        <!-- ========== GAME AREA ========== -->
+        <section class="section bj-game">
+            <div class="container">
+                <div class="bj-game-area">
+                    <div class="bj-felt"></div>
+
+                    <!-- Game header -->
+                    <div class="bj-game-header">
+                        <span class="bj-game-header__title">&#9824; Table 1</span>
+                        <div class="bj-game-header__actions">
+                            <button class="bj-btn-sm" id="bjRulesBtn" title="Rules"><i class="fas fa-question-circle"></i> Rules</button>
+                            <button class="bj-btn-sm" id="bjNewGame" title="New Game"><i class="fas fa-redo"></i> New</button>
+                        </div>
+                    </div>
+
+                    <!-- Rules flyout -->
+                    <div class="bj-rules-flyout" id="bjRulesFlyout">
+                        <h4>&#9824; Blackjack Rules</h4>
+                        <ul>
+                            <li>6 decks, shuffle after 20+ cards</li>
+                            <li>Dealer hits on soft 17</li>
+                            <li>Double down on any 2 cards</li>
+                            <li>Split once (same value cards)</li>
+                            <li>No splitting aces re-hit</li>
+                            <li>Blackjack pays <strong>3:2</strong></li>
+                            <li>Insurance available when dealer shows Ace</li>
+                            <li><strong>Keyboard:</strong> <kbd>D</kbd> Deal &middot; <kbd>H</kbd> Hit &middot; <kbd>S</kbd> Stand &middot; <kbd>X</kbd> Double &middot; <kbd>/</kbd> Split &middot; <kbd>I</kbd> Insurance &middot; <kbd>N</kbd> New &middot; <kbd>C</kbd> Clear bet</li>
+                        </ul>
+                    </div>
+
+                    <!-- Dealer -->
+                    <div class="bj-hand-area">
+                        <div class="bj-hand-label">Dealer</div>
+                        <div class="bj-cards" id="dealerCards"></div>
+                        <div class="bj-hand-value" id="dealerValue"></div>
+                        <div class="bj-hand-result" id="dealerResult"></div>
+                    </div>
+
+                    <!-- Player primary hand -->
+                    <div id="primaryArea">
+                        <div class="bj-hand-area">
+                            <div class="bj-hand-label">Your Hand</div>
+                            <div class="bj-cards" id="playerCards"></div>
+                            <div class="bj-hand-value" id="playerValue"></div>
+                            <div class="bj-hand-result" id="playerResult"></div>
+                        </div>
+                    </div>
+
+                    <!-- Split hand area -->
+                    <div id="splitArea" style="display:none;">
+                        <div class="bj-split-container">
+                            <div class="bj-hand-area">
+                                <div class="bj-hand-label">Hand 2</div>
+                                <div class="bj-cards" id="playerCards2"></div>
+                                <div class="bj-hand-value" id="playerValue2"></div>
+                                <div class="bj-hand-result" id="playerResult2"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Message -->
+                    <div class="bj-message" id="bjMessage">Place your bet!</div>
+
+                    <!-- Controls -->
+                    <div class="bj-controls">
+                        <button class="btn btn--outline" id="bjDeal" disabled><i class="fas fa-hand"></i> Deal</button>
+                        <button class="btn btn--primary" id="bjHit" disabled><i class="fas fa-plus"></i> Hit</button>
+                        <button class="btn btn--outline" id="bjStand" disabled><i class="fas fa-hand-peace"></i> Stand</button>
+                        <button class="btn btn--outline" id="bjDouble" disabled><i class="fas fa-arrow-up"></i> Double</button>
+                        <button class="btn btn--outline" id="bjSplit" disabled><i class="fas fa-columns"></i> Split</button>
+                        <button class="btn btn--outline" id="bjInsurance" style="display:none;"><i class="fas fa-shield-alt"></i> Insurance (½ Bet)</button>
+                    </div>
+
+                    <!-- Betting -->
+                    <div class="bj-betting">
+                        <div class="bj-betting__chips">
+                            <button class="bj-chip bj-chip--1" data-value="1">1</button>
+                            <button class="bj-chip bj-chip--5" data-value="5">5</button>
+                            <button class="bj-chip bj-chip--10" data-value="10">10</button>
+                            <button class="bj-chip bj-chip--25" data-value="25">25</button>
+                            <button class="bj-chip bj-chip--50" data-value="50">50</button>
+                            <button class="bj-chip bj-chip--100" data-value="100">100</button>
+                        </div>
+                        <div class="bj-betting__display">
+                            <span class="bj-betting__balance">Balance: <span id="bjBalance">1000</span></span>
+                            <span class="bj-betting__bet">Bet: <span id="bjBet">0</span></span>
+                        </div>
+                        <div class="bj-betting-extra">
+                            <button class="bj-btn-sm" id="bjClearBet" title="Clear Bet"><i class="fas fa-times"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="bj-stats" id="bjStats">
+                        <span class="bj-stat">Played: <span>0</span></span>
+                        <span class="bj-stat">Won: <span>0</span></span>
+                        <span class="bj-stat">Lost: <span>0</span></span>
+                        <span class="bj-stat">Push: <span>0</span></span>
+                        <span class="bj-stat">BJ: <span>0</span></span>
+                    </div>
+
+                    <!-- History -->
+                    <div class="bj-history" id="bjHistory"></div>
+
+                    <!-- Hint -->
+                    <div class="bj-hint">
+                        <kbd>D</kbd> Deal &middot; <kbd>H</kbd> Hit &middot; <kbd>S</kbd> Stand &middot; <kbd>X</kbd> Double &middot; <kbd>/</kbd> Split &middot; <kbd>C</kbd> Clear bet
+                    </div>
+                </div>
+
+                <!-- Game info -->
+                <div style="text-align:center; max-width:700px; margin:0 auto; padding: 0 20px;">
+                    <p style="color:var(--color-text-muted); font-size:0.9rem; line-height:1.8;">
+                        <strong style="color:var(--color-gold);">How to Play:</strong> Click a chip to place your bet, then click <strong>Deal</strong>.
+                        Try to get closer to 21 than the dealer without going over. Use <strong>Hit</strong> for another card,
+                        <strong>Stand</strong> to stop, <strong>Double</strong> to double your bet (one card only), and <strong>Split</strong>
+                        if you have two of the same value. Blackjack pays 3:2.
+                    </p>
+                    <a href="basic-strategy.html" class="btn btn--outline" style="margin-top:20px;">
+                        <i class="fas fa-chess"></i> Learn Basic Strategy
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__col">
+                    <a href="/" class="logo logo--footer">
+                        <span class="logo__icon">&#9824;</span>
+                        <span class="logo__text">Blackjack<span class="logo__accent">Online</span>Casinos</span>
+                    </a>
+                    <p class="footer__desc" data-i18n="footer_desc">Your trusted source for all blackjack information — from rules to detailed strategies and the best tips for playing online.</p>
+                    <div class="footer__rg-logos">
+                        <a href="https://safergamblinguk.org" target="_blank" rel="nofollow noopener"><i class="fas fa-shield-halved"></i> Safer Gambling</a>
+                        <a href="https://begambleaware.org" target="_blank" rel="nofollow noopener"><i class="fas fa-heart"></i> BeGambleAware</a>
+                    </div>
+                </div>
+                <div class="footer__col">
+                    <h4 class="footer__heading" data-i18n="footer_quick_links">Quick Links</h4>
+                    <ul class="footer__links">
+                        <li><a href="rules.html" data-i18n="nav_rules">Rules</a></li>
+                        <li><a href="basic-strategy.html" data-i18n="nav_basic_strategy">Basic Strategy</a></li>
+                        <li><a href="card-counting.html" data-i18n="nav_card_counting">Card Counting</a></li>
+                        <li><a href="variations.html" data-i18n="nav_variations">Variations</a></li>
+                        <li><a href="reviews.html" data-i18n="nav_reviews">Casino Reviews</a></li>
+                        <li><a href="glossary.html" data-i18n="nav_glossary">Glossary</a></li>
+                    </ul>
+                </div>
+                <div class="footer__col">
+                    <h4 class="footer__heading" data-i18n="footer_resources">Resources</h4>
+                    <ul class="footer__links">
+                        <li><a href="contact.html" data-i18n="footer_contact">Contact Us</a></li>
+                        <li><a href="blackjack-game.html" data-i18n="nav_demo">Play Blackjack</a></li>
+                        <li><a href="privacy.html" data-i18n="footer_privacy">Privacy Policy</a></li>
+                        <li><a href="terms.html" data-i18n="footer_terms">Terms of Use</a></li>
+                        <li><a href="responsible-gaming.html" data-i18n="footer_responsible">Responsible Gaming</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__disclaimer-box">
+                <p data-i18n-html="footer_disclaimer"><strong>Disclaimer and Terms:</strong> This website is for informational purposes only. No guarantees of accuracy, completeness, or reliability of content are made. Use of this site is at your own risk.</p>
+                <p data-i18n-html="footer_cookie"><strong>Cookie Policy:</strong> We use cookies to analyze website traffic and optimize your website experience.</p>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2026 BlackjackOnlineCasinos.com — <span data-i18n="footer_rights">All Rights Reserved.</span></p>
+                <p class="footer__disclaimer" data-i18n="footer_18">18+ Only. Please gamble responsibly.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/i18n.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/blackjack-game.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const clearBtn = document.getElementById('bjClearBet');
+            if (clearBtn) clearBtn.addEventListener('click', () => window.bjClearBet && window.bjClearBet());
+
+            const insuranceBtn = document.getElementById('bjInsurance');
+            if (insuranceBtn) insuranceBtn.addEventListener('click', () => window.bjTakeInsurance && window.bjTakeInsurance(true));
+        });
+    </script>
+</body>
+</html>
