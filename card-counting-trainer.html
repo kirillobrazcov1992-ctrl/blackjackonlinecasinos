@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Counting Trainer — Practice Hi-Lo | BlackjackOnlineCasinos.com</title>
+    <meta name="description" content="Free card counting trainer for blackjack. Practice the Hi-Lo system with real-time feedback, stats, and progress tracking.">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Card Counting Trainer — Practice Hi-Lo System">
+    <meta property="og:description" content="Practice Hi-Lo card counting with our interactive trainer.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://blackjackonlinecasinos.com/card-counting-trainer.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header__top">
+                <a href="/" class="logo">
+                    <span class="logo__icon">&#9824;</span>
+                    <span class="logo__text">Blackjack<span class="logo__accent">Online</span>Casinos</span>
+                </a>
+                <button class="burger" id="burger" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+                <div id="langSwitcher"></div>
+            </div>
+            <p class="header__tagline" data-i18n="header_tagline">Your Ultimate Guide to Blackjack</p>
+            <div class="header__bottom">
+                <nav class="nav" id="nav">
+                    <ul class="nav__list">
+                        <li><a href="/" class="nav__link" data-i18n="nav_home">Home</a></li>
+                        <li class="nav__dropdown">
+                            <a href="#" class="nav__link nav__dropdown-toggle" data-i18n-html="nav_learn">Learn the Game <i class="fas fa-chevron-down"></i></a>
+                            <ul class="nav__submenu">
+                                <li><a href="rules.html" class="nav__link" data-i18n="nav_rules">Rules</a></li>
+                                <li><a href="basic-strategy.html" class="nav__link" data-i18n="nav_basic_strategy">Basic Strategy</a></li>
+                                <li><a href="blackjack-odds.html" class="nav__link" data-i18n="nav_odds">Odds & Probability</a></li>
+                                <li><a href="variations.html" class="nav__link" data-i18n="nav_variations">Variations</a></li>
+                                <li><a href="history.html" class="nav__link" data-i18n="nav_history">History</a></li>
+                                <li><a href="glossary.html" class="nav__link" data-i18n="nav_glossary">Glossary</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav__dropdown">
+                            <a href="#" class="nav__link nav__dropdown-toggle" data-i18n-html="nav_advanced">Advanced Play <i class="fas fa-chevron-down"></i></a>
+                            <ul class="nav__submenu">
+                                <li><a href="advanced-strategy.html" class="nav__link" data-i18n="nav_advanced_strategy">Advanced Strategy</a></li>
+                                <li><a href="card-counting.html" class="nav__link" data-i18n="nav_card_counting">Card Counting</a></li>
+                                <li><a href="shuffle-tracking.html" class="nav__link" data-i18n="nav_shuffle_tracking">Shuffle Tracking</a></li>
+                                <li><a href="side-bets.html" class="nav__link" data-i18n="nav_side_bets">Side Bets</a></li>
+                                <li><a href="tournament-blackjack.html" class="nav__link" data-i18n="nav_tournaments">Tournaments</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav__dropdown">
+                            <a href="#" class="nav__link nav__dropdown-toggle" data-i18n-html="nav_resources">Resources <i class="fas fa-chevron-down"></i></a>
+                            <ul class="nav__submenu">
+                                <li><a href="online-blackjack.html" class="nav__link" data-i18n="nav_online">Online Blackjack</a></li>
+                                <li><a href="bankroll-management.html" class="nav__link" data-i18n="nav_bankroll">Bankroll Management</a></li>
+                                <li><a href="blackjack-myths.html" class="nav__link" data-i18n="nav_myths">Myths & Misconceptions</a></li>
+                                <li><a href="blackjack-etiquette.html" class="nav__link" data-i18n="nav_etiquette">Etiquette</a></li>
+                                <li><a href="blackjack-faq.html" class="nav__link" data-i18n="nav_faq">FAQ</a></li>
+                                <li><a href="books.html" class="nav__link" data-i18n="nav_books">Best Blackjack Books</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="reviews.html" class="nav__link" data-i18n="nav_reviews">Reviews</a></li>
+                        <li><a href="demo-casino.html" class="nav__link nav__link--active" data-i18n="nav_demo">Demo</a></li>
+                        <li><a href="contact.html" class="nav__link" data-i18n="nav_contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1 class="page-hero__title">Card Counting Trainer</h1>
+                <p class="page-hero__subtitle">Master the Hi-Lo system. Practice counting cards with real-time feedback, speed control, and detailed stats.</p>
+            </div>
+        </section>
+
+        <section class="section cc-trainer">
+            <div class="container">
+                <div class="cc-area">
+                    <!-- Header -->
+                    <div class="cc-header">
+                        <span class="cc-header__title">&#9824; Hi-Lo Trainer</span>
+                        <div class="cc-header__actions">
+                            <button class="bj-btn-sm" id="ccReset" title="Reset"><i class="fas fa-redo"></i> Reset</button>
+                        </div>
+                    </div>
+
+                    <!-- Hi-Lo Legend -->
+                    <div class="cc-legend">
+                        <span class="cc-legend__item">
+                            <span class="cc-legend__badge cc-legend__badge--plus">+1</span>
+                            2-6
+                        </span>
+                        <span class="cc-legend__item">
+                            <span class="cc-legend__badge cc-legend__badge--neutral">0</span>
+                            7-9
+                        </span>
+                        <span class="cc-legend__item">
+                            <span class="cc-legend__badge cc-legend__badge--minus">&minus;1</span>
+                            10, J, Q, K, A
+                        </span>
+                        <span class="cc-legend__item">
+                            <i class="fas fa-lightbulb" style="color:var(--color-gold);"></i>
+                            <span style="color:var(--color-gold);font-weight:600;">Running &rarr; True = Count &divide; Decks</span>
+                        </span>
+                    </div>
+
+                    <!-- Config -->
+                    <div class="cc-config">
+                        <div class="cc-config__group">
+                            <label for="ccRoundsSelect">Cards:</label>
+                            <select id="ccRoundsSelect" class="form-control" style="width:70px;">
+                                <option value="10">10</option>
+                                <option value="20" selected>20</option>
+                                <option value="30">30</option>
+                                <option value="52">52</option>
+                                <option value="104">104</option>
+                            </select>
+                        </div>
+                        <div class="cc-config__group">
+                            <label for="ccDecksSelect">Decks:</label>
+                            <select id="ccDecksSelect" class="form-control" style="width:60px;">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="6" selected>6</option>
+                                <option value="8">8</option>
+                            </select>
+                        </div>
+                        <div class="cc-config__group">
+                            <label for="ccSpeed">Speed:</label>
+                            <input type="range" id="ccSpeed" min="0.5" max="5" step="0.5" value="1.5" style="width:100px;">
+                            <span id="ccSpeedLabel">1.5s</span>
+                        </div>
+                    </div>
+
+                    <!-- Card display -->
+                    <div class="cc-card-stage" id="ccCardDisplay" style="display:none;"></div>
+
+                    <!-- Counts -->
+                    <div class="cc-counts">
+                        <div class="cc-count-box">
+                            <div class="cc-count-box__label">Running Count</div>
+                            <div class="cc-count-box__value" id="ccRunningCount">0</div>
+                            <div class="cc-count-box__sub">Actual count of cards seen</div>
+                        </div>
+                        <div class="cc-count-box">
+                            <div class="cc-count-box__label">True Count</div>
+                            <div class="cc-count-box__value" id="ccTrueCount">0</div>
+                            <div class="cc-count-box__sub">Count per remaining deck</div>
+                        </div>
+                    </div>
+
+                    <!-- Timer bar -->
+                    <div class="cc-timer-bar" id="ccTimer" style="display:none;">
+                        <div class="cc-timer-bar__fill" id="ccTimerFill"></div>
+                    </div>
+
+                    <!-- History -->
+                    <div class="cc-history" id="ccCardHistory"></div>
+
+                    <!-- Chart -->
+                    <div class="cc-chart" id="ccChart"></div>
+
+                    <!-- Feedback -->
+                    <div class="cc-feedback" id="ccFeedback">Ready! Select rounds and speed, then click "Start Round".</div>
+
+                    <!-- Controls -->
+                    <div class="cc-controls">
+                        <button class="btn btn--primary" id="ccStart"><i class="fas fa-play"></i> Start Round</button>
+                        <button class="btn btn--success" id="ccSubmit" style="display:none;"><i class="fas fa-check"></i> Submit Count</button>
+                        <button class="btn btn--primary" id="ccNext" style="display:none;"><i class="fas fa-redo"></i> Next Round</button>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="cc-stats">
+                        <span class="cc-stat">Score: <span id="ccScore">0 / 0</span></span>
+                        <span class="cc-stat">Streak: <span id="ccStreak">0</span></span>
+                        <span class="cc-stat">Best: <span id="ccBestStreak">0</span></span>
+                        <span class="cc-stat">Total Rounds: <span id="ccTotalRounds">0</span></span>
+                        <span class="cc-stat">Accuracy: <span id="ccAccuracy">0%</span></span>
+                        <span class="cc-stat">Progress: <span id="ccRounds">0 / 0</span></span>
+                    </div>
+
+                    <div class="cc-hint">
+                        <kbd>S</kbd> Start &middot; <kbd>Enter</kbd> Submit &middot; <kbd>N</kbd> Next &middot; <kbd>R</kbd> Reset
+                    </div>
+                </div>
+
+                <!-- Info -->
+                <div style="text-align:center;max-width:700px;margin:32px auto 0;padding:0 20px;">
+                    <p style="color:var(--color-text-muted);font-size:0.9rem;line-height:1.8;">
+                        <strong style="color:var(--color-gold);">How Hi-Lo Works:</strong> Cards 2&ndash;6 are <strong style="color:#22c55e;">+1</strong>,
+                        cards 7&ndash;9 are <strong style="color:var(--color-gold);">0</strong>, and 10, J, Q, K, A are <strong style="color:#ef4444;">&minus;1</strong>.
+                        Keep a <strong>running count</strong> as cards are shown. The <strong>true count</strong> adjusts for the number of
+                        remaining decks. A higher true count means the deck favors the player &mdash; increase your bets!
+                    </p>
+                    <a href="card-counting.html" class="btn btn--outline" style="margin-top:20px;">
+                        <i class="fas fa-book"></i> Learn Card Counting
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__col">
+                    <a href="/" class="logo logo--footer">
+                        <span class="logo__icon">&#9824;</span>
+                        <span class="logo__text">Blackjack<span class="logo__accent">Online</span>Casinos</span>
+                    </a>
+                    <p class="footer__desc" data-i18n="footer_desc">Your trusted source for all blackjack information.</p>
+                    <div class="footer__rg-logos">
+                        <a href="https://safergamblinguk.org" target="_blank" rel="nofollow noopener"><i class="fas fa-shield-halved"></i> Safer Gambling</a>
+                        <a href="https://begambleaware.org" target="_blank" rel="nofollow noopener"><i class="fas fa-heart"></i> BeGambleAware</a>
+                    </div>
+                </div>
+                <div class="footer__col">
+                    <h4 class="footer__heading" data-i18n="footer_quick_links">Quick Links</h4>
+                    <ul class="footer__links">
+                        <li><a href="rules.html" data-i18n="nav_rules">Rules</a></li>
+                        <li><a href="basic-strategy.html" data-i18n="nav_basic_strategy">Basic Strategy</a></li>
+                        <li><a href="card-counting.html" data-i18n="nav_card_counting">Card Counting</a></li>
+                        <li><a href="blackjack-game.html">Play Blackjack</a></li>
+                        <li><a href="reviews.html" data-i18n="nav_reviews">Casino Reviews</a></li>
+                        <li><a href="glossary.html" data-i18n="nav_glossary">Glossary</a></li>
+                    </ul>
+                </div>
+                <div class="footer__col">
+                    <h4 class="footer__heading" data-i18n="footer_resources">Resources</h4>
+                    <ul class="footer__links">
+                        <li><a href="contact.html" data-i18n="footer_contact">Contact Us</a></li>
+                        <li><a href="card-counting-trainer.html">Card Counting Trainer</a></li>
+                        <li><a href="privacy.html" data-i18n="footer_privacy">Privacy Policy</a></li>
+                        <li><a href="terms.html" data-i18n="footer_terms">Terms of Use</a></li>
+                        <li><a href="responsible-gaming.html" data-i18n="footer_responsible">Responsible Gaming</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__disclaimer-box">
+                <p><strong>Disclaimer:</strong> This website is for informational purposes only.</p>
+                <p><strong>Cookie Policy:</strong> We use cookies to analyze website traffic.</p>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2026 BlackjackOnlineCasinos.com — <span data-i18n="footer_rights">All Rights Reserved.</span></p>
+                <p class="footer__disclaimer" data-i18n="footer_18">18+ Only. Please gamble responsibly.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/i18n.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/card-counting-trainer.js"></script>
+</body>
+</html>
