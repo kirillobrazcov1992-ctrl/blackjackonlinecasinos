@@ -40,7 +40,7 @@ http.createServer((req, res) => {
     res.writeHead(200, {
       'Content-Type': MIME[ext] || 'application/octet-stream',
       'X-Content-Type-Options': 'nosniff',
-      'X-Frame-Options': 'DENY',
+      'X-Frame-Options': 'SAMEORIGIN',
       'Cache-Control': ext === '.html' ? 'no-cache' : 'max-age=86400',
     });
     res.end(data);
