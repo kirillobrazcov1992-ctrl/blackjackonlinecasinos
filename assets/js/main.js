@@ -16,6 +16,73 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn('PlayerProfile init error:', e);
     }
 
+    /* ===== Auto-inject player badge on pages without it ===== */
+    try {
+        if (typeof PlayerProfile !== 'undefined' && !document.getElementById('playerBadge')) {
+            const badge = document.createElement('div');
+            badge.className = 'player-badge site-player-badge';
+            badge.id = 'playerBadge';
+            badge.style.cssText = 'display:none;cursor:pointer;';
+            badge.title = 'Your Blackjack Career';
+            badge.innerHTML = `
+                <span class="player-badge__avatar" id="badgeAvatar">P</span>
+                <span class="player-badge__level" id="badgeLevel">Lv.1</span>
+                <div class="player-badge__xp-bar">
+                    <div class="player-badge__xp-fill" id="badgeXpFill" style="width:0%"></div>
+                </div>
+                <span class="player-badge__xp" id="badgeXpText">0/100 XP</span>
+            `;
+            // Find the header __top area or langSwitcher to insert next to
+            const langSwitcher = document.getElementById('langSwitcher');
+            if (langSwitcher && langSwitcher.parentNode) {
+                langSwitcher.parentNode.insertBefore(badge, langSwitcher);
+            } else {
+                const headerTop = document.querySelector('.header__top');
+                if (headerTop) {
+                    headerTop.appendChild(badge);
+                }
+            }
+            // Make sure badge click opens dashboard
+            if (typeof MasteryDashboard !== 'undefined') {
+                badge.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    MasteryDashboard.openDashboard();
+                });
+            }
+        }
+    } catch (e) {
+        console.warn('Badge inject error:', e);
+    }
+
+    /* ===== Page XP: earn XP for visiting pages ===== */
+    try {
+        if (typeof PlayerProfile !== 'undefined') {
+            const pageKey = 'bj_visited_' + window.location.pathname.replace(/\//g, '_');
+            if (!sessionStorage.getItem(pageKey)) {
+                sessionStorage.setItem(pageKey, '1');
+                PlayerProfile.addXP(2, 'page_view');
+            }
+        }
+    } catch (e) {
+        // silent
+    }
+
+    /* ===== Time-based XP: earn 1 XP per 30 seconds ===== */
+    try {
+        if (typeof PlayerProfile !== 'undefined') {
+            let timeXPInterval = setInterval(() => {
+                try {
+                    const p = PlayerProfile.getProfile();
+                    if (p) {
+                        PlayerProfile.addXP(1, 'reading');
+                    }
+                } catch(e) { clearInterval(timeXPInterval); }
+            }, 30000);
+        }
+    } catch (e) {
+        // silent
+    }
+
     /* ----- Burger Menu ----- */
     const burger = document.getElementById('burger');
     const nav = document.getElementById('nav');
