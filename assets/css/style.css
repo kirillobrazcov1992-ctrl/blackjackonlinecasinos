@@ -428,13 +428,22 @@ img { max-width: 100%; display: block; }
     text-shadow: 0 0 40px rgba(212, 168, 67, 0.8), 0 0 80px rgba(212, 168, 67, 0.3);
 }
 
+.header__tagline-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 2px 0 4px;
+    flex-wrap: wrap;
+}
+
 .header__tagline {
     font-family: var(--font-primary);
     font-size: 0.7rem;
     font-weight: 500;
     color: var(--color-text-muted);
     text-align: center;
-    margin: 2px 0 4px;
+    margin: 0;
     letter-spacing: 3px;
     text-transform: uppercase;
     opacity: 0.6;
@@ -1469,6 +1478,10 @@ img { max-width: 100%; display: block; }
     .logo__text {
         font-size: 1.3rem;
     }
+    .header__tagline-row {
+        gap: 8px;
+    }
+
     .header__tagline {
         font-size: 0.55rem;
         letter-spacing: 1.5px;
@@ -1685,6 +1698,11 @@ img { max-width: 100%; display: block; }
 
     .header__bottom {
         padding: 2px 4px 6px !important;
+    }
+
+    .header__tagline-row {
+        gap: 6px;
+        padding: 2px 4px;
     }
 
     .header__tagline {
