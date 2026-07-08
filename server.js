@@ -41,7 +41,7 @@ http.createServer((req, res) => {
       'Content-Type': MIME[ext] || 'application/octet-stream',
       'X-Content-Type-Options': 'nosniff',
       'X-Frame-Options': 'SAMEORIGIN',
-      'Cache-Control': ext === '.html' ? 'no-cache' : 'max-age=86400',
+      'Cache-Control': (ext === '.html' || ext === '.js' || ext === '.css') ? 'no-cache, no-store, must-revalidate' : 'max-age=86400',
     });
     res.end(data);
   });

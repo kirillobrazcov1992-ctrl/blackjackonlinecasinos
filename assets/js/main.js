@@ -3,6 +3,19 @@
    ======================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
+    /* ===== INIT Player Profile & Mastery Dashboard ===== */
+    try {
+        if (typeof PlayerProfile !== 'undefined') {
+            if (typeof MasteryDashboard !== 'undefined') {
+                MasteryDashboard.init();
+            } else {
+                PlayerProfile.init();
+            }
+        }
+    } catch (e) {
+        console.warn('PlayerProfile init error:', e);
+    }
+
     /* ----- Burger Menu ----- */
     const burger = document.getElementById('burger');
     const nav = document.getElementById('nav');
@@ -327,10 +340,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    /* ----- Service Worker Registration (PWA) ----- */
+    /* ----- Service Worker Registration (PWA) with force update ----- */
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js')
-            .then(() => console.log('SW registered'))
+        // Force unregister old service workers for cache busting
+        navigator.serviceWorker.getRegistrations().then(registrations => {
+            registrations.forEach(reg => reg.unregister());
+        });
+        // Register new one with cache-busting
+        navigator.serviceWorker.register('/sw.js?v=' + Date.now())
+            .then(reg => {
+                console.log('SW registered v2');
+                // Check for updates on page load
+                reg.update();
+            })
             .catch(() => console.log('SW registration failed'));
     }
 });

@@ -17,6 +17,23 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#d4a843">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <script>
+        (function() {
+            if ('caches' in window) {
+                caches.keys().then(function(keys) {
+                    keys.forEach(function(k) { caches.delete(k); });
+                });
+            }
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.getRegistrations().then(function(regs) {
+                    regs.forEach(function(reg) { reg.unregister(); });
+                });
+            }
+        })();
+    </script>
     <style>
         /* Highlight current split hand */
         .bj-hand-current {
@@ -86,6 +103,14 @@
                 <button class="burger" id="burger" aria-label="Toggle menu">
                     <span></span><span></span><span></span>
                 </button>
+                <div class="player-badge" id="playerBadge" style="display:none;" title="Your Blackjack Career">
+                    <span class="player-badge__avatar" id="badgeAvatar">P</span>
+                    <span class="player-badge__level" id="badgeLevel">Lv.1</span>
+                    <div class="player-badge__xp-bar">
+                        <div class="player-badge__xp-fill" id="badgeXpFill" style="width:0%"></div>
+                    </div>
+                    <span class="player-badge__xp" id="badgeXpText">0/100 XP</span>
+                </div>
                 <div id="langSwitcher"></div>
             </div>
             <p class="header__tagline" data-i18n="header_tagline">Your Ultimate Guide to Blackjack</p>
@@ -247,6 +272,46 @@
                     <!-- History -->
                     <div class="bj-history" id="bjHistory"></div>
 
+                    <!-- AI Coach Panel -->
+                    <div class="bj-coach-panel" id="bjCoachPanel">
+                        <div class="ai-coach" id="aiCoachBox">
+                            <div class="ai-coach__header">
+                                <div class="ai-coach__icon"><i class="fas fa-robot"></i></div>
+                                <div class="ai-coach__title">AI Coach</div>
+                                <div class="ai-coach__accuracy">
+                                    Accuracy: <span class="ai-coach__accuracy-value" id="coachAccuracy">0%</span>
+                                </div>
+                                <div class="ai-coach__mode-toggle">
+                                    <button class="ai-coach__mode-btn ai-coach__mode-btn--active" data-mode="after" title="Show analysis after each hand">After</button>
+                                    <button class="ai-coach__mode-btn" data-mode="during" title="Show suggestion during play">During</button>
+                                    <button class="ai-coach__mode-btn" data-mode="off" title="Turn off AI Coach">Off</button>
+                                </div>
+                            </div>
+                            <div class="ai-coach__body">
+                                <div class="ai-coach__verdict" id="coachVerdict">
+                                    <div style="color:var(--color-text-muted);font-size:0.82rem;">
+                                        <i class="fas fa-lightbulb" style="color:var(--color-gold);"></i>
+                                        The AI Coach will analyze your decisions after each hand. Enable "During" mode for real-time suggestions.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- XP Display -->
+                    <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px;padding:0 4px;">
+                        <button class="bj-coach-toggle" id="coachToggle">
+                            <i class="fas fa-robot"></i> AI Coach <span id="coachToggleStatus">●</span>
+                        </button>
+                        <div class="bj-xp-display">
+                            <span class="bj-xp-display__level" id="xpLevelDisplay">Lv.1</span>
+                            <div class="bj-xp-display__bar">
+                                <div class="bj-xp-display__fill" id="xpBarFill" style="width:0%"></div>
+                            </div>
+                            <span id="xpTextDisplay">0/100 XP</span>
+                        </div>
+                    </div>
+
                     <!-- Hint -->
                     <div class="bj-hint">
                         <kbd>D</kbd> Deal &middot; <kbd>H</kbd> Hit &middot; <kbd>S</kbd> Stand &middot; <kbd>X</kbd> Double &middot; <kbd>/</kbd> Split &middot; <kbd>C</kbd> Clear bet
@@ -317,16 +382,255 @@
         </div>
     </footer>
 
-    <script src="assets/js/i18n.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/blackjack-game.js"></script>
+    <script src="assets/js/i18n.js?v=2"></script>
+    <script src="assets/js/strategy-calculator.js?v=2"></script>
+    <script src="assets/js/player-profile.js?v=2"></script>
+    <script src="assets/js/ai-coach.js?v=2"></script>
+    <script src="assets/js/mastery-dashboard.js?v=2"></script>
+    <script src="assets/js/main.js?v=2"></script>
+    <script src="assets/js/blackjack-game.js?v=2"></script>
     <script>
+        /* ===== AI Coach + Career Integration (clean version) ===== */
         document.addEventListener('DOMContentLoaded', () => {
             const clearBtn = document.getElementById('bjClearBet');
             if (clearBtn) clearBtn.addEventListener('click', () => window.bjClearBet && window.bjClearBet());
-
             const insuranceBtn = document.getElementById('bjInsurance');
             if (insuranceBtn) insuranceBtn.addEventListener('click', () => window.bjTakeInsurance && window.bjTakeInsurance(true));
+
+            const waitForGame = setInterval(() => {
+                if (window.PlayerProfile && window.gameAPI && window.gameAPI.getState) {
+                    clearInterval(waitForGame);
+                    setTimeout(initIntegration, 300);
+                }
+            }, 200);
+
+            function initIntegration() {
+                const PP = PlayerProfile, AC = AICoach, API = gameAPI;
+
+                // --- Update XP Display ---
+                function updateXP() {
+                    const p = PP.getProfile();
+                    if (!p) return;
+                    const lv = p.level, xp = p.xp, max = PP.xpForLevel(lv), pct = Math.min(100, (xp / max) * 100);
+                    const el1 = document.getElementById('xpLevelDisplay');
+                    const el2 = document.getElementById('xpBarFill');
+                    const el3 = document.getElementById('xpTextDisplay');
+                    if (el1) el1.textContent = `Lv.${lv}`;
+                    if (el2) el2.style.width = `${pct}%`;
+                    if (el3) el3.textContent = `${xp}/${max} XP`;
+                }
+
+                // --- Show AI Coach Result ---
+                function showCoach(result, decision) {
+                    const verdict = document.getElementById('coachVerdict');
+                    const panel = document.getElementById('bjCoachPanel');
+                    if (!verdict) return;
+                    if (panel) panel.classList.add('bj-coach-panel--visible');
+
+                    if (!result) {
+                        verdict.innerHTML = `<div style="color:var(--color-text-muted);font-size:0.82rem;">
+                            <i class="fas fa-lightbulb" style="color:var(--color-gold);"></i>
+                            Deal a hand and play to get AI Coach analysis.
+                        </div>`;
+                        return;
+                    }
+
+                    const ok = result.isCorrect;
+                    verdict.innerHTML = `
+                        <div class="ai-coach__decision ${ok ? 'ai-coach__decision--correct' : 'ai-coach__decision--mistake'}">
+                            ${ok ? '✅ Correct!' : '⚠️ Mistake'}
+                            — Optimal: <i class="fas ${StrategyCalc.actionIcon(result.optimal)}"></i> ${StrategyCalc.actionLabel(result.optimal)}
+                            ${!ok ? `<span style="font-weight:400;font-size:0.78rem;">(you: ${decision||'?'})</span>` : ''}
+                        </div>
+                        <div class="ai-coach__explanation">
+                            Your hand: ${result.analysis.playerCards.join(' ')} vs Dealer: ${result.analysis.dealerUpcard}
+                        </div>
+                        ${result.ev ? `<div class="ai-coach__ev ${result.ev.value >= 0 ? 'ai-coach__ev--positive' : 'ai-coach__ev--negative'}">
+                            <span>EV ${result.ev.value >= 0 ? '+' : ''}${(result.ev.value * 100).toFixed(1)}%</span> (approx)
+                        </div>` : ''}
+                    `;
+
+                    const stats = PP.getStats();
+                    if (stats) {
+                        const total = stats.correctPlays + stats.incorrectPlays;
+                        const acc = total > 0 ? Math.round((stats.correctPlays / total) * 100) : 0;
+                        const el = document.getElementById('coachAccuracy');
+                        if (el) el.textContent = `${acc}%`;
+                    }
+                }
+
+                // --- Analyze current hand via gameAPI ---
+                function analyzeHand() {
+                    try {
+                        const st = API.getState();
+                        if (!st || st.phase !== 'playing') return null;
+                        const hand = st.playerHands[st.currentHand];
+                        const dealerUp = st.dealerHand[0];
+                        if (!hand || hand.length < 2 || !dealerUp) return null;
+
+                        if (AC) {
+                            AC.setGameState({ playerCards: [...hand], dealerCard: dealerUp });
+                            return AC.analyzeCurrentHand(hand, dealerUp);
+                        }
+                    } catch(e) { /* */ }
+                    return null;
+                }
+
+                // --- Show floating hint for "during" mode ---
+                function showHint(analysis) {
+                    if (!analysis || AC.getHintMode() !== 'during') return;
+                    const label = StrategyCalc.actionLabel(analysis.optimalAction);
+                    const icon = StrategyCalc.actionIcon(analysis.optimalAction);
+                    const hint = document.getElementById('aiCoachHint') || (() => {
+                        const h = document.createElement('div');
+                        h.className = 'ai-coach-hint'; h.id = 'aiCoachHint';
+                        document.body.appendChild(h); return h;
+                    })();
+                    hint.innerHTML = `
+                        <div class="ai-coach-hint__title">♠ AI Coach Suggests</div>
+                        <div class="ai-coach-hint__action"><i class="fas ${icon}"></i> ${label}</div>
+                        <div class="ai-coach-hint__desc">${analysis.playerCards.join(' ')} vs ${analysis.dealerUpcard}</div>
+                    `;
+                    hint.classList.add('ai-coach-hint--visible');
+                }
+
+                function hideHint() {
+                    const h = document.getElementById('aiCoachHint');
+                    if (h) h.classList.remove('ai-coach-hint--visible');
+                }
+
+                // --- Track hand completion via gameAPI stats ---
+                let prevStats = { handsPlayed: 0, handsWon: 0, handsLost: 0, handsPushed: 0, blackjacks: 0 };
+
+                function checkHandEnd() {
+                    try {
+                        const s = API.getStats();
+                        if (!s || s.handsPlayed === prevStats.handsPlayed) return;
+
+                        const result = s.handsWon > prevStats.handsWon ? 'win' :
+                                       s.handsLost > prevStats.handsLost ? 'lose' : 'push';
+                        const isBJ = s.blackjacks > prevStats.blackjacks;
+                        const bet = API.getBet() || 10;
+
+                        // XP calculation
+                        let xpGain = 3;
+                        if (result === 'win') xpGain += 5;
+                        if (isBJ) xpGain += 10;
+                        if (bet >= 100) xpGain += 5;
+
+                        PP.recordHand(result, bet, isBJ, false, false);
+                        PP.addXP(xpGain, 'hand');
+                        PP.updateChallengeProgress('hands');
+                        if (result === 'win') PP.updateChallengeProgress('wins');
+                        if (isBJ) PP.updateChallengeProgress('bj');
+                        PP.updateChallengeProgress('bet', bet);
+
+                        // Dealer bust check
+                        const msgEl = document.getElementById('bjMessage');
+                        if (msgEl && msgEl.textContent.toLowerCase().includes('dealer bust')) {
+                            PP.recordDealerBust();
+                        }
+
+                        // AI Coach analysis after hand
+                        if (AC && AC.getHintMode() !== 'off') {
+                            const analysis = AC.getCurrentAnalysis();
+                            if (analysis) {
+                                const playerAction = result === 'win' ? 'stand' : 'hit';
+                                const check = AC.checkDecision(playerAction);
+                                showCoach(check, playerAction);
+                                if (check) {
+                                    PP.recordCoachDecision(check.isCorrect);
+                                    if (check.isCorrect) PP.updateChallengeProgress('correct');
+                                }
+                            }
+                        }
+
+                        hideHint();
+                        updateXP();
+                        prevStats = { ...s };
+                    } catch(e) { /* */ }
+                }
+
+                // --- Hook button clicks ---
+                function onPlayerAction(action) {
+                    hideHint();
+                    setTimeout(() => {
+                        const a = analyzeHand();
+                        if (a) showHint(a);
+                    }, 200);
+                }
+
+                const btnDeal = document.getElementById('bjDeal');
+                if (btnDeal) {
+                    btnDeal.addEventListener('click', () => {
+                        hideHint();
+                        const panel = document.getElementById('bjCoachPanel');
+                        if (panel) panel.classList.remove('bj-coach-panel--visible');
+                        setTimeout(() => {
+                            const a = analyzeHand();
+                            if (a) showHint(a);
+                        }, 400);
+                    });
+                }
+
+                ['bjHit','bjStand','bjDouble','bjSplit'].forEach(id => {
+                    const btn = document.getElementById(id);
+                    if (btn) btn.addEventListener('click', () => onPlayerAction(id.replace('bj','').toLowerCase()));
+                });
+
+                const newGameBtn = document.getElementById('bjNewGame');
+                if (newGameBtn) {
+                    newGameBtn.addEventListener('click', () => {
+                        hideHint();
+                        const panel = document.getElementById('bjCoachPanel');
+                        if (panel) panel.classList.remove('bj-coach-panel--visible');
+                        prevStats = { handsPlayed: 0, handsWon: 0, handsLost: 0, handsPushed: 0, blackjacks: 0 };
+                        setTimeout(updateXP, 100);
+                    });
+                }
+
+                // --- Poll for hand completion ---
+                setInterval(checkHandEnd, 300);
+
+                // --- Mode buttons ---
+                document.querySelectorAll('.ai-coach__mode-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const mode = btn.dataset.mode;
+                        document.querySelectorAll('.ai-coach__mode-btn').forEach(b =>
+                            b.classList.remove('ai-coach__mode-btn--active'));
+                        btn.classList.add('ai-coach__mode-btn--active');
+                        if (AC) AC.setHintMode(mode);
+                        const st = document.getElementById('coachToggleStatus');
+                        if (st) st.style.color = mode === 'off' ? 'var(--color-danger)' : 'var(--color-success)';
+                        if (mode !== 'during') hideHint();
+                    });
+                });
+
+                // --- Toggle button ---
+                const toggleBtn = document.getElementById('coachToggle');
+                if (toggleBtn) {
+                    toggleBtn.addEventListener('click', () => {
+                        if (!AC) return;
+                        const en = AC.toggle();
+                        const panel = document.getElementById('bjCoachPanel');
+                        if (panel) panel.classList.toggle('bj-coach-panel--visible', en);
+                        const st = document.getElementById('coachToggleStatus');
+                        if (st) st.style.color = en ? 'var(--color-success)' : 'var(--color-danger)';
+                        toggleBtn.classList.toggle('bj-coach-toggle--active', en);
+                        if (!en) hideHint();
+                    });
+                }
+
+                // --- Init ---
+                updateXP();
+                showCoach(null);
+
+                PP.onEvent((type) => {
+                    if (type === 'xp' || type === 'levelup' || type === 'hand') updateXP();
+                });
+
+                console.log('🎯 AI Coach + Career Mode initialized!');
+            }
         });
     </script>
 </body>

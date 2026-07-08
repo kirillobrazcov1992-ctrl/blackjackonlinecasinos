@@ -726,4 +726,23 @@
   window.bjClearBet = clearBet;
   window.bjNewGame = newGame;
   window.bjDeal = deal;
+
+  // Expose game state for AI Coach integration
+  window.gameAPI = {
+    getState: () => ({ ...state }),
+    getPlayerHands: () => state.playerHands.map(h => [...h]),
+    getDealerHand: () => [...state.dealerHand],
+    getPhase: () => state.phase,
+    getBet: () => state.bet,
+    getBalance: () => state.balance,
+    isSplit: () => state.isSplit,
+    getCurrentHand: () => state.currentHand,
+    getStats: () => ({
+      handsPlayed: state.handsPlayed,
+      handsWon: state.handsWon,
+      handsLost: state.handsLost,
+      handsPushed: state.handsPushed,
+      blackjacks: state.blackjacks,
+    }),
+  };
 })();

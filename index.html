@@ -39,6 +39,46 @@
     <meta name="theme-color" content="#d4a843">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <!-- NUCLEAR OPTION: Clear all caches & unregister SWs on load -->
+    <script>
+        (function() {
+            var reloaded = sessionStorage.getItem('bjFreshLoad');
+            if (!reloaded) {
+                sessionStorage.setItem('bjFreshLoad', '1');
+                var didClear = false;
+                if ('caches' in window) {
+                    caches.keys().then(function(keys) {
+                        if (keys.length > 0) {
+                            didClear = true;
+                            Promise.all(keys.map(function(k) { return caches.delete(k); })).then(function() {
+                                if ('serviceWorker' in navigator) {
+                                    navigator.serviceWorker.getRegistrations().then(function(regs) {
+                                        Promise.all(regs.map(function(r) { return r.unregister(); })).then(function() {
+                                            window.location.reload(true);
+                                        });
+                                    });
+                                } else {
+                                    window.location.reload(true);
+                                }
+                            });
+                        }
+                    });
+                }
+                if (!didClear && 'serviceWorker' in navigator) {
+                    navigator.serviceWorker.getRegistrations().then(function(regs) {
+                        if (regs.length > 0) {
+                            Promise.all(regs.map(function(r) { return r.unregister(); })).then(function() {
+                                window.location.reload(true);
+                            });
+                        }
+                    });
+                }
+            }
+        })();
+    </script>
 </head>
 <body>
         <!-- ========== HEADER ========== -->
@@ -54,6 +94,14 @@
                     <span></span>
                     <span></span>
                 </button>
+                <div class="player-badge" id="playerBadge" style="display:none;" title="Your Blackjack Career">
+                    <span class="player-badge__avatar" id="badgeAvatar">P</span>
+                    <span class="player-badge__level" id="badgeLevel">Lv.1</span>
+                    <div class="player-badge__xp-bar">
+                        <div class="player-badge__xp-fill" id="badgeXpFill" style="width:0%"></div>
+                    </div>
+                    <span class="player-badge__xp" id="badgeXpText">0/100 XP</span>
+                </div>
                 <div id="langSwitcher"></div>
             </div><p class="header__tagline" data-i18n="header_tagline">Your Ultimate Guide to Blackjack</p>
             <div class="header__bottom">
@@ -108,7 +156,7 @@
                 <div class="hero__content">
                     <span class="hero__badge animate-deal" data-i18n="hero_badge">#1 Blackjack Resource Online</span>
                     <h1 class="hero__title animate-deal delay-1" data-i18n-html="hero_title">Master Blackjack: <span class="gold-text animate-neon">Rules, Strategy &amp; Best Casinos</span></h1>
-                    <p class="hero__subtitle animate-deal delay-2" data-i18n="hero_subtitle">
+                    <p class="hero__subtitle animate-deal delay-2 hero__subtitle--neon" data-i18n="hero_subtitle" style="color: #d4a843 !important; text-shadow: 0 0 20px rgba(212,168,67,0.3), 0 0 40px rgba(212,168,67,0.15) !important; font-weight: 600 !important;">
                         Whether you're a complete beginner or a seasoned player — we've got you covered.
                         Learn the game, sharpen your strategy, and find the best online casinos to play for real money.
                     </p>
@@ -577,6 +625,27 @@
             </div>
         </section>
 
+        <!-- ========== PLAYER DASHBOARD (Mastery Suite) ========== -->
+        <section class="section section-dashboard" id="homeDashboard">
+            <div class="container">
+                <div class="section__title-wrap">
+                    <h2 class="section__title section__title--center">
+                        <i class="fas fa-crown" style="color:var(--color-gold);font-size:1.2rem;"></i>
+                        Your Blackjack Career
+                    </h2>
+                </div>
+                <p class="section__subtitle">Track your progress, earn XP, unlock achievements — master the game.</p>
+
+                <div class="dashboard-home" id="dashboardHomeContainer">
+                    <!-- Will be populated by JS -->
+                    <div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--color-text-muted);">
+                        <i class="fas fa-spinner fa-spin" style="font-size:2rem;color:var(--color-gold);"></i>
+                        <p style="margin-top:12px;">Loading your player profile...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- ========== REVIEW FORM ========== -->
         <section class="section review-form-section">
             <div class="container">
@@ -714,7 +783,203 @@
         </div>
     </footer>
 
-    <script src="assets/js/i18n.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/i18n.js?v=2"></script>
+    <script src="assets/js/strategy-calculator.js?v=2"></script>
+    <script src="assets/js/player-profile.js?v=2"></script>
+    <script src="assets/js/mastery-dashboard.js?v=2"></script>
+    <script src="assets/js/main.js?v=2"></script>
+    <script>
+        // Visible system status indicator
+        (function() {
+            // Show badge when PlayerProfile is ready
+            function checkSystem() {
+                if (window.PlayerProfile && window.PlayerProfile.getProfile) {
+                    const badge = document.getElementById('playerBadge');
+                    if (badge) {
+                        try {
+                            const profile = PlayerProfile.getProfile();
+                            if (profile) {
+                                badge.style.display = 'inline-flex';
+                                const avatarEl = document.getElementById('badgeAvatar');
+                                const levelEl = document.getElementById('badgeLevel');
+                                const xpFill = document.getElementById('badgeXpFill');
+                                const xpText = document.getElementById('badgeXpText');
+                                if (avatarEl) avatarEl.textContent = profile.name.charAt(0).toUpperCase();
+                                if (levelEl) levelEl.textContent = 'Lv.' + profile.level;
+                                const pct = Math.min(100, Math.round((profile.xp / PlayerProfile.xpForLevel(profile.level)) * 100));
+                                if (xpFill) xpFill.style.width = pct + '%';
+                                if (xpText) xpText.textContent = profile.xp + '/' + PlayerProfile.xpForLevel(profile.level) + ' XP';
+                            }
+                        } catch(e) {
+                            console.warn('Badge update:', e);
+                        }
+                    }
+                } else {
+                    setTimeout(checkSystem, 300);
+                }
+            }
+            document.addEventListener('DOMContentLoaded', checkSystem);
+        })();
+
+        // Dashboard home initialization
+        (function renderDashboard() {
+                try {
+                    const container = document.getElementById('dashboardHomeContainer');
+                    if (!container || !window.PlayerProfile || !window.MasteryDashboard) {
+                        // Retry if scripts not loaded yet
+                        if (!window.PlayerProfile || !window.MasteryDashboard) {
+                            setTimeout(renderDashboard, 500);
+                            return;
+                        }
+                        return;
+                    }
+
+                    const profile = PlayerProfile.getProfile();
+                    if (!profile) {
+                        // Profile not initialized yet — show play prompt
+                        container.innerHTML = `
+                            <div class="dashboard-home__card dashboard-home__card--full" style="text-align:center;padding:32px;">
+                                <div style="font-size:2rem;color:var(--color-gold);margin-bottom:12px;">
+                                    <i class="fas fa-crown"></i>
+                                </div>
+                                <h3 style="font-family:var(--font-primary);font-size:1.2rem;color:var(--color-gold-light);margin-bottom:8px;">
+                                    Start Your Blackjack Journey!
+                                </h3>
+                                <p style="color:var(--color-text-muted);font-size:0.85rem;margin-bottom:20px;">
+                                    Play blackjack to earn XP, level up, and unlock achievements.
+                                </p>
+                                <a href="blackjack-game.html" class="btn btn--primary">
+                                    <i class="fas fa-play"></i> Play Now & Earn XP
+                                </a>
+                            </div>
+                        `;
+                        return;
+                    }
+
+                    const title = PlayerProfile.getTitle();
+                    const stats = profile.stats;
+                    const level = profile.level;
+                    const xp = profile.xp;
+                    const xpMax = PlayerProfile.xpForLevel(level);
+                    const pct = Math.min(100, Math.round((xp / xpMax) * 100));
+                    const initial = profile.name.charAt(0).toUpperCase();
+                    const winRate = stats.handsPlayed > 0
+                        ? Math.round((stats.handsWon / stats.handsPlayed) * 100) : 0;
+                    const accuracy = (stats.correctPlays + stats.incorrectPlays) > 0
+                        ? Math.round((stats.correctPlays / (stats.correctPlays + stats.incorrectPlays)) * 100) : 0;
+
+                    const recent = profile.recentHands || [];
+                    const recentHTML = recent.slice(0, 12).map(h => {
+                        const cls = h.result === 'win' ? 'win' : h.result === 'lose' ? 'lose' : 'push';
+                        const label = h.isBJ ? 'BJ' : h.result === 'win' ? 'W' : h.result === 'lose' ? 'L' : 'P';
+                        return `<span class="dashboard-home__recent-dot dashboard-home__recent-dot--${cls}">${label}</span>`;
+                    }).join('');
+
+                    const achievements = PlayerProfile.getAllAchievements();
+                    const unlocked = achievements.filter(a => a.unlocked).length;
+                    const total = achievements.length;
+                    const recentAch = PlayerProfile.getUnlockedAchievements().slice(0, 4);
+                    const achHTML = recentAch.map(a =>
+                        `<div class="dashboard-home__ach-mini"><i class="fas ${a.icon}"></i><span>${a.title}</span></div>`
+                    ).join('');
+
+                    container.innerHTML = `
+                        <div class="dashboard-home__card">
+                            <div class="dashboard-home__card-title"><i class="fas fa-user"></i> Player Level</div>
+                            <div class="dashboard-home__level">
+                                <div class="dashboard-home__level-avatar">${initial}</div>
+                                <div class="dashboard-home__level-info">
+                                    <div class="dashboard-home__level-title">${title.title}</div>
+                                    <div class="dashboard-home__level-rank">Level ${level}</div>
+                                    <div class="dashboard-home__xp-home">
+                                        <div class="dashboard-home__xp-text">
+                                            <span>${xp} XP</span>
+                                            <span>${xpMax} XP</span>
+                                        </div>
+                                        <div class="dashboard-home__xp-bar-home">
+                                            <div class="dashboard-home__xp-fill-home" style="width:${pct}%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dashboard-home__card">
+                            <div class="dashboard-home__card-title"><i class="fas fa-chart-line"></i> Quick Stats</div>
+                            <div class="dashboard-home__stats-mini">
+                                <div class="dashboard-home__stat">
+                                    <div class="dashboard-home__stat-value">${stats.handsPlayed}</div>
+                                    <div class="dashboard-home__stat-label">Hands</div>
+                                </div>
+                                <div class="dashboard-home__stat">
+                                    <div class="dashboard-home__stat-value">${stats.handsWon}</div>
+                                    <div class="dashboard-home__stat-label">Wins</div>
+                                </div>
+                                <div class="dashboard-home__stat">
+                                    <div class="dashboard-home__stat-value">${winRate}%</div>
+                                    <div class="dashboard-home__stat-label">Win Rate</div>
+                                </div>
+                                <div class="dashboard-home__stat">
+                                    <div class="dashboard-home__stat-value">${accuracy}%</div>
+                                    <div class="dashboard-home__stat-label">Accuracy</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dashboard-home__card dashboard-home__card--full">
+                            <div class="dashboard-home__card-title"><i class="fas fa-clock-rotate"></i> Recent Activity</div>
+                            <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+                                ${recentHTML || '<span style="color:var(--color-text-muted);font-size:0.85rem;">No hands yet. <a href="blackjack-game.html" style="color:var(--color-gold);">Play now!</a></span>'}
+                                ${recentAch.length > 0 ? `
+                                    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-left:auto;">${achHTML}</div>
+                                ` : ''}
+                            </div>
+                        </div>
+                        <div class="dashboard-home__card dashboard-home__card--full dashboard-home__cta">
+                            <a href="blackjack-game.html" class="btn btn--primary">
+                                <i class="fas fa-play"></i> Play Blackjack & Earn XP
+                            </a>
+                            <a href="#" class="btn btn--outline" onclick="if(window.MasteryDashboard){MasteryDashboard.openDashboard();}return false;" style="margin-left:10px;">
+                                <i class="fas fa-chart-simple"></i> Full Dashboard
+                            </a>
+                            <span style="display:inline-block;margin-left:12px;font-size:0.75rem;color:var(--color-text-muted);">
+                                🏆 ${unlocked}/${total} achievements
+                            </span>
+                        </div>
+                    `;
+                } catch (e) {
+                    console.warn('Dashboard render error:', e);
+                    const container = document.getElementById('dashboardHomeContainer');
+                    if (container) {
+                        container.innerHTML = `
+                            <div class="dashboard-home__card dashboard-home__card--full" style="text-align:center;padding:24px;">
+                                <p style="color:var(--color-text-muted);">
+                                    <a href="blackjack-game.html" style="color:var(--color-gold);font-weight:700;">
+                                        Play Blackjack <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        `;
+                    }
+                }
+            }
+
+            // Try on DOMContentLoaded, then retry
+            document.addEventListener('DOMContentLoaded', () => {
+                setTimeout(renderDashboard, 500);
+            });
+
+            // Also listen for PlayerProfile events
+            document.addEventListener('DOMContentLoaded', () => {
+                setTimeout(() => {
+                    if (window.PlayerProfile) {
+                        PlayerProfile.onEvent((type) => {
+                            if (type === 'xp' || type === 'levelup' || type === 'hand') {
+                                renderDashboard();
+                            }
+                        });
+                    }
+                }, 1000);
+            });
+        })();
+    </script>
 </body>
 </html>
