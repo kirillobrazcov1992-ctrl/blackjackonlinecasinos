@@ -1,4 +1,4 @@
-const CACHE = 'bj-cache-v2';
+const CACHE = 'bj-cache-v3';
 const URLS = [
   '/',
   '/index.html',

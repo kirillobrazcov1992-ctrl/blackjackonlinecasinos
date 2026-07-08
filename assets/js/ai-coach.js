@@ -209,3 +209,6 @@ const AICoach = (() => {
         onEvent,
     };
 })();
+
+// Expose globally (for inline scripts that reference window.AICoach)
+window.AICoach = AICoach;

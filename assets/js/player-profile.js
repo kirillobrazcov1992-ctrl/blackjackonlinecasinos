@@ -438,3 +438,6 @@ const PlayerProfile = (() => {
         XP_BIG_BET: 5, XP_DEALER_BUST: 4,
     };
 })();
+
+// Expose globally (for inline scripts that reference window.PlayerProfile)
+window.PlayerProfile = PlayerProfile;

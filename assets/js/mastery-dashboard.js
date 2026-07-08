@@ -458,3 +458,6 @@ const MasteryDashboard = (() => {
         showAchievementToast,
     };
 })();
+
+// Expose globally (for inline scripts that reference window.MasteryDashboard)
+window.MasteryDashboard = MasteryDashboard;
