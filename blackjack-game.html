@@ -63,9 +63,16 @@
             font-size: 0.7rem;
             padding: 4px 10px;
         }
+
     </style>
 </head>
 <body>
+<script>
+    // Embed mode — hide header/footer/hero when loaded in an iframe
+    if (window.location.search.includes('embed=1') || window.top !== window.self) {
+        document.documentElement.classList.add('embed-mode');
+    }
+</script>
     <!-- ========== HEADER ========== -->
     <header class="header" id="header">
         <div class="container">

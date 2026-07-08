@@ -17,6 +17,11 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+<script>
+    if (window.location.search.includes('embed=1') || window.top !== window.self) {
+        document.documentElement.classList.add('embed-mode');
+    }
+</script>
     <header class="header" id="header">
         <div class="container">
             <div class="header__top">

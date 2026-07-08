@@ -151,6 +151,13 @@
         .demo-card.active .demo-card__body {
             max-height: 560px;
         }
+        /* Tall iframe for our own games (blackjack, trainers) */
+        .demo-card.active[data-src*="embed=1"] .demo-card__body {
+            max-height: 720px;
+        }
+        .demo-card[data-src*="embed=1"] .demo-card__body-inner iframe {
+            height: 650px;
+        }
 
         /* ===== Coming soon badge ===== */
         .demo-card__soon {
@@ -204,6 +211,9 @@
             }
             .demo-card__body-inner iframe {
                 height: 360px;
+            }
+            .demo-card[data-src*="embed=1"] .demo-card__body-inner iframe {
+                height: 480px;
             }
         }
     </style>
@@ -501,7 +511,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="demo-card" data-src="blackjack-game.html">
+                            <div class="demo-card" data-src="blackjack-game.html?embed=1">
                                 <div class="demo-card__header" data-play>
                                     <div class="demo-card__thumb" style="background:linear-gradient(135deg,#0c0f14,#1e7e34);"><i class="fas fa-crown"></i></div>
                                     <div class="demo-card__info">
@@ -526,7 +536,7 @@
                                     <span class="demo-card__soon">Soon</span>
                                 </div>
                             </div>
-                            <div class="demo-card" data-src="card-counting-trainer.html">
+                            <div class="demo-card" data-src="card-counting-trainer.html?embed=1">
                                 <div class="demo-card__header" data-play>
                                     <div class="demo-card__thumb" style="background:linear-gradient(135deg,#0c0f14,#3498db);"><i class="fas fa-calculator"></i></div>
                                     <div class="demo-card__info">
@@ -541,7 +551,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="demo-card" data-src="strategy-trainer.html">
+                            <div class="demo-card" data-src="strategy-trainer.html?embed=1">
                                 <div class="demo-card__header" data-play>
                                     <div class="demo-card__thumb" style="background:linear-gradient(135deg,#0c0f14,#d4a843);"><i class="fas fa-chess"></i></div>
                                     <div class="demo-card__info">

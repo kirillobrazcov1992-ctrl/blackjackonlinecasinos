@@ -4148,3 +4148,23 @@ select.form-control {
         text-align: center;
     }
 }
+
+/* ========================================
+   EMBED MODE (for iframe demo-casino)
+   ======================================== */
+.embed-mode .header,
+.embed-mode .page-hero,
+.embed-mode .footer {
+    display: none !important;
+}
+.embed-mode main {
+    padding-top: 0 !important;
+}
+.embed-mode .bj-game,
+.embed-mode .cc-trainer,
+.embed-mode .st-trainer {
+    padding-top: 16px !important;
+}
+.embed-mode .bj-game-area {
+    margin-bottom: 0;
+}
