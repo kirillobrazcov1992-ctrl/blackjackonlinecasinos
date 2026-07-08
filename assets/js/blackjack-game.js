@@ -65,6 +65,7 @@
       currentHand: 0, // index into playerHands
       phase: 'betting', // 'betting' | 'insurance' | 'playing' | 'dealer' | 'done'
       isSplit: false,
+      isDouble: false,
       hasInsurance: false,
       history: [],
       handsPlayed: 0,
@@ -260,6 +261,7 @@
     state.playerHands = [[drawCard(), drawCard()]];
     state.currentHand = 0;
     state.isSplit = false;
+    state.isDouble = false;
     state.hasInsurance = false;
 
     // Check insurance
@@ -388,6 +390,7 @@
     const hand = state.playerHands[state.currentHand];
     if (!canDouble(hand) || state.balance < state.bet) return;
 
+    state.isDouble = true;
     state.balance -= state.bet;
     state.bet *= 2;
     hand.push(drawCard());
@@ -736,6 +739,7 @@
     getBet: () => state.bet,
     getBalance: () => state.balance,
     isSplit: () => state.isSplit,
+    isDouble: () => state.isDouble,
     getCurrentHand: () => state.currentHand,
     getStats: () => ({
       handsPlayed: state.handsPlayed,

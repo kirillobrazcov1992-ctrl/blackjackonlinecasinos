@@ -105,8 +105,7 @@
                 </button>
                 <div id="langSwitcher"></div>
             </div>
-            <div class="header__tagline-row">
-                <p class="header__tagline" data-i18n="header_tagline">Your Ultimate Guide to Blackjack</p>
+            <div class="header__level-row">
                 <div class="player-badge" id="playerBadge" style="display:none;" title="Your Blackjack Career">
                     <span class="player-badge__avatar" id="badgeAvatar">P</span>
                     <span class="player-badge__level" id="badgeLevel">Lv.1</span>
@@ -116,6 +115,7 @@
                     <span class="player-badge__xp" id="badgeXpText">0/100 XP</span>
                 </div>
             </div>
+            <p class="header__tagline" data-i18n="header_tagline">Your Ultimate Guide to Blackjack</p>
             <div class="header__bottom">
                 <nav class="nav" id="nav">
                     <ul class="nav__list">
@@ -513,18 +513,24 @@
                                        s.handsLost > prevStats.handsLost ? 'lose' : 'push';
                         const isBJ = s.blackjacks > prevStats.blackjacks;
                         const bet = API.getBet() || 10;
+                        const isDouble = API.isDouble ? API.isDouble() : false;
+                        const isSplit = API.isSplit ? API.isSplit() : false;
 
                         // XP calculation
                         let xpGain = 3;
                         if (result === 'win') xpGain += 5;
                         if (isBJ) xpGain += 10;
                         if (bet >= 100) xpGain += 5;
+                        if (isDouble) xpGain += 3;
+                        if (isSplit) xpGain += 3;
 
-                        PP.recordHand(result, bet, isBJ, false, false);
+                        PP.recordHand(result, bet, isBJ, isDouble, isSplit);
                         PP.addXP(xpGain, 'hand');
                         PP.updateChallengeProgress('hands');
                         if (result === 'win') PP.updateChallengeProgress('wins');
                         if (isBJ) PP.updateChallengeProgress('bj');
+                        if (isDouble) PP.updateChallengeProgress('double');
+                        if (isSplit) PP.updateChallengeProgress('split');
                         PP.updateChallengeProgress('bet', bet);
 
                         // Dealer bust check
