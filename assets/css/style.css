@@ -428,14 +428,6 @@ img { max-width: 100%; display: block; }
     text-shadow: 0 0 40px rgba(212, 168, 67, 0.8), 0 0 80px rgba(212, 168, 67, 0.3);
 }
 
-.header__level-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 4px 0 2px;
-    min-height: 36px;
-}
-
 .header__tagline {
     font-family: var(--font-primary);
     font-size: 0.7rem;
@@ -623,6 +615,40 @@ img { max-width: 100%; display: block; }
     z-index: 2;
     max-width: 800px;
     margin: 0 auto;
+}
+
+.hero__level {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+    min-height: 40px;
+}
+
+.hero__player-badge.player-badge {
+    padding: 6px 20px 6px 10px;
+    gap: 10px;
+    border-color: rgba(212,168,67,0.3);
+    background: linear-gradient(135deg, rgba(212,168,67,0.15), rgba(212,168,67,0.05));
+    font-size: 0.85rem;
+}
+
+.hero__player-badge .player-badge__avatar {
+    width: 30px;
+    height: 30px;
+    font-size: 0.85rem;
+}
+
+.hero__player-badge .player-badge__level {
+    font-size: 0.85rem;
+}
+
+.hero__player-badge .player-badge__xp {
+    font-size: 0.75rem;
+}
+
+.hero__player-badge .player-badge__xp-bar {
+    width: 60px;
+    height: 5px;
 }
 
 .hero__badge {
@@ -1477,11 +1503,6 @@ img { max-width: 100%; display: block; }
     .logo__text {
         font-size: 1.3rem;
     }
-    .header__level-row {
-        padding: 2px 0;
-        min-height: 30px;
-    }
-
     .header__tagline {
         font-size: 0.55rem;
         letter-spacing: 1.5px;
@@ -1574,6 +1595,22 @@ img { max-width: 100%; display: block; }
     .hero {
         min-height: 94vh;
         padding-top: calc(var(--header-h) + 20px);
+    }
+
+    .hero__level {
+        min-height: 36px;
+        margin-bottom: 10px;
+    }
+
+    .hero__player-badge.player-badge {
+        padding: 5px 16px 5px 8px;
+        font-size: 0.78rem;
+    }
+
+    .hero__player-badge .player-badge__avatar {
+        width: 26px;
+        height: 26px;
+        font-size: 0.75rem;
     }
 
     .hero__badge {
@@ -1700,11 +1737,6 @@ img { max-width: 100%; display: block; }
         padding: 2px 4px 6px !important;
     }
 
-    .header__level-row {
-        padding: 2px 4px;
-        min-height: 26px;
-    }
-
     .header__tagline {
         font-size: 0.5rem !important;
         letter-spacing: 1px !important;
@@ -1714,6 +1746,28 @@ img { max-width: 100%; display: block; }
     .hero {
         min-height: 92vh;
         padding-top: calc(var(--header-h) + 10px);
+    }
+
+    .hero__level {
+        min-height: 32px;
+        margin-bottom: 8px;
+    }
+
+    .hero__player-badge.player-badge {
+        padding: 4px 12px 4px 6px;
+        font-size: 0.7rem;
+        gap: 6px;
+    }
+
+    .hero__player-badge .player-badge__avatar {
+        width: 22px;
+        height: 22px;
+        font-size: 0.65rem;
+    }
+
+    .hero__player-badge .player-badge__xp-bar {
+        width: 40px;
+        height: 4px;
     }
 
     .hero__badge {
