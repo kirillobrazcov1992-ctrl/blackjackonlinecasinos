@@ -2136,7 +2136,7 @@ html[dir="rtl"] .nav__dropdown-toggle i {
     font-size: 1.6rem;
     font-weight: 700;
     color: #fff;
-    margin: 40px 0 16px;
+    margin: 48px 0 20px;
 }
 
 .content-page__main h2:first-child {
@@ -2148,12 +2148,12 @@ html[dir="rtl"] .nav__dropdown-toggle i {
     font-size: 1.15rem;
     font-weight: 600;
     color: var(--color-gold);
-    margin-bottom: 8px;
+    margin: 32px 0 12px;
 }
 
 .content-page__main p {
     color: var(--color-text-muted);
-    margin-bottom: 18px;
+    margin-bottom: 20px;
     line-height: 1.8;
 }
 
@@ -4125,6 +4125,19 @@ select.form-control {
     .top-casino-card__logo {
         width: 70px;
         height: 45px;
+
+    /* ===== Content page mobile responsive ===== */
+    .content-page__main h2 {
+        font-size: 1.35rem;
+        margin: 36px 0 16px;
+    }
+    .content-page__main h3 {
+        margin: 24px 0 10px;
+    }
+    .content-page__main p {
+        margin-bottom: 16px;
+    }
+
     }
     .top-casino-card__info {
         flex: 1 1 100%;

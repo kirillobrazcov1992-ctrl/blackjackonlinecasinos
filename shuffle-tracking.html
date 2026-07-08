@@ -16,15 +16,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        .st-card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 28px; margin-bottom: 24px; border-left: 3px solid var(--color-gold); }
-        .st-card h3 { font-family: var(--font-primary); font-size: 1.15rem; font-weight: 700; color: var(--color-gold); margin-bottom: 10px; }
-        .st-card p { color: var(--color-text-muted); line-height: 1.8; margin: 0; }
-        .st-step { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 20px; margin-bottom: 16px; border-left: 2px solid var(--color-gold); }
-        .st-step .step-num { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: var(--color-gold); color: #111; border-radius: 50%; font-weight: 800; font-size: 0.85rem; margin-right: 8px; }
-        .st-step h4 { display: inline; font-family: var(--font-primary); font-weight: 700; color: #fff; font-size: 1rem; }
-        .st-step p { color: var(--color-text-muted); line-height: 1.7; margin-top: 10px; }
-        .warning-box { background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.15); border-radius: var(--radius-sm); padding: 20px; margin: 20px 0; }
+        .st-card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 28px; margin-bottom: 28px; border-left: 3px solid var(--color-gold); }
+        .st-card h3 { font-family: var(--font-primary); font-size: 1.15rem; font-weight: 700; color: var(--color-gold); margin-bottom: 12px; }
+        .st-card p { color: var(--color-text-muted); line-height: 1.8; margin: 0 0 10px; }
+        .st-card p:last-child { margin-bottom: 0; }
+        .st-step { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 20px; margin-bottom: 20px; border-left: 2px solid var(--color-gold); }
+        .st-step .step-num { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: var(--color-gold); color: #111; border-radius: 50%; font-weight: 800; font-size: 0.85rem; margin-right: 10px; vertical-align: middle; }
+        .st-step .step-head { display: inline; font-family: var(--font-primary); font-weight: 700; color: #fff; font-size: 1rem; vertical-align: middle; }
+        .st-step p { color: var(--color-text-muted); line-height: 1.7; margin-top: 12px; }
+        .warning-box { background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.15); border-radius: var(--radius-sm); padding: 20px; margin: 24px 0; }
         .warning-box p { color: #ef4444; font-weight: 600; margin: 0; }
+        @media (max-width: 768px) {
+            .st-card { padding: 20px; }
+            .st-step { padding: 16px; }
+            .st-step .step-num { width: 24px; height: 24px; font-size: 0.75rem; margin-right: 8px; }
+            .st-step .step-head { font-size: 0.9rem; }
+            .warning-box { padding: 16px; }
+        }
     </style>
 </head>
 <body>
@@ -106,7 +114,7 @@
                         <p>The advantage of shuffle tracking over counting: you can bet big <strong>from the start of the shoe</strong> instead of waiting for the count to rise mid-shoe. This looks less suspicious to pit bosses.</p>
                         <h2>How Shuffle Tracking Works</h2>
                         <div class="st-step">
-                            <span class="step-num">1</span><h4>Identify High-Card Slugs</h4>
+                            <span class="step-num">1</span><h4 class="step-head">Identify High-Card Slugs</h4>
                             <p>As the round ends and cards are collected, mentally note where high cards (10s, face cards, Aces) landed in the discard tray. A group of 8–12 cards that contains mostly high-value cards is a "slug." You're looking for sections of the discards that are visibly rich in high cards.</p>
                         </div>
                         <div class="st-step">
