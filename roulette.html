@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roulette — Free European Roulette | BlackjackOnlineCasinos.com</title>
+    <meta name="description" content="Play free European roulette online. Practice your betting strategies with our realistic roulette game.">
+    <meta name="robots" content="index, follow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .embed-mode .header,
+        .embed-mode .page-hero,
+        .embed-mode .footer { display: none !important; }
+        .embed-mode main { padding-top: 0 !important; }
+        .embed-mode .rl-game { padding-top: 16px !important; }
+
+        .rl-game { margin-bottom: 40px; }
+        .rl-area {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+        }
+        .rl-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 20px;
+            background: rgba(26,30,39,0.6);
+            border-bottom: 1px solid var(--color-border);
+        }
+        .rl-header__title {
+            font-family: var(--font-primary);
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--color-gold);
+        }
+
+        /* Wheel area */
+        .rl-wheel-area {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: radial-gradient(ellipse at center, #1a3a1a 0%, #0d1f0d 100%);
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .rl-wheel {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 4px solid var(--color-gold-dark);
+            position: relative;
+            flex-shrink: 0;
+            overflow: hidden;
+            transition: transform 3s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+        }
+        .rl-wheel-spinning {
+            animation: rlSpin 3s cubic-bezier(0.17, 0.67, 0.12, 0.99) forwards;
+        }
+        @keyframes rlSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(var(--spin-deg, 720deg)); }
+        }
+        .rl-wheel__inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            position: relative;
+            background: conic-gradient(
+                #0a0a0a 0deg 9.73deg, #dc2626 9.73deg 19.46deg,
+                #0a0a0a 19.46deg 29.19deg, #dc2626 29.19deg 38.92deg,
+                #0a0a0a 38.92deg 48.65deg, #dc2626 48.65deg 58.38deg,
+                #0a0a0a 58.38deg 68.11deg, #dc2626 68.11deg 77.84deg,
+                #0a0a0a 77.84deg 87.57deg, #dc2626 87.57deg 97.30deg,
+                #0a0a0a 97.30deg 107.03deg, #dc2626 107.03deg 116.76deg,
+                #0a0a0a 116.76deg 126.49deg, #dc2626 126.49deg 136.22deg,
+                #0a0a0a 136.22deg 145.95deg, #dc2626 145.95deg 155.68deg,
+                #0a0a0a 155.68deg 165.41deg, #dc2626 165.41deg 175.14deg,
+                #0a0a0a 175.14deg 184.86deg, #dc2626 184.86deg 194.59deg,
+                #0a0a0a 194.59deg 204.32deg, #dc2626 204.32deg 214.05deg,
+                #0a0a0a 214.05deg 223.78deg, #dc2626 223.78deg 233.51deg,
+                #0a0a0a 233.51deg 243.24deg, #dc2626 243.24deg 252.97deg,
+                #0a0a0a 252.97deg 262.70deg, #dc2626 262.70deg 272.43deg,
+                #0a0a0a 272.43deg 282.16deg, #dc2626 282.16deg 291.89deg,
+                #0a0a0a 291.89deg 301.62deg, #dc2626 301.62deg 311.35deg,
+                #0a0a0a 311.35deg 321.08deg, #dc2626 321.08deg 330.81deg,
+                #0a0a0a 330.81deg 340.54deg, #dc2626 340.54deg 350.27deg,
+                #0a0a0a 350.27deg 360deg
+            );
+        }
+        /* Green 0 */
+        .rl-wheel__zero {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #22c55e;
+            border: 2px solid var(--color-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
+            font-weight: 800;
+            color: #fff;
+            z-index: 2;
+        }
+        .rl-wheel__pointer {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 16px solid var(--color-gold);
+            z-index: 3;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+        }
+
+        .rl-result {
+            text-align: center;
+            min-width: 100px;
+        }
+        .rl-result__number {
+            font-size: 2.8rem;
+            font-weight: 900;
+            font-family: var(--font-primary);
+        }
+        .rl-result__number--red { color: #dc2626; }
+        .rl-result__number--black { color: #fff; }
+        .rl-result__number--green { color: #22c55e; }
+        .rl-result__label {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+        }
+
+        /* Betting grid */
+        .rl-bets {
+            padding: 16px;
+            border-top: 1px solid var(--color-border);
+        }
+        .rl-bets__row {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 6px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .rl-bet-btn {
+            padding: 8px 16px;
+            border-radius: 4px;
+            border: 1px solid var(--color-border);
+            background: rgba(255,255,255,0.05);
+            color: #fff;
+            font-family: var(--font-primary);
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s;
+            min-width: 44px;
+            text-align: center;
+        }
+        .rl-bet-btn:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--color-gold-dark);
+        }
+        .rl-bet-btn--active {
+            background: rgba(212,168,67,0.2);
+            border-color: var(--color-gold);
+            color: var(--color-gold);
+        }
+        .rl-bet-btn--red { border-color: #dc2626; color: #dc2626; }
+        .rl-bet-btn--red:hover, .rl-bet-btn--red.rl-bet-btn--active { background: rgba(220,38,38,0.2); border-color: #dc2626; color: #dc2626; }
+        .rl-bet-btn--black { border-color: #888; color: #ccc; }
+        .rl-bet-btn--black:hover, .rl-bet-btn--black.rl-bet-btn--active { background: rgba(255,255,255,0.1); }
+        .rl-bet-btn--green { border-color: #22c55e; color: #22c55e; }
+        .rl-bet-btn--green:hover, .rl-bet-btn--green.rl-bet-btn--active { background: rgba(34,197,94,0.2); }
+        .rl-bet-btn--disabled { opacity: 0.3; pointer-events: none; }
+
+        .rl-bet-btn.rl-bet-num { width: 44px; min-width: 44px; padding: 8px 0; }
+
+        /* Chip selector */
+        .rl-chips {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 16px;
+            border-top: 1px solid var(--color-border);
+        }
+        .rl-chip {
+            padding: 6px 16px;
+            border-radius: 50px;
+            border: 1px solid var(--color-border);
+            background: transparent;
+            color: var(--color-text-muted);
+            font-family: var(--font-primary);
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .rl-chip:hover { border-color: var(--color-gold-dark); color: var(--color-gold); }
+        .rl-chip--active { background: var(--color-gold); color: #0c0f14; border-color: var(--color-gold); }
+
+        /* Controls */
+        .rl-controls {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            padding: 12px 20px 16px;
+            flex-wrap: wrap;
+        }
+
+        /* Message */
+        .rl-message {
+            text-align: center;
+            padding: 8px 20px;
+            font-family: var(--font-primary);
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            min-height: 32px;
+        }
+        .rl-message--win { color: #22c55e; font-weight: 600; }
+        .rl-message--lose { color: #ef4444; }
+
+        /* Stats */
+        .rl-stats {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 10px 20px;
+            border-top: 1px solid var(--color-border);
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+            flex-wrap: wrap;
+        }
+        .rl-stat span { color: #fff; font-weight: 600; }
+
+        .rl-hint {
+            text-align: center;
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.12);
+            padding: 8px 0 16px;
+        }
+        .rl-hint kbd {
+            background: rgba(255,255,255,0.06);
+            padding: 1px 5px;
+            border-radius: 3px;
+            font-family: var(--font-primary);
+        }
+
+        @media (max-width: 600px) {
+            .rl-wheel { width: 120px; height: 120px; }
+            .rl-result__number { font-size: 2rem; }
+            .rl-bet-btn { padding: 6px 10px; font-size: 0.7rem; min-width: 36px; }
+            .rl-bet-btn.rl-bet-num { width: 36px; min-width: 36px; }
+        }
+    </style>
+</head>
+<body>
+<script>
+    if (window.location.search.includes('embed=1') || window.top !== window.self) {
+        document.documentElement.classList.add('embed-mode');
+    }
+</script>
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header__top">
+                <a href="/" class="logo">
+                    <span class="logo__icon">&#9824;</span>
+                    <span class="logo__text">Blackjack<span class="logo__accent">Online</span>Casinos</span>
+                </a>
+                <button class="burger" id="burger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+                <div id="langSwitcher"></div>
+            </div>
+            <p class="header__tagline" data-i18n="header_tagline">Your Ultimate Guide to Blackjack</p>
+            <div class="header__bottom">
+                <nav class="nav" id="nav">
+                    <ul class="nav__list">
+                        <li><a href="/" class="nav__link">Home</a></li>
+                        <li class="nav__dropdown">
+                            <a href="#" class="nav__link nav__dropdown-toggle">Learn the Game <i class="fas fa-chevron-down"></i></a>
+                            <ul class="nav__submenu">
+                                <li><a href="rules.html">Rules</a></li>
+                                <li><a href="basic-strategy.html">Basic Strategy</a></li>
+                                <li><a href="blackjack-odds.html">Odds & Probability</a></li>
+                                <li><a href="variations.html">Variations</a></li>
+                                <li><a href="history.html">History</a></li>
+                                <li><a href="glossary.html">Glossary</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav__dropdown">
+                            <a href="#" class="nav__link nav__dropdown-toggle">Advanced Play <i class="fas fa-chevron-down"></i></a>
+                            <ul class="nav__submenu">
+                                <li><a href="advanced-strategy.html">Advanced Strategy</a></li>
+                                <li><a href="card-counting.html">Card Counting</a></li>
+                                <li><a href="shuffle-tracking.html">Shuffle Tracking</a></li>
+                                <li><a href="side-bets.html">Side Bets</a></li>
+                                <li><a href="tournament-blackjack.html">Tournaments</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav__dropdown">
+                            <a href="#" class="nav__link nav__dropdown-toggle">Resources <i class="fas fa-chevron-down"></i></a>
+                            <ul class="nav__submenu">
+                                <li><a href="online-blackjack.html">Online Blackjack</a></li>
+                                <li><a href="bankroll-management.html">Bankroll Management</a></li>
+                                <li><a href="blackjack-myths.html">Myths & Misconceptions</a></li>
+                                <li><a href="blackjack-etiquette.html">Etiquette</a></li>
+                                <li><a href="blackjack-faq.html">FAQ</a></li>
+                                <li><a href="books.html">Best Blackjack Books</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="reviews.html">Reviews</a></li>
+                        <li><a href="demo-casino.html">Demo</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1 class="page-hero__title">European Roulette</h1>
+                <p class="page-hero__subtitle">Free roulette game. Place your bets on numbers, colors, or groups and spin the wheel!</p>
+            </div>
+        </section>
+
+        <section class="section rl-game">
+            <div class="container">
+                <div class="rl-area">
+                    <div class="rl-header">
+                        <span class="rl-header__title">&#9824; European Roulette</span>
+                        <div class="rl-header__actions">
+                            <button class="bj-btn-sm" id="rlNewGame"><i class="fas fa-redo"></i> New</button>
+                        </div>
+                    </div>
+
+                    <!-- Wheel + Result -->
+                    <div class="rl-wheel-area">
+                        <div class="rl-wheel" id="rlWheel">
+                            <div class="rl-wheel__inner"></div>
+                            <div class="rl-wheel__zero">0</div>
+                            <div class="rl-wheel__pointer"></div>
+                        </div>
+                        <div class="rl-result">
+                            <div class="rl-result__number" id="rlResultNumber">-</div>
+                            <div class="rl-result__label" id="rlResultLabel">Place your bets!</div>
+                        </div>
+                    </div>
+
+                    <!-- Betting grid -->
+                    <div class="rl-bets" id="rlBetGrid">
+                        <!-- Outside bets -->
+                        <div class="rl-bets__row">
+                            <button class="rl-bet-btn rl-bet-btn--green" data-bet="low">1-18 (Low)</button>
+                            <button class="rl-bet-btn rl-bet-btn--red" data-bet="red">Red</button>
+                            <button class="rl-bet-btn rl-bet-btn--black" data-bet="black">Black</button>
+                            <button class="rl-bet-btn rl-bet-btn--green" data-bet="even">Even</button>
+                            <button class="rl-bet-btn rl-bet-btn--green" data-bet="odd">Odd</button>
+                            <button class="rl-bet-btn rl-bet-btn--green" data-bet="high">19-36 (High)</button>
+                        </div>
+                        <!-- Dozens -->
+                        <div class="rl-bets__row">
+                            <button class="rl-bet-btn rl-bet-btn--green" data-bet="dozen1">1st 12</button>
+                            <button class="rl-bet-btn rl-bet-btn--green" data-bet="dozen2">2nd 12</button>
+                            <button class="rl-bet-btn rl-bet-btn--green" data-bet="dozen3">3rd 12</button>
+                            <button class="rl-bet-btn rl-bet-btn--green" data-bet="col1">Col 1</button>
+                            <button class="rl-bet-btn rl-bet-btn--green" data-bet="col2">Col 2</button>
+                            <button class="rl-bet-btn rl-bet-btn--green" data-bet="col3">Col 3</button>
+                        </div>
+                        <!-- Numbers 1-36 -->
+                        <div class="rl-bets__row" id="rlNumbers"></div>
+                        <div class="rl-bets__row">
+                            <button class="rl-bet-btn rl-bet-btn--green" data-bet="zero">0</button>
+                        </div>
+                    </div>
+
+                    <!-- Chip selector -->
+                    <div class="rl-chips">
+                        <button class="rl-chip rl-chip--active" data-value="1">$1</button>
+                        <button class="rl-chip" data-value="5">$5</button>
+                        <button class="rl-chip" data-value="10">$10</button>
+                        <button class="rl-chip" data-value="25">$25</button>
+                        <button class="rl-chip" data-value="100">$100</button>
+                    </div>
+
+                    <!-- Controls -->
+                    <div class="rl-controls">
+                        <button class="btn btn--primary" id="rlSpin"><i class="fas fa-circle"></i> Spin</button>
+                        <button class="btn btn--outline" id="rlClear"><i class="fas fa-times"></i> Clear Bets</button>
+                    </div>
+
+                    <!-- Message -->
+                    <div class="rl-message" id="rlMessage">Click a bet to place chips, then spin!</div>
+
+                    <!-- Stats -->
+                    <div class="rl-stats">
+                        <span class="rl-stat">Balance: <span id="rlBalance">1000</span></span>
+                        <span class="rl-stat">Total Bet: <span id="rlTotalBet">0</span></span>
+                        <span class="rl-stat">Last Win: <span id="rlLastWin">0</span></span>
+                        <span class="rl-stat">Spins: <span id="rlSpins">0</span></span>
+                    </div>
+
+                    <div class="rl-hint">
+                        <kbd>S</kbd> Spin &middot; <kbd>C</kbd> Clear bets
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__col">
+                    <a href="/" class="logo logo--footer">
+                        <span class="logo__icon">&#9824;</span>
+                        <span class="logo__text">Blackjack<span class="logo__accent">Online</span>Casinos</span>
+                    </a>
+                    <p class="footer__desc">Your trusted source for all blackjack information.</p>
+                    <div class="footer__rg-logos">
+                        <a href="https://safergamblinguk.org" target="_blank" rel="nofollow noopener"><i class="fas fa-shield-halved"></i> Safer Gambling</a>
+                        <a href="https://begambleaware.org" target="_blank" rel="nofollow noopener"><i class="fas fa-heart"></i> BeGambleAware</a>
+                    </div>
+                </div>
+                <div class="footer__col">
+                    <h4 class="footer__heading">Quick Links</h4>
+                    <ul class="footer__links">
+                        <li><a href="rules.html">Rules</a></li>
+                        <li><a href="basic-strategy.html">Basic Strategy</a></li>
+                        <li><a href="reviews.html">Casino Reviews</a></li>
+                        <li><a href="demo-casino.html">Demo Casino</a></li>
+                    </ul>
+                </div>
+                <div class="footer__col">
+                    <h4 class="footer__heading">Resources</h4>
+                    <ul class="footer__links">
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Use</a></li>
+                        <li><a href="responsible-gaming.html">Responsible Gaming</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2026 BlackjackOnlineCasinos.com — All Rights Reserved.</p>
+                <p class="footer__disclaimer">18+ Only. Please gamble responsibly.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/i18n.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // ===== Roulette Game =====
+        const RED_NUMBERS = [1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36];
+        
+        let balance = 1000;
+        let totalBet = 0;
+        let spins = 0;
+        let lastWin = 0;
+        let bets = {}; // { betType: amount }
+        let chipValue = 1;
+        let spinning = false;
+
+        const $wheel = document.getElementById('rlWheel');
+        const $resultNum = document.getElementById('rlResultNumber');
+        const $resultLabel = document.getElementById('rlResultLabel');
+        const $message = document.getElementById('rlMessage');
+        const $balance = document.getElementById('rlBalance');
+        const $totalBet = document.getElementById('rlTotalBet');
+        const $lastWin = document.getElementById('rlLastWin');
+        const $spins = document.getElementById('rlSpins');
+        const $spinBtn = document.getElementById('rlSpin');
+        const $clearBtn = document.getElementById('rlClear');
+        const $newBtn = document.getElementById('rlNewGame');
+
+        // Build number grid
+        const $nums = document.getElementById('rlNumbers');
+        const order = [3,6,9,12,15,18,21,24,27,30,33,36,2,5,8,11,14,17,20,23,26,29,32,35,1,4,7,10,13,16,19,22,25,28,31,34];
+        order.forEach(n => {
+            const btn = document.createElement('button');
+            btn.className = 'rl-bet-btn rl-bet-num' + (RED_NUMBERS.includes(n) ? ' rl-bet-btn--red' : ' rl-bet-btn--black');
+            btn.textContent = n;
+            btn.dataset.bet = 'num_' + n;
+            $nums.appendChild(btn);
+        });
+
+        // Bet buttons
+        document.querySelectorAll('.rl-bet-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (spinning) return;
+                const betType = btn.dataset.bet;
+                if (balance < chipValue) {
+                    $message.textContent = 'Not enough balance!';
+                    $message.className = 'rl-message rl-message--lose';
+                    return;
+                }
+                bets[betType] = (bets[betType] || 0) + chipValue;
+                balance -= chipValue;
+                totalBet += chipValue;
+                btn.classList.add('rl-bet-btn--active');
+                // Show bet amount on button
+                const existing = btn.querySelector('.rl-bet-amt');
+                if (existing) {
+                    existing.textContent = bets[betType];
+                } else {
+                    const span = document.createElement('span');
+                    span.className = 'rl-bet-amt';
+                    span.style.cssText = 'display:block;font-size:0.6rem;color:var(--color-gold);margin-top:2px;';
+                    span.textContent = bets[betType];
+                    btn.appendChild(span);
+                }
+                updateStats();
+                $message.textContent = 'Bets placed! Spin the wheel!';
+                $message.className = 'rl-message';
+            });
+        });
+
+        function getNumberColor(n) {
+            if (n === 0) return 'green';
+            return RED_NUMBERS.includes(n) ? 'red' : 'black';
+        }
+
+        function spin() {
+            if (spinning) return;
+            if (totalBet === 0) {
+                $message.textContent = 'Place at least one bet first!';
+                $message.className = 'rl-message rl-message--lose';
+                return;
+            }
+
+            spinning = true;
+            $spinBtn.disabled = true;
+            $resultNum.textContent = '...';
+            $resultLabel.textContent = 'Spinning...';
+            document.querySelectorAll('.rl-bet-btn').forEach(b => b.classList.add('rl-bet-btn--disabled'));
+
+            const result = Math.floor(Math.random() * 37);
+            const color = getNumberColor(result);
+
+            // Calculate spin degrees (random multiple of full rotations + number position)
+            const spinDeg = 1440 + (result * 9.73) + Math.random() * 5;
+            $wheel.style.setProperty('--spin-deg', spinDeg + 'deg');
+            $wheel.classList.remove('rl-wheel-spinning');
+            void $wheel.offsetWidth; // force reflow
+            $wheel.classList.add('rl-wheel-spinning');
+
+            setTimeout(() => {
+                $wheel.classList.remove('rl-wheel-spinning');
+                
+                // Calculate wins
+                let winAmount = 0;
+                let winDetails = [];
+
+                for (const [betType, amount] of Object.entries(bets)) {
+                    let won = false;
+                    let multiplier = 0;
+
+                    if (betType === 'zero' && result === 0) { won = true; multiplier = 35; }
+                    else if (betType === 'red' && color === 'red') { won = true; multiplier = 2; }
+                    else if (betType === 'black' && color === 'black') { won = true; multiplier = 2; }
+                    else if (betType === 'even' && result !== 0 && result % 2 === 0) { won = true; multiplier = 2; }
+                    else if (betType === 'odd' && result !== 0 && result % 2 === 1) { won = true; multiplier = 2; }
+                    else if (betType === 'low' && result >= 1 && result <= 18) { won = true; multiplier = 2; }
+                    else if (betType === 'high' && result >= 19 && result <= 36) { won = true; multiplier = 2; }
+                    else if (betType === 'dozen1' && result >= 1 && result <= 12) { won = true; multiplier = 3; }
+                    else if (betType === 'dozen2' && result >= 13 && result <= 24) { won = true; multiplier = 3; }
+                    else if (betType === 'dozen3' && result >= 25 && result <= 36) { won = true; multiplier = 3; }
+                    else if (betType === 'col1' && result !== 0) { const r = result % 3; if (r === 1 || (result <= 3 && r === 1)) { const r2 = result % 3; if (r2 === 1) { won = true; multiplier = 3; } } }
+                    else if (betType === 'col2' && result !== 0 && result % 3 === 2) { won = true; multiplier = 3; }
+                    else if (betType === 'col3' && result !== 0 && result % 3 === 0) { won = true; multiplier = 3; }
+                    else if (betType.startsWith('num_')) {
+                        const num = parseInt(betType.split('_')[1]);
+                        if (num === result) { won = true; multiplier = 35; }
+                    }
+
+                    if (won) {
+                        const w = amount * multiplier;
+                        winAmount += w;
+                        winDetails.push(`${betType.replace('num_', '#')} x${multiplier}=${w}`);
+                    }
+                }
+
+                // Update balance
+                balance += winAmount;
+                lastWin = winAmount;
+                spins++;
+                
+                // Clear bets
+                bets = {};
+                totalBet = 0;
+                document.querySelectorAll('.rl-bet-btn--active').forEach(b => {
+                    b.classList.remove('rl-bet-btn--active');
+                    const amt = b.querySelector('.rl-bet-amt');
+                    if (amt) amt.remove();
+                });
+                document.querySelectorAll('.rl-bet-btn').forEach(b => b.classList.remove('rl-bet-btn--disabled'));
+
+                // Update display
+                $resultNum.textContent = result;
+                $resultNum.className = 'rl-result__number rl-result__number--' + color;
+                $resultLabel.textContent = color === 'red' ? 'Red ' + result : color === 'black' ? 'Black ' + result : 'Zero ' + result;
+
+                if (winAmount > 0) {
+                    $message.innerHTML = `You won <strong>$${winAmount}</strong>! (${winDetails.join(', ')})`;
+                    $message.className = 'rl-message rl-message--win';
+                } else {
+                    $message.textContent = 'No win. Try again!';
+                    $message.className = 'rl-message rl-message--lose';
+                }
+
+                spinning = false;
+                $spinBtn.disabled = false;
+                updateStats();
+            }, 3200);
+        }
+
+        function clearBets() {
+            if (spinning) return;
+            // Refund
+            for (const [betType, amount] of Object.entries(bets)) {
+                balance += amount;
+            }
+            bets = {};
+            totalBet = 0;
+            document.querySelectorAll('.rl-bet-btn--active').forEach(b => {
+                b.classList.remove('rl-bet-btn--active');
+                const amt = b.querySelector('.rl-bet-amt');
+                if (amt) amt.remove();
+            });
+            updateStats();
+            $message.textContent = 'Bets cleared.';
+            $message.className = 'rl-message';
+        }
+
+        function updateStats() {
+            $balance.textContent = balance;
+            $totalBet.textContent = totalBet;
+            $lastWin.textContent = lastWin;
+            $spins.textContent = spins;
+        }
+
+        function newGame() {
+            balance = 1000;
+            totalBet = 0;
+            spins = 0;
+            lastWin = 0;
+            bets = {};
+            spinning = false;
+            $spinBtn.disabled = false;
+            document.querySelectorAll('.rl-bet-btn--active').forEach(b => {
+                b.classList.remove('rl-bet-btn--active');
+                const amt = b.querySelector('.rl-bet-amt');
+                if (amt) amt.remove();
+            });
+            document.querySelectorAll('.rl-bet-btn').forEach(b => b.classList.remove('rl-bet-btn--disabled'));
+            $resultNum.textContent = '-';
+            $resultNum.className = 'rl-result__number';
+            $resultLabel.textContent = 'Place your bets!';
+            $message.textContent = 'New game! Place your bets.';
+            $message.className = 'rl-message';
+            updateStats();
+        }
+
+        // Chip selector
+        document.querySelectorAll('.rl-chip').forEach(chip => {
+            chip.addEventListener('click', () => {
+                document.querySelectorAll('.rl-chip').forEach(c => c.classList.remove('rl-chip--active'));
+                chip.classList.add('rl-chip--active');
+                chipValue = parseInt(chip.dataset.value);
+            });
+        });
+
+        // Column betting helper
+        // Fix column logic
+        const origBet = document.querySelector('[data-bet="col1"]');
+        if (origBet) {
+            origBet.addEventListener('click', () => {
+                if (spinning) return;
+                const betType = 'col1';
+                if (balance < chipValue) return;
+                bets[betType] = (bets[betType] || 0) + chipValue;
+                balance -= chipValue;
+                totalBet += chipValue;
+                origBet.classList.add('rl-bet-btn--active');
+                updateColumnBetDisplay(origBet, betType);
+                updateStats();
+            });
+        }
+
+        function updateColumnBetDisplay(btn, betType) {
+            const existing = btn.querySelector('.rl-bet-amt');
+            if (existing) {
+                existing.textContent = bets[betType] || 0;
+                if (!bets[betType]) existing.remove();
+            } else if (bets[betType]) {
+                const span = document.createElement('span');
+                span.className = 'rl-bet-amt';
+                span.style.cssText = 'display:block;font-size:0.6rem;color:var(--color-gold);margin-top:2px;';
+                span.textContent = bets[betType];
+                btn.appendChild(span);
+            }
+        }
+
+        // Event listeners
+        $spinBtn.addEventListener('click', spin);
+        $clearBtn.addEventListener('click', clearBets);
+        $newBtn.addEventListener('click', newGame);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 's' || e.key === 'S') { if (!$spinBtn.disabled) spin(); }
+            if (e.key === 'c' || e.key === 'C') clearBets();
+        });
+
+        // Init
+        newGame();
+    });
+    </script>
+</body>
+</html>

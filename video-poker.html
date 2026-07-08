@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Poker — Jacks or Better | BlackjackOnlineCasinos.com</title>
+    <meta name="description" content="Play free video poker — Jacks or Better. Practice your skills with our realistic video poker game.">
+    <meta name="robots" content="index, follow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        /* Embed mode */
+        .embed-mode .header,
+        .embed-mode .page-hero,
+        .embed-mode .footer { display: none !important; }
+        .embed-mode main { padding-top: 0 !important; }
+        .embed-mode .vp-game { padding-top: 16px !important; }
+
+        .vp-game { margin-bottom: 40px; }
+        .vp-area {
+            max-width: 720px;
+            margin: 0 auto;
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+        }
+        .vp-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 20px;
+            background: rgba(26,30,39,0.6);
+            border-bottom: 1px solid var(--color-border);
+        }
+        .vp-header__title {
+            font-family: var(--font-primary);
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--color-gold);
+        }
+        .vp-header__actions { display: flex; gap: 8px; }
+
+        /* Table / Felt */
+        .vp-table {
+            padding: 30px 20px 20px;
+            background: radial-gradient(ellipse at center, #1a4a2a 0%, #0d2616 100%);
+            min-height: 280px;
+            position: relative;
+        }
+
+        /* Cards row */
+        .vp-cards {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .vp-card {
+            width: 90px;
+            height: 130px;
+            border-radius: 8px;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            user-select: none;
+            position: relative;
+            border: 3px solid transparent;
+        }
+        .vp-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+        }
+        .vp-card--held {
+            border-color: var(--color-gold);
+            box-shadow: 0 0 0 3px rgba(212,168,67,0.4), 0 4px 12px rgba(0,0,0,0.3);
+        }
+        .vp-card--held::after {
+            content: 'HELD';
+            position: absolute;
+            bottom: -24px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--color-gold);
+            letter-spacing: 1px;
+            font-family: var(--font-primary);
+        }
+        .vp-card .vp-card__suit { font-size: 1rem; line-height: 1; }
+        .vp-card .vp-card__rank { font-size: 1.6rem; line-height: 1; }
+        .vp-card--red { color: #dc2626; }
+        .vp-card--black { color: #1a1a1a; }
+
+        /* Pay table */
+        .vp-paytable {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px 24px;
+            padding: 16px 20px;
+            background: rgba(0,0,0,0.3);
+            border-top: 1px solid var(--color-border);
+            font-size: 0.78rem;
+            color: var(--color-text-muted);
+        }
+        .vp-paytable__row {
+            display: flex;
+            justify-content: space-between;
+            padding: 2px 0;
+        }
+        .vp-paytable__row--highlight {
+            color: var(--color-gold);
+            font-weight: 600;
+        }
+
+        /* Controls */
+        .vp-controls {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Message */
+        .vp-message {
+            text-align: center;
+            padding: 12px;
+            font-family: var(--font-primary);
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--color-gold);
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .vp-message--win { color: #22c55e; }
+        .vp-message--lose { color: #ef4444; }
+
+        /* Stats */
+        .vp-stats {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 12px 20px;
+            border-top: 1px solid var(--color-border);
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+            flex-wrap: wrap;
+        }
+        .vp-stat span { color: #fff; font-weight: 600; }
+
+        /* Hint */
+        .vp-hint {
+            text-align: center;
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.12);
+            padding: 8px 0 16px;
+        }
+        .vp-hint kbd {
+            background: rgba(255,255,255,0.06);
+            padding: 1px 5px;
+            border-radius: 3px;
+            font-family: var(--font-primary);
+        }
+
+        @media (max-width: 600px) {
+            .vp-card { width: 64px; height: 96px; font-size: 1.4rem; }
+            .vp-card .vp-card__rank { font-size: 1.2rem; }
+            .vp-card .vp-card__suit { font-size: 0.8rem; }
+            .vp-paytable { font-size: 0.7rem; grid-template-columns: 1fr; }
+            .vp-table { padding: 20px 10px; }
+        }
+    </style>
+</head>
+<body>
+<script>
+    if (window.location.search.includes('embed=1') || window.top !== window.self) {
+        document.documentElement.classList.add('embed-mode');
+    }
+</script>
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header__top">
+                <a href="/" class="logo">
+                    <span class="logo__icon">&#9824;</span>
+                    <span class="logo__text">Blackjack<span class="logo__accent">Online</span>Casinos</span>
+                </a>
+                <button class="burger" id="burger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+                <div id="langSwitcher"></div>
+            </div>
+            <p class="header__tagline" data-i18n="header_tagline">Your Ultimate Guide to Blackjack</p>
+            <div class="header__bottom">
+                <nav class="nav" id="nav">
+                    <ul class="nav__list">
+                        <li><a href="/" class="nav__link" data-i18n="nav_home">Home</a></li>
+                        <li class="nav__dropdown">
+                            <a href="#" class="nav__link nav__dropdown-toggle" data-i18n-html="nav_learn">Learn the Game <i class="fas fa-chevron-down"></i></a>
+                            <ul class="nav__submenu">
+                                <li><a href="rules.html" class="nav__link" data-i18n="nav_rules">Rules</a></li>
+                                <li><a href="basic-strategy.html" class="nav__link" data-i18n="nav_basic_strategy">Basic Strategy</a></li>
+                                <li><a href="blackjack-odds.html" class="nav__link" data-i18n="nav_odds">Odds & Probability</a></li>
+                                <li><a href="variations.html" class="nav__link" data-i18n="nav_variations">Variations</a></li>
+                                <li><a href="history.html" class="nav__link" data-i18n="nav_history">History</a></li>
+                                <li><a href="glossary.html" class="nav__link" data-i18n="nav_glossary">Glossary</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav__dropdown">
+                            <a href="#" class="nav__link nav__dropdown-toggle" data-i18n-html="nav_advanced">Advanced Play <i class="fas fa-chevron-down"></i></a>
+                            <ul class="nav__submenu">
+                                <li><a href="advanced-strategy.html" class="nav__link" data-i18n="nav_advanced_strategy">Advanced Strategy</a></li>
+                                <li><a href="card-counting.html" class="nav__link" data-i18n="nav_card_counting">Card Counting</a></li>
+                                <li><a href="shuffle-tracking.html" class="nav__link" data-i18n="nav_shuffle_tracking">Shuffle Tracking</a></li>
+                                <li><a href="side-bets.html" class="nav__link" data-i18n="nav_side_bets">Side Bets</a></li>
+                                <li><a href="tournament-blackjack.html" class="nav__link" data-i18n="nav_tournaments">Tournaments</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav__dropdown">
+                            <a href="#" class="nav__link nav__dropdown-toggle" data-i18n-html="nav_resources">Resources <i class="fas fa-chevron-down"></i></a>
+                            <ul class="nav__submenu">
+                                <li><a href="online-blackjack.html" class="nav__link" data-i18n="nav_online">Online Blackjack</a></li>
+                                <li><a href="bankroll-management.html" class="nav__link" data-i18n="nav_bankroll">Bankroll Management</a></li>
+                                <li><a href="blackjack-myths.html" class="nav__link" data-i18n="nav_myths">Myths & Misconceptions</a></li>
+                                <li><a href="blackjack-etiquette.html" class="nav__link" data-i18n="nav_etiquette">Etiquette</a></li>
+                                <li><a href="blackjack-faq.html" class="nav__link" data-i18n="nav_faq">FAQ</a></li>
+                                <li><a href="books.html" class="nav__link" data-i18n="nav_books">Best Blackjack Books</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="reviews.html" class="nav__link" data-i18n="nav_reviews">Reviews</a></li>
+                        <li><a href="demo-casino.html" class="nav__link" data-i18n="nav_demo">Demo</a></li>
+                        <li><a href="contact.html" class="nav__link" data-i18n="nav_contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1 class="page-hero__title">Video Poker — Jacks or Better</h1>
+                <p class="page-hero__subtitle">Play free video poker. Try to get a pair of Jacks or better to win. Click cards to hold them, then draw.</p>
+            </div>
+        </section>
+
+        <section class="section vp-game">
+            <div class="container">
+                <div class="vp-area">
+                    <div class="vp-header">
+                        <span class="vp-header__title">&#9824; Jacks or Better</span>
+                        <div class="vp-header__actions">
+                            <button class="bj-btn-sm" id="vpNewGame"><i class="fas fa-redo"></i> New</button>
+                        </div>
+                    </div>
+
+                    <!-- Cards -->
+                    <div class="vp-table">
+                        <div class="vp-cards" id="vpCards"></div>
+                        <div class="vp-message" id="vpMessage">Click <strong>Deal</strong> to start!</div>
+                    </div>
+
+                    <!-- Pay table -->
+                    <div class="vp-paytable" id="vpPaytable">
+                        <div class="vp-paytable__row"><span>Royal Flush</span><span>800</span></div>
+                        <div class="vp-paytable__row"><span>Straight Flush</span><span>50</span></div>
+                        <div class="vp-paytable__row"><span>Four of a Kind</span><span>25</span></div>
+                        <div class="vp-paytable__row"><span>Full House</span><span>9</span></div>
+                        <div class="vp-paytable__row"><span>Flush</span><span>6</span></div>
+                        <div class="vp-paytable__row"><span>Straight</span><span>4</span></div>
+                        <div class="vp-paytable__row"><span>Three of a Kind</span><span>3</span></div>
+                        <div class="vp-paytable__row"><span>Two Pair</span><span>2</span></div>
+                        <div class="vp-paytable__row"><span>Jacks or Better</span><span>1</span></div>
+                    </div>
+
+                    <!-- Controls -->
+                    <div class="vp-controls">
+                        <button class="btn btn--primary" id="vpDeal"><i class="fas fa-hand"></i> Deal</button>
+                        <button class="btn btn--outline" id="vpDraw" disabled><i class="fas fa-exchange"></i> Draw</button>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="vp-stats">
+                        <span class="vp-stat">Credits: <span id="vpCredits">100</span></span>
+                        <span class="vp-stat">Bet: <span id="vpBet">5</span></span>
+                        <span class="vp-stat">Win: <span id="vpWin">0</span></span>
+                        <span class="vp-stat">Hands: <span id="vpHands">0</span></span>
+                        <span class="vp-stat">Won: <span id="vpWon">0</span></span>
+                    </div>
+
+                    <div class="vp-hint">
+                        Click a card to <kbd>Hold</kbd> it &middot; <kbd>D</kbd> Deal &middot; <kbd>Space</kbd> Draw
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__col">
+                    <a href="/" class="logo logo--footer">
+                        <span class="logo__icon">&#9824;</span>
+                        <span class="logo__text">Blackjack<span class="logo__accent">Online</span>Casinos</span>
+                    </a>
+                    <p class="footer__desc">Your trusted source for all blackjack information.</p>
+                    <div class="footer__rg-logos">
+                        <a href="https://safergamblinguk.org" target="_blank" rel="nofollow noopener"><i class="fas fa-shield-halved"></i> Safer Gambling</a>
+                        <a href="https://begambleaware.org" target="_blank" rel="nofollow noopener"><i class="fas fa-heart"></i> BeGambleAware</a>
+                    </div>
+                </div>
+                <div class="footer__col">
+                    <h4 class="footer__heading">Quick Links</h4>
+                    <ul class="footer__links">
+                        <li><a href="rules.html">Rules</a></li>
+                        <li><a href="basic-strategy.html">Basic Strategy</a></li>
+                        <li><a href="reviews.html">Casino Reviews</a></li>
+                        <li><a href="demo-casino.html">Demo Casino</a></li>
+                    </ul>
+                </div>
+                <div class="footer__col">
+                    <h4 class="footer__heading">Resources</h4>
+                    <ul class="footer__links">
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Use</a></li>
+                        <li><a href="responsible-gaming.html">Responsible Gaming</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2026 BlackjackOnlineCasinos.com — All Rights Reserved.</p>
+                <p class="footer__disclaimer">18+ Only. Please gamble responsibly.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/i18n.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // ===== Video Poker Game =====
+        const SUITS = ['spades', 'hearts', 'diamonds', 'clubs'];
+        const RANKS = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
+        const SUIT_SYMBOLS = { spades: '&spades;', hearts: '&hearts;', diamonds: '&diams;', clubs: '&clubs;' };
+        const PAYTABLE = {
+            'royal-flush': 800, 'straight-flush': 50, 'four-kind': 25,
+            'full-house': 9, 'flush': 6, 'straight': 4,
+            'three-kind': 3, 'two-pair': 2, 'jacks-better': 1
+        };
+
+        let deck = [];
+        let hand = [];
+        let held = [false, false, false, false, false];
+        let credits = 100;
+        let bet = 5;
+        let handsPlayed = 0;
+        let handsWon = 0;
+        let phase = 'bet'; // 'bet', 'deal', 'draw', 'result'
+        let dealt = false;
+
+        const $cards = document.getElementById('vpCards');
+        const $msg = document.getElementById('vpMessage');
+        const $deal = document.getElementById('vpDeal');
+        const $draw = document.getElementById('vpDraw');
+        const $credits = document.getElementById('vpCredits');
+        const $bet = document.getElementById('vpBet');
+        const $win = document.getElementById('vpWin');
+        const $hands = document.getElementById('vpHands');
+        const $won = document.getElementById('vpWon');
+        const $new = document.getElementById('vpNewGame');
+
+        function createDeck() {
+            const d = [];
+            for (const suit of SUITS) {
+                for (let i = 0; i < RANKS.length; i++) {
+                    d.push({ suit, rank: RANKS[i], rankIdx: i });
+                }
+            }
+            return d;
+        }
+
+        function shuffle(d) {
+            for (let i = d.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [d[i], d[j]] = [d[j], d[i]];
+            }
+            return d;
+        }
+
+        function drawCards(n) {
+            const drawn = [];
+            for (let i = 0; i < n; i++) {
+                if (deck.length === 0) deck = shuffle(createDeck());
+                drawn.push(deck.pop());
+            }
+            return drawn;
+        }
+
+        function renderCards() {
+            $cards.innerHTML = '';
+            hand.forEach((card, i) => {
+                const isRed = card.suit === 'hearts' || card.suit === 'diamonds';
+                const div = document.createElement('div');
+                div.className = 'vp-card' + (held[i] ? ' vp-card--held' : '') + (isRed ? ' vp-card--red' : ' vp-card--black');
+                div.innerHTML = `
+                    <span class="vp-card__rank">${card.rank === '10' ? '10' : card.rank}</span>
+                    <span class="vp-card__suit">${SUIT_SYMBOLS[card.suit]}</span>
+                `;
+                if (phase === 'deal' || phase === 'draw') {
+                    div.style.cursor = 'pointer';
+                    div.addEventListener('click', () => toggleHold(i));
+                }
+                $cards.appendChild(div);
+            });
+        }
+
+        function toggleHold(i) {
+            if (phase !== 'deal' && phase !== 'draw') return;
+            if (!dealt) return;
+            held[i] = !held[i];
+            renderCards();
+        }
+
+        function evaluateHand() {
+            const values = hand.map(c => c.rankIdx).sort((a,b) => a - b);
+            const suits = hand.map(c => c.suit);
+            const counts = {};
+            values.forEach(v => { counts[v] = (counts[v] || 0) + 1; });
+            const groups = Object.values(counts).sort((a,b) => b - a);
+            const isFlush = suits.every(s => s === suits[0]);
+            
+            // Check straight
+            let isStraight = false;
+            const unique = [...new Set(values)].sort((a,b) => a-b);
+            if (unique.length === 5) {
+                if (unique[4] - unique[0] === 4) isStraight = true;
+                // Ace-low straight (A,2,3,4,5)
+                if (unique[0] === 0 && unique[1] === 1 && unique[2] === 2 && unique[3] === 3 && unique[4] === 12) isStraight = true;
+            }
+
+            if (isFlush && isStraight && values[4] === 12 && values[0] === 8) return 'royal-flush';
+            if (isFlush && isStraight) return 'straight-flush';
+            if (groups[0] === 4) return 'four-kind';
+            if (groups[0] === 3 && groups[1] === 2) return 'full-house';
+            if (isFlush) return 'flush';
+            if (isStraight) return 'straight';
+            if (groups[0] === 3) return 'three-kind';
+            if (groups[0] === 2 && groups[1] === 2) return 'two-pair';
+            if (groups[0] === 2) {
+                // Check if the pair is Jacks or better (J=11-2=9, Q=10, K=11, A=12)
+                const pairValue = values.find(v => counts[v] === 2);
+                if (pairValue >= 9) return 'jacks-better';
+            }
+            return 'nothing';
+        }
+
+        function getPayout(handType) {
+            return PAYTABLE[handType] || 0;
+        }
+
+        function deal() {
+            if (credits < bet) {
+                $msg.textContent = 'Not enough credits! Click New to reset.';
+                $msg.className = 'vp-message vp-message--lose';
+                return;
+            }
+            credits -= bet;
+            updateStats();
+            
+            deck = shuffle(createDeck());
+            hand = drawCards(5);
+            held = [false, false, false, false, false];
+            dealt = true;
+            phase = 'deal';
+            renderCards();
+            
+            $deal.disabled = true;
+            $draw.disabled = false;
+            $msg.textContent = 'Click cards to hold, then Draw.';
+            $msg.className = 'vp-message';
+            document.getElementById('vpWin').textContent = '0';
+        }
+
+        function draw() {
+            if (phase !== 'deal') return;
+            
+            // Replace non-held cards
+            for (let i = 0; i < 5; i++) {
+                if (!held[i]) {
+                    const newCards = drawCards(1);
+                    hand[i] = newCards[0];
+                }
+            }
+            
+            phase = 'result';
+            dealt = false;
+            renderCards();
+            
+            const result = evaluateHand();
+            const payout = getPayout(result);
+            
+            handsPlayed++;
+            if (payout > 0) {
+                const winAmount = payout * bet;
+                credits += winAmount;
+                handsWon++;
+                $msg.innerHTML = `You won <strong>${winAmount}</strong> credits! (${result.replace(/-/g, ' ')})`;
+                $msg.className = 'vp-message vp-message--win';
+                document.getElementById('vpWin').textContent = winAmount;
+            } else {
+                $msg.textContent = 'No win. Try again!';
+                $msg.className = 'vp-message vp-message--lose';
+                document.getElementById('vpWin').textContent = '0';
+            }
+            
+            $deal.disabled = false;
+            $draw.disabled = true;
+            $deal.innerHTML = '<i class="fas fa-hand"></i> Deal';
+            updateStats();
+        }
+
+        function updateStats() {
+            $credits.textContent = credits;
+            $bet.textContent = bet;
+            $hands.textContent = handsPlayed;
+            $won.textContent = handsWon;
+        }
+
+        function newGame() {
+            credits = 100;
+            handsPlayed = 0;
+            handsWon = 0;
+            hand = [];
+            held = [false, false, false, false, false];
+            dealt = false;
+            phase = 'bet';
+            $cards.innerHTML = '';
+            for (let i = 0; i < 5; i++) {
+                const div = document.createElement('div');
+                div.className = 'vp-card vp-card--black';
+                div.style.background = 'linear-gradient(135deg, #1a237e, #283593)';
+                div.style.color = 'rgba(255,255,255,0.1)';
+                div.style.fontSize = '0.8rem';
+                div.innerHTML = '&#9824;';
+                $cards.appendChild(div);
+            }
+            $deal.disabled = false;
+            $draw.disabled = true;
+            $deal.innerHTML = '<i class="fas fa-hand"></i> Deal';
+            $msg.textContent = 'Click Deal to start!';
+            $msg.className = 'vp-message';
+            document.getElementById('vpWin').textContent = '0';
+            updateStats();
+        }
+
+        // Event listeners
+        $deal.addEventListener('click', deal);
+        $draw.addEventListener('click', draw);
+        $new.addEventListener('click', newGame);
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'd' || e.key === 'D') {
+                if (!$deal.disabled) deal();
+            }
+            if (e.key === ' ' || e.key === 'Space') {
+                e.preventDefault();
+                if (!$draw.disabled) draw();
+            }
+        });
+
+        // Initial render
+        newGame();
+    });
+    </script>
+</body>
+</html>
