@@ -162,6 +162,7 @@ const PlayerProfile = (() => {
         const oldLevel = profile.level;
         profile.xp += amount;
         profile.totalXPEarned += amount;
+        updateChallengeProgress('xp', amount);
 
         let leveledUp = false;
         while (profile.level < CONFIG.MAX_LEVEL && profile.xp >= xpForLevel(profile.level)) {
@@ -252,6 +253,10 @@ const PlayerProfile = (() => {
         if (isDouble) stats.doubleDowns++;
         if (isSplit) stats.splits++;
         stats.totalBet += bet;
+        if (result === 'win') {
+            const wonAmount = bet * (isBJ ? 2.5 : 2);
+            updateChallengeProgress('win_chips', wonAmount);
+        }
 
         profile.recentHands.unshift({ result, bet, isBJ, isDouble, isSplit, timestamp: new Date().toISOString() });
         if (profile.recentHands.length > CONFIG.RECENT_HANDS_MAX) profile.recentHands.length = CONFIG.RECENT_HANDS_MAX;
@@ -286,6 +291,7 @@ const PlayerProfile = (() => {
         if (!profile) return;
         profile.stats.dealerBusts++;
         checkAchievement('dealer_bust_win', profile.stats.dealerBusts >= 10);
+        updateChallengeProgress('dealer_bust');
         save();
     }
 
@@ -330,15 +336,34 @@ const PlayerProfile = (() => {
 
         if (!storedWeek || storedWeek < weekStart) {
             const all = [
-                { id: 'ch_play_50',  title: 'Volume Player',    desc: 'Play 50 hands',            icon: 'fa-hand',        target: 50,  type: 'hands',   xp: 100 },
-                { id: 'ch_win_20',   title: 'Win Streak',       desc: 'Win 20 hands',             icon: 'fa-trophy',      target: 20,  type: 'wins',    xp: 120 },
-                { id: 'ch_bj_3',     title: 'Natural Born',     desc: 'Get 3 blackjacks',         icon: 'fa-star',        target: 3,   type: 'bj',      xp: 150 },
-                { id: 'ch_double_5', title: 'Double Up',        desc: 'Win 5 double downs',       icon: 'fa-arrow-up',    target: 5,   type: 'double',  xp: 130 },
-                { id: 'ch_split_5',  title: 'Split Master',     desc: 'Win 5 split hands',        icon: 'fa-columns',     target: 5,   type: 'split',   xp: 130 },
-                { id: 'ch_bet_2000', title: 'High Roller',      desc: 'Bet 2000 chips total',     icon: 'fa-gem',         target: 2000, type: 'bet',    xp: 200 },
-                { id: 'ch_correct_20', title: 'Perfect Play',   desc: 'Make 20 correct decisions',icon: 'fa-check-double', target: 20,  type: 'correct', xp: 180 },
+                // Hands & wins
+                { id: 'ch_play_50',  title: 'Grinder',          desc: 'Play 50 hands',                  icon: 'fa-hand',           target: 50,   type: 'hands',   xp: 100 },
+                { id: 'ch_play_100', title: 'Marathon',         desc: 'Play 100 hands',                 icon: 'fa-hand-fist',      target: 100,  type: 'hands',   xp: 200 },
+                { id: 'ch_win_20',   title: 'Win Machine',      desc: 'Win 20 hands',                   icon: 'fa-trophy',         target: 20,   type: 'wins',    xp: 120 },
+                { id: 'ch_win_30',   title: 'Dominator',        desc: 'Win 30 hands',                   icon: 'fa-crown',          target: 30,   type: 'wins',    xp: 180 },
+                // Blackjacks
+                { id: 'ch_bj_3',     title: 'Natural Born',     desc: 'Get 3 blackjacks',               icon: 'fa-star',           target: 3,    type: 'bj',      xp: 150 },
+                { id: 'ch_bj_5',     title: 'Blackjack King',   desc: 'Get 5 blackjacks',               icon: 'fa-star-shooting',  target: 5,    type: 'bj',      xp: 250 },
+                // Doubles & Splits
+                { id: 'ch_double_5', title: 'Double Trouble',   desc: 'Win 5 double downs',             icon: 'fa-arrow-up',       target: 5,    type: 'double',  xp: 130 },
+                { id: 'ch_double_10',title: 'Double or Nothing',desc: 'Win 10 double downs',             icon: 'fa-arrows-repeat',  target: 10,   type: 'double',  xp: 220 },
+                { id: 'ch_split_5',  title: 'Split King',       desc: 'Win 5 split hands',              icon: 'fa-columns',        target: 5,    type: 'split',   xp: 130 },
+                // Bets & winnings
+                { id: 'ch_bet_5000', title: 'High Roller',      desc: 'Bet 5,000 chips total',          icon: 'fa-gem',            target: 5000, type: 'bet',    xp: 200 },
+                { id: 'ch_bet_20000',title: 'Whale',            desc: 'Bet 20,000 chips total',         icon: 'fa-whale',          target: 20000,type: 'bet',    xp: 400 },
+                { id: 'ch_win_10000',title: 'Bankroll Builder', desc: 'Win 10,000 chips total',         icon: 'fa-sack-dollar',    target: 10000,type: 'win_chips', xp: 350 },
+                { id: 'ch_win_25000',title: 'Jackpot Hunter',   desc: 'Win 25,000 chips total',         icon: 'fa-coins',          target: 25000,type: 'win_chips', xp: 500 },
+                // Dealer & insurance
+                { id: 'ch_bust_10',  title: 'Dealer Slayer',    desc: 'Make dealer bust 10 times',      icon: 'fa-skull',          target: 10,   type: 'dealer_bust', xp: 160 },
+                { id: 'ch_bust_25',  title: 'Dealer's Nightmare',desc: 'Make dealer bust 25 times',      icon: 'fa-skull-crossbones',target: 25,  type: 'dealer_bust', xp: 300 },
+                // Correct plays
+                { id: 'ch_correct_20',title: 'Perfect Play',    desc: 'Make 20 correct decisions',      icon: 'fa-check-double',   target: 20,  type: 'correct', xp: 180 },
+                { id: 'ch_correct_50',title: 'Strategy Expert', desc: 'Make 50 correct decisions',      icon: 'fa-brain',          target: 50,  type: 'correct', xp: 350 },
+                // XP
+                { id: 'ch_xp_500',  title: 'XP Hunter',        desc: 'Earn 500 total XP',              icon: 'fa-arrow-up',       target: 500,  type: 'xp',     xp: 250 },
+                { id: 'ch_xp_1000', title: 'XP Master',        desc: 'Earn 1,000 total XP',            icon: 'fa-arrow-trend-up', target: 1000, type: 'xp',     xp: 400 },
             ];
-            const selected = all.sort(() => Math.random() - 0.5).slice(0, 4);
+            const selected = all.sort(() => Math.random() - 0.5).slice(0, 5);
             profile.challenges = {
                 weekStart: weekStart.toISOString(),
                 list: selected.map(c => ({ ...c, progress: 0, completed: false })),
@@ -393,6 +418,7 @@ const PlayerProfile = (() => {
         const existed = load();
         if (saveTimer) clearInterval(saveTimer);
         saveTimer = setInterval(save, CONFIG.SAVE_INTERVAL);
+        getChallenges(); // Initialize weekly challenges
         startSession();
 
         window.addEventListener('beforeunload', () => { endSession(); save(); });
