@@ -1,0 +1,21 @@
+{
+  "name": "BlackjackOnlineCasinos.com",
+  "short_name": "Blackjack Guide",
+  "description": "Your ultimate guide to blackjack — rules, strategy, games, and casino reviews.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0c0f14",
+  "theme_color": "#d4a843",
+  "icons": [
+    {
+      "src": "/assets/img/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -327,4 +327,56 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    /* ----- Service Worker Registration (PWA) ----- */
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js')
+            .then(() => console.log('SW registered'))
+            .catch(() => console.log('SW registration failed'));
+    }
 });
+
+/* ----- Scroll to Top Button ----- */
+(function() {
+    const btn = document.createElement('button');
+    btn.id = 'scrollTop';
+    btn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+    btn.setAttribute('aria-label', 'Scroll to top');
+    Object.assign(btn.style, {
+        position: 'fixed',
+        bottom: '30px',
+        right: '30px',
+        width: '48px',
+        height: '48px',
+        borderRadius: '50%',
+        border: '1px solid rgba(212,168,67,0.3)',
+        background: 'rgba(12,15,20,0.9)',
+        color: '#d4a843',
+        fontSize: '1.2rem',
+        cursor: 'pointer',
+        zIndex: '9999',
+        opacity: '0',
+        transform: 'translateY(20px)',
+        transition: 'all 0.3s ease',
+        boxShadow: '0 4px 15px rgba(0,0,0,0.3)',
+        backdropFilter: 'blur(8px)',
+        display: 'none',
+        alignItems: 'center',
+        justifyContent: 'center'
+    });
+    document.body.appendChild(btn);
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) {
+            btn.style.display = 'flex';
+            requestAnimationFrame(() => { btn.style.opacity = '1'; btn.style.transform = 'translateY(0)'; });
+        } else {
+            btn.style.opacity = '0';
+            btn.style.transform = 'translateY(20px)';
+            setTimeout(() => { if (window.scrollY <= 400) btn.style.display = 'none'; }, 300);
+        }
+    });
+
+    btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+})();
