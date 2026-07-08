@@ -16,10 +16,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        .st-card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 28px; margin-bottom: 28px; border-left: 3px solid var(--color-gold); }
-        .st-card h3 { font-family: var(--font-primary); font-size: 1.15rem; font-weight: 700; color: var(--color-gold); margin-bottom: 12px; }
-        .st-card p { color: var(--color-text-muted); line-height: 1.8; margin: 0 0 10px; }
-        .st-card p:last-child { margin-bottom: 0; }
+        .st-info-card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 28px; margin-bottom: 28px; border-left: 3px solid var(--color-gold); }
+        .st-info-card h3 { font-family: var(--font-primary); font-size: 1.15rem; font-weight: 700; color: var(--color-gold); margin-bottom: 12px; }
+        .st-info-card p { color: var(--color-text-muted); line-height: 1.8; margin: 0 0 10px; }
+        .st-info-card p:last-child { margin-bottom: 0; }
         .st-step { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 20px; margin-bottom: 20px; border-left: 2px solid var(--color-gold); }
         .st-step .step-num { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: var(--color-gold); color: #111; border-radius: 50%; font-weight: 800; font-size: 0.85rem; margin-right: 10px; vertical-align: middle; }
         .st-step .step-head { display: inline; font-family: var(--font-primary); font-weight: 700; color: #fff; font-size: 1rem; vertical-align: middle; }
@@ -27,7 +27,7 @@
         .warning-box { background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.15); border-radius: var(--radius-sm); padding: 20px; margin: 24px 0; }
         .warning-box p { color: #ef4444; font-weight: 600; margin: 0; }
         @media (max-width: 768px) {
-            .st-card { padding: 20px; }
+            .st-info-card { padding: 20px; }
             .st-step { padding: 16px; }
             .st-step .step-num { width: 24px; height: 24px; font-size: 0.75rem; margin-right: 8px; }
             .st-step .step-head { font-size: 0.9rem; }
@@ -131,7 +131,7 @@
                         </div>
                         <h2>Ace Sequencing (Ace Prediction)</h2>
                         <p>Ace sequencing is a more refined version of shuffle tracking. Instead of tracking a whole group of cards, you track <strong>individual Aces</strong> through the shuffle. The logic is simple: if you know an Ace is coming as your first card, you have roughly a 31% chance of getting a blackjack — and a huge statistical edge on every hand where you're dealt an Ace.</p>
-                        <div class="st-card">
+                        <div class="st-info-card">
                             <h3>The Key Card Method</h3>
                             <p><strong>1. Spot the Ace:</strong> When an Ace is placed into the discard tray, note its position and the 2–3 cards placed directly on top of it. These are your "key cards."</p>
                             <p><strong>2. Memorize the Key Cards:</strong> This is the hard part. You need to remember the rank and suit of 2–3 cards per Ace, across up to 8 decks. Serious players use mnemonics — "King of Spades = Kiss," "7 of Hearts = Heaven," etc.</p>
