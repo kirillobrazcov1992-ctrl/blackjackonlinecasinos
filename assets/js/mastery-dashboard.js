@@ -257,7 +257,7 @@ const MasteryDashboard = (() => {
                 tabs.forEach(t => t.classList.remove('dashboard-tab--active'));
                 tab.classList.add('dashboard-tab--active');
                 overlay.querySelectorAll('.dashboard-panel').forEach(p => p.classList.remove('dashboard-panel--active'));
-                const panel = overlay.getElementById(panelId);
+                const panel = overlay.querySelector('#' + panelId);
                 if (panel) panel.classList.add('dashboard-panel--active');
             });
         });
